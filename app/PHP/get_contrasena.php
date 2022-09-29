@@ -11,5 +11,5 @@
   $usuario = $_GET["username"];
 
   $query = mysqli_query($conn, "SELECT * FROM usuarios WHERE nombre='$usuario'") or die (mysqli_error($conn));
-  echo mysqli_fetch_row($query)[1];
+  echo mysqli_fetch_array($query)["contrasena"];
 ?>
