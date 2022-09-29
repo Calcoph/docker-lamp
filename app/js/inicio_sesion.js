@@ -38,6 +38,6 @@ function iniciar_sesion() {
             }
     }
     let url = window.location.href.split("HTML/inicio_sesion.html")[0];
-    xmlHttp.open("GET", url+"PHP/inicio_sesion.php/?username="+usuario, true); 
+    xmlHttp.open("GET", url+"PHP/get_contrasena.php/?username="+usuario, true); 
     xmlHttp.send(null);
 }
