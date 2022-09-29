@@ -10,6 +10,7 @@ function registrar_usuario() {
             if (contraseña.length <= 20) {
                 if (usuario.length <= 20) {
                     document.form_inicio_sesion.submit()
+                    document.cookie = "username="+usuario+"; path=/"
                 } else {
                     window.alert("El nombre de usuario es demasiado largo. Usa como mucho 20 caracteres")
                 }
