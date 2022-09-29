@@ -1,13 +1,9 @@
 <?php
-  $hostname = "db";
-  $username = "admin";
-  $password = "test";
-  $db = "database";
-
-  $conn = mysqli_connect($hostname,$username,$password,$db);
-  if ($conn->connect_error) {
-    die("Database connection failed: " . $conn->connect_error);
+  if (isset($_COOKIE["username"])) {
+    $username = $_COOKIE["username"];
+  } else {
+    $username = "Iniciar Sesión";
   }
-
-  readfile("HTML/index.html");
+  $index = str_replace('%usuario%', $username, file_get_contents('/var/www/html/HTML/index.html'));
+  echo $index
 ?>
