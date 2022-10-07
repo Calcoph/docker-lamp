@@ -71,10 +71,9 @@ CREATE TABLE IF NOT EXISTS `comentario libro` (
   `Texto` mediumtext DEFAULT NULL,
   PRIMARY KEY (`Comentario ID`,`User ID`,`Book ID`),
   KEY `User ID` (`User ID`),
-  KEY `Comentario ID` (`Comentario ID`),
   KEY `Book ID` (`Book ID`),
   CONSTRAINT `Book ID L` FOREIGN KEY (`Book ID`) REFERENCES `capitulo` (`Chapter_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_comentario libro_usuario` FOREIGN KEY (`User ID`) REFERENCES `usuario` (`Used ID`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `User ID L` FOREIGN KEY (`User ID`) REFERENCES `usuario` (`Used ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- La exportación de datos fue deseleccionada.
@@ -82,7 +81,8 @@ CREATE TABLE IF NOT EXISTS `comentario libro` (
 -- Volcando estructura para tabla librerias.libro
 CREATE TABLE IF NOT EXISTS `libro` (
   `Book ID` varchar(50) NOT NULL DEFAULT '',
-  `Nota` int(5) DEFAULT NULL,
+  `Nota` decimal(2,1) NOT NULL DEFAULT 0.0,
+  `img` longblob DEFAULT NULL,
   PRIMARY KEY (`Book ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -92,8 +92,9 @@ CREATE TABLE IF NOT EXISTS `libro` (
 CREATE TABLE IF NOT EXISTS `review` (
   `Used ID` varchar(50) NOT NULL,
   `Book ID` varchar(50) NOT NULL,
-  `Review` int(5) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`Used ID`,`Book ID`),
+  `Nota` decimal(2,1) NOT NULL DEFAULT 0.0,
+  `ID Review` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`Used ID`,`Book ID`,`ID Review`),
   KEY `Book ID` (`Book ID`),
   KEY `Used ID` (`Used ID`),
   CONSTRAINT `Book ID R` FOREIGN KEY (`Book ID`) REFERENCES `libro` (`Book ID`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -104,8 +105,9 @@ CREATE TABLE IF NOT EXISTS `review` (
 
 -- Volcando estructura para tabla librerias.usuario
 CREATE TABLE IF NOT EXISTS `usuario` (
-  `Used ID` varchar(50) NOT NULL,
-  `Password` varchar(50) NOT NULL,
+  `Used ID` varchar(50) NOT NULL DEFAULT '',
+  `Password` varchar(50) NOT NULL DEFAULT '',
+  `img` longblob DEFAULT NULL,
   PRIMARY KEY (`Used ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tendra unas cuantas cosas dentro de si, como contraseña, nombreID, Lista de Libros';
 
