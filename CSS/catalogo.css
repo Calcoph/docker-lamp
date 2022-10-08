@@ -57,58 +57,32 @@ header a{
 header a:hover{
     color:rgb(224, 176, 113);
 }
-#Title{
-    text-align: center;
-    background-color: rgb(224, 176, 113)
-}
-.container_carta{
-    height: auto;
-    padding-top: 100px;
+.libros_container{
+    height: 100vh;
+    padding-top: 150px;
     padding-left: 50px;
     padding-right: 50px;
-    padding-bottom: 100px;
-    background-color: 
-}
-.carta_container{
-    height: auto;
-    padding-top: 50px;
-    background-color: rgb(224, 176, 113);       
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-
-}
-.cartas_container{
-    text-align: center;
-    height: auto;
-}
-#titulo{
-    text-align: center;
-}
-.carta img{
-    width: 30%;
-    height: 5%;
+    background-color:sienna;
+    background-size: cover;
     
 }
-.carta{
-    text-align: center;
-    width: 30%;
-    height: 5%;
-    display: block;
-    margin-bottom: 15px;
-
-}
-
-.container_tit_busc{
+.catalogo_container{
+    padding: 50px;
+    background-color: white;
+    justify-content: left;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-bottom: 0;
-    padding-right: 0px;
 }
-#tit{
-    
+html{
+    scroll-behavior: smooth;
+}
+table{
+    text-align: center;
+    border-collapse: collapse;
+    width: 50%;
+}
+th,td{
+    border: solid 1px black;
+    padding: 0;
 }
 footer{
     margin: 0;
