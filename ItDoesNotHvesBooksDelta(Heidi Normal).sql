@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `comentario libro` (
   PRIMARY KEY (`Comentario ID`,`User ID`,`Book ID`),
   KEY `User ID` (`User ID`),
   KEY `Book ID` (`Book ID`),
-  CONSTRAINT `Book ID L` FOREIGN KEY (`Book ID`) REFERENCES `capitulo` (`Chapter_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_comentario libro_libro` FOREIGN KEY (`Book ID`) REFERENCES `libro` (`Book ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `User ID L` FOREIGN KEY (`User ID`) REFERENCES `usuario` (`Used ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

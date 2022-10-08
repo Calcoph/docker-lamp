@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-10-2022 a las 23:30:38
+-- Tiempo de generación: 08-10-2022 a las 23:47:32
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -265,7 +265,7 @@ ALTER TABLE `comentario capitulo`
 -- Filtros para la tabla `comentario libro`
 --
 ALTER TABLE `comentario libro`
-  ADD CONSTRAINT `Book ID L` FOREIGN KEY (`Book ID`) REFERENCES `capitulo` (`Chapter_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_comentario libro_libro` FOREIGN KEY (`Book ID`) REFERENCES `libro` (`Book ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `User ID L` FOREIGN KEY (`User ID`) REFERENCES `usuario` (`Used ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
