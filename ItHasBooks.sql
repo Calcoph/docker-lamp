@@ -141,8 +141,9 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   PRIMARY KEY (`Used ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tendra unas cuantas cosas dentro de si, como contraseña, nombreID, Lista de Libros';
 
--- Volcando datos para la tabla librerias.usuario: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla librerias.usuario: ~5 rows (aproximadamente)
 INSERT INTO `usuario` (`Used ID`, `Password`, `img`) VALUES
+	('Admin', 'test', NULL),
 	('Aitor', 'VIVA CHILE', NULL),
 	('Aligator 250', '214134351131253412771315171846123 41424251421 caba', NULL),
 	('Mikel', 'legenda1234', NULL),
