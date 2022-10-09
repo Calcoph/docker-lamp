@@ -66,17 +66,23 @@ header a:hover{
     background-size: cover;
     
 }
+.titulo_buscador_container{
+}
 .catalogo_container{
-    padding: 50px;
+    height: 100vh;
+    padding-top: 150px;
+    flex-direction: column;
+    padding-right: 50px;
     background-color: white;
-    justify-content: left;
+    align-items: flex-start;
     display: flex;
+    background-color: burlywood;
 }
 html{
     scroll-behavior: smooth;
 }
 table{
-    text-align: center;
+    text-align: left;
     border-collapse: collapse;
     width: 50%;
 }
@@ -92,7 +98,26 @@ footer{
     display: flex;
 
 }
-
+.container-3{
+    
+    display: flex;
+    justify-content: space-between;
+  }
+   
+  .container-3 input#search{
+    width: 300px;
+    height: 50px;
+    background: whites;
+    border: none;
+    font-size: 10pt;
+    float: left;
+    color: #262626;
+    padding-left: 45px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    color: #fff;
+  }
 
 @media (min-width:720px){
     header{
