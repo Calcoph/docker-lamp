@@ -9,30 +9,43 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
+    $titulo = $_GET["titulo"];
 
-    $query = mysqli_query($conn, "SELECT * FROM libros WHERE titulo=$titulo")
+    $query = mysqli_query($conn, "SELECT * FROM libro WHERE `Book ID`='$titulo'")
         or die (mysqli_error($conn));
-
+    
     // el libro en sí
-    $imagen = 0;
-    $titulo = 1;
-    $descripcion = 2;
-    $contenido = 3;
+    $imagen = 2;
+    $titulo_ = 0;
+    $nota = 1;
     while ($row = mysqli_fetch_row($query)) {
         echo
         "<tr>
         <td>{$row[$imagen]}</td>
-        <td>{$row[$titulo]}</td>
-        <td>{$row[$descripcion]}</td>
-        <td>{$row[$contenido]}</td>
+        <td>{$row[$titulo_]}</td>
+        <td>{$row[$nota]}</td>
+        </tr>";
+    }
+
+    $query = mysqli_query($conn, "SELECT * FROM capitulo WHERE `Book ID`='$titulo'")
+        or die (mysqli_error($conn));
+
+    // capitulos
+    while ($row = mysqli_fetch_assoc($query)) {
+        echo
+        "<tr>
+        <td>{$row["Chapter_ID"]}</td>
+        <td>{$row["Book ID"]}</td>
+        <td>{$row["Chapter num"]}</td>
+        <td>{$row["Texto"]}</td>
         </tr>";
     }
 
     // Los comentarios
-    $query = mysqli_query($conn, "SELECT * FROM comentarios WHERE titulo=$titulo")
+    $query = mysqli_query($conn, "SELECT * FROM `comentario libro` WHERE `Book ID`='$titulo'")
         or die (mysqli_error($conn));
 
-    while ($row = mysqli_fetch_array($query)) {
+    while ($row = mysqli_fetch_assoc($query)) {
         echo
         "<tr>
         <td>{$row["nombre comentarista"]}</td>
