@@ -10,6 +10,6 @@
   }
   $usuario = $_GET["username"];
 
-  $query = mysqli_query($conn, "SELECT * FROM usuarios WHERE nombre='$usuario'") or die (mysqli_error($conn));
-  echo mysqli_fetch_array($query)["contrasena"];
+  $query = mysqli_query($conn, "SELECT * FROM usuario WHERE `Used ID`='$usuario'") or die (mysqli_error($conn));
+  echo mysqli_fetch_array($query)["Password"];
 ?>

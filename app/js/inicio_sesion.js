@@ -36,6 +36,8 @@ function iniciar_sesion() {
             var contraseña2 = xmlHttp.responseText;
             if (contraseña == contraseña2) {
                 console.log("Login successful!")
+                document.cookie = "username="+usuario+"; path=/"
+                document.form_inicio_sesion.submit()
             }
     }
     let url = window.location.href.split("HTML/inicio_sesion.html")[0];
