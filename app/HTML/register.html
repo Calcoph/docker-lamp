@@ -11,7 +11,13 @@
 <body>
     <div class="signupFrm">
         <form name="form_inicio_sesion" action="/index.php" method="post" class="form">
-          <h1 class="title">Librerium</h1> 
+          <h1 class="title">Librerium</h1>
+    
+          <div class="inputContainer">
+            <input name="email" type="text" class="input" placeholder="a">
+            <label for="" class="label">Email</label>
+          </div>
+    
           <div class="inputContainer">
             <input name="usuario" type="text" class="input" placeholder="a">
             <label for="" class="label">Username</label>
@@ -21,9 +27,14 @@
             <input name="pswd" type="text" class="input" placeholder="a">
             <label for="" class="label">Password</label>
           </div>
+    
+          <div class="inputContainer">
+            <input name="conf_pswd" type="text" class="input" placeholder="a">
+            <label for="" class="label">Confirm Password</label>
+          </div>
           <div class="btn_container">
-            <a href="/HTML/register.html">No tengo cuenta</a>
-            <input type="button" class="loginBtn" value="Iniciar sesión" onclick="iniciar_sesion()">
+            <a href="/HTML/register.html">Ya tengo una cuenta</a>
+            <input type="button" class="submitBtn" value="Registrarse" onclick="registrar_usuario()">
           </div>
           
         </form>
