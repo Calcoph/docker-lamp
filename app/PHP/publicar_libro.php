@@ -31,11 +31,5 @@
     $query = mysqli_query($conn, "INSERT INTO libro(`Book ID`, Nota, img) VALUES ('$titulo', 0.0, '$target_dir')") or die (mysqli_error($conn));
     $query = mysqli_query($conn, "INSERT INTO capitulo(Chapter_ID, `Book ID`, `Chapter Num`, Texto) VALUES ('Cap 0', '$titulo', 0, '$texto')") or die (mysqli_error($conn));
 
-    if (isset($_COOKIE["username"])) {
-        $username = $_COOKIE["username"];
-    } else {
-        $username = "Iniciar Sesión";
-    }
-    $index = str_replace('%usuario%', $username, file_get_contents('/var/www/html/HTML/index.html'));
-    echo $index
+    include "../index.php";
 ?>

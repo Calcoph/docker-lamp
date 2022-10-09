@@ -13,15 +13,24 @@
         or die (mysqli_error($conn));
 
     $partes = explode("%catalogo%", file_get_contents('/var/www/html/HTML/catalogo.html'), 2);
-    echo $partes[0];
+    $pagina = $partes[0];
     $imagen = 2;
     $titulo = 0;
     $nota = 1;
     while ($row = mysqli_fetch_row($query)) {
-        echo
-    "<tr>
+        $pagina .= "<tr>
         <th><a href=\"/PHP/libro.php/?titulo={$row[$titulo]}\">{$row[$titulo]}</a></th>
     </tr>";
     }
-    echo $partes[1];
+    $pagina .= $partes[1];
+
+
+    if (isset($_COOKIE["username"])) {
+        $username = $_COOKIE["username"];
+    } else {
+        $username = "Iniciar Sesión";
+    }
+    $header = str_replace('%usuario%', $username, file_get_contents('/var/www/html/HTML/header.html')); 
+    $final = str_replace('%header%', $header, $pagina);
+    echo $final
 ?>
