@@ -10,16 +10,7 @@
     <script src="/js/nuevo_libro.js"></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <p class="logo">Librerium</p>
-             <img src="/img/book_read_icon-icons.com_49930_small.ico" alt="">
-            <nav>
-                <a href="#">Catálogo</a>
-                <a href="/HTML/inicio_sesion.html">%usuario%</a>
-            </nav>
-        </div>
-    </header>
+    %header%
     <div class="signupFrm">
         <form name="form_publicar_libro" action="/PHP/publicar_libro.php" method="post" class="form" enctype="multipart/form-data">
           <h1 class="title">Nuevo libro</h1>
@@ -30,7 +21,7 @@
           </div>
 
           <div class="inputContainer">
-            <textarea name="texto" class="input" cols="90" rows="20" placeholder="Escribe tu libro!"></textarea>
+            <textarea name="texto" class="input" cols="90" rows="5" placeholder="Escribe tu libro!"></textarea>
           </div>
 
           <img src="/img/portada 1.png" alt=""></imgsrc>

@@ -4,6 +4,7 @@
   } else {
     $username = "Iniciar Sesión";
   }
-  $index = str_replace('%usuario%', $username, file_get_contents('/var/www/html/HTML/index.html'));
+  $header = str_replace('%usuario%', $username, file_get_contents('/var/www/html/HTML/header.html')); 
+  $index = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/index.html'));
   echo $index
 ?>
