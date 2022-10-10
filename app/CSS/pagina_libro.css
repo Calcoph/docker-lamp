@@ -57,6 +57,12 @@ p{
     text-align: left;
     padding-left: 50px;
 }
+#comentarios{
+    background-color: burlywood;
+    padding: 200px 12px;
+    align-items: center;
+    
+}
 
 
 @media (min-width:720px){
