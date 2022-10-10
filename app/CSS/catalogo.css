@@ -68,12 +68,13 @@ header a:hover{
 }
 
 .catalogo_container{
-    height: 100vh;
+    align-items: center;
+    
+    height: 95vh;
     padding-top: 150px;
     flex-direction: column;
     padding-right: 50px;
     background-color: white;
-    align-items: flex-start;
     display: flex;
     background-color: burlywood;
 }
@@ -102,10 +103,13 @@ footer{
     justify-content: center;
 }
 .container-3{
-    display: flex;
+    display: inline-flex;
+    flex-direction: row;
     justify-content: space-between;
   }
-   
+ h4{
+    padding-right: 20px;
+ }
   .container-3 input#search{
     width: 300px;
     height: 50px;
@@ -119,6 +123,10 @@ footer{
     -moz-border-radius: 5px;
     border-radius: 5px;
     color: #fff;
+  }
+  #sig{
+    position: absolute;
+    bottom: 500px;
   }
 
 @media (min-width:720px){
