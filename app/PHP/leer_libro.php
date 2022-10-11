@@ -36,5 +36,33 @@
         // </tr>";
     }
 
+    $cap_anterior = intval($capitulo)-1;
+    $anterior = "";
+    if ($cap_anterior >= 1) {
+        $cap_anterior = strval($cap_anterior);
+        $anterior = "
+    <form metod=\"get\" action=\"/PHP/leer_libro.php\">
+        <Button>Capítulo anterior</Button>
+        <input type=\"hidden\" name=\"titulo\" value=\"$titulo\" />
+        <input type=\"hidden\" name=\"capitulo\" value=\"$cap_anterior\" />
+    </form>";
+    }
+
+
+    $cap_siguiente = strval(intval($capitulo)+1);
+    $query = mysqli_query($conn, "SELECT * FROM capitulo WHERE `Book ID`='$titulo' AND `Chapter Num`=$cap_siguiente")
+        or die (mysqli_error($conn));
+    $siguiente = "";
+    while ($row = mysqli_fetch_assoc($query)) {
+        $siguiente = "
+    <form metod=\"get\" action=\"/PHP/leer_libro.php\">
+        <Button>Capítulo siguiente</Button>
+        <input type=\"hidden\" name=\"titulo\" value=\"$titulo\" />
+        <input type=\"hidden\" name=\"capitulo\" value=\"$cap_siguiente\" />
+    </form>";
+    }
+    $pagina = str_replace('%boton anterior%', $anterior, $pagina);
+    $pagina = str_replace('%boton siguiente%', $siguiente, $pagina);
+
     echo $pagina;
 ?>
