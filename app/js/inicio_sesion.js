@@ -11,10 +11,12 @@ function registrar_usuario() {
     let regex_email = /.+@.+\..+/ // El regex es poco restrictivo a propósito, algunos regex pre-hechos para email no permiten algunos emails válidos
      if(!pattern.test(nombre)){
         alert("Nombre no válido, porfavor utilice solo letras");
+        return
     }
     else{
         if(!pattern.test(apellido)){
             alert("apellido no válido, porfavor utilice solo letras");
+            return
         }
         else{
             if(!validarDNI()){
