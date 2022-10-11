@@ -30,7 +30,7 @@
     } else {
         $username = "Iniciar Sesión";
     }
-    $header = str_replace('%usuario%', $username, file_get_contents('/var/www/html/HTML/header.html')); 
+    $header = str_replace('%usuario%', $username, file_get_contents('/var/www/html/HTML/header_small.html')); 
     $final = str_replace('%header%', $header, $pagina);
     echo $final
 ?>

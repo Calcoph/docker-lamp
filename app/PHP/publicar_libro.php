@@ -1,7 +1,7 @@
 
 
 <?php
-    $target_dir = "/home/www-data/uploads/";
+    $target_dir = "/var/www/html/uploads/";
     $titulo = $_POST["titulo"];
     $texto = $_POST["texto"];
     if (file_exists($_FILES["portada_personalizada"]["tmp_name"])) {
