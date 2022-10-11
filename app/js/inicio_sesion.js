@@ -57,6 +57,7 @@ function registrar_usuario() {
                                             window.alert("El nombre de usuario es demasiado largo. Usa como mucho 20 caracteres")
                                             return
                                         }
+                                        }
                                     }
                                 }
                             }
@@ -70,11 +71,7 @@ function registrar_usuario() {
     
     
     
-    if (usuario.length > 20) {
-        window.alert("El nombre de usuario es demasiado largo. Usa como mucho 20 caracteres")
-        registrar=false;
-        return
-    }
+    
 
     var get_contraseña = new XMLHttpRequest();
     get_contraseña.onreadystatechange = function() {
