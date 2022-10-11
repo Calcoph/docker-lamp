@@ -1,2 +1,6 @@
 mysql/
 ignore
+uploads/*
+!uploads/portada 1.png
+!uploads/portada 2.png
+!uploads/portada 3.png
