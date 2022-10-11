@@ -78,7 +78,18 @@ a{
   margin-top: 30px;
   text-decoration: none;
 }
-  
+.loginBtn {
+  display: block;
+  margin-left: auto;
+  padding: 15px 30px;
+  border: none;
+  background-color: burlywood;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 30px;
+}
   .submitBtn {
     display: block;
     margin-left: auto;
@@ -96,6 +107,10 @@ a{
     transform: translateY(-2px);
   }
   .loginBtn:hover {
+    background-color: rgb(175, 102, 6);
+    transform: translateY(-2px);
+  }
+  a:hover{
     background-color: rgb(175, 102, 6);
     transform: translateY(-2px);
   }
