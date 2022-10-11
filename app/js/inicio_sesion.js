@@ -9,7 +9,7 @@ function registrar_usuario() {
     let patternTel= /[0-9]{9}/
     let pattern = new RegExp('^[A-Z]+$', 'i'); // Expresión regular de solo letras
     let regex_email = /.+@.+\..+/ // El regex es poco restrictivo a propósito, algunos regex pre-hechos para email no permiten algunos emails válidos
-    if(!pattern.test(nombre)){
+     if(!pattern.test(nombre)){
         alert("Nombre no válido, porfavor utilice solo letras");
     }
     else{
@@ -66,13 +66,14 @@ function registrar_usuario() {
                 }
             }    
         }
-    }
-   
+    
+ 
     
     
     
     
 
+    
     var get_contraseña = new XMLHttpRequest();
     get_contraseña.onreadystatechange = function() {
         if (get_contraseña.readyState == 4 && get_contraseña.status == 200) {
@@ -87,7 +88,8 @@ function registrar_usuario() {
     }
     let url = window.location.href.split("HTML/register.html")[0];
     get_contraseña.open("GET", url+"PHP/get_contrasena.php/?username="+usuario, true); 
-    get_contraseña.send(null);}
+    get_contraseña.send(null);
+}
 
 function validarFecha(){
     let fecha = document.form_inicio_sesion.fnacimiento.value
