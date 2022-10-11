@@ -10,7 +10,7 @@ Página web para publicar libros, reseñarlos y comentarlos.
     * `$ sudo docker ps -a`
 4. En caso de no existir, cambiar el comando del paso 5 para que sea el contenedor que tenga **web** en alguna parte de su nombre, en vez de `librerium_web_1`
 5. Dar permiso a php para escribir en **/home/www-data/uploads**:
-    * `$ sudo docker exec librerium_web_1 chown www-data:www-data /home/www-data/uploads`
+    * `$ sudo docker exec librerium_web_1 chown www-data:www-data /var/www/html/uploads`
 6. Abrir el navegador en **http://localhost:8890/**
 8. Iniciar sesión con usuario: **admin**, contraseña: **test**
 7. Importar la base de datos **database.sql**:
