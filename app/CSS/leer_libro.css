@@ -1,0 +1,80 @@
+*{
+    box-sizing: border-box;
+}
+h1{font-size: 3.5em;}
+h2{font-size: 2.7em;}
+h3{font-size: 2em;}
+p{font-size: 1.25em;}
+body{
+    font-family: 'Roboro', sans-serif;
+    margin: 0;
+}
+header{
+    background-color: rgb(245,245,245);
+}
+header .logo{
+    margin: 0;
+    padding: 25px 30px;
+    font-weight: bold;
+    color: burlywood;
+    font-size: 2em;
+}
+#lectura{
+    padding-top: 100px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgb(233, 213, 187);
+    min-height: 100vh;
+}
+
+header .container{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+header nav{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 25px;
+}
+header a{
+    padding: 5px 12px;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+header a:hover{
+    color:rgb(224, 176, 113);
+}
+html{
+    scroll-behavior: smooth;
+}
+footer{
+    margin: 0;
+    padding: 12px;
+    background-color:gray;
+    text-align: center;
+    display: flex;
+
+}
+
+@media (min-width:720px){
+    header{
+        position: fixed;
+        width: 100%;
+    }
+    header .logo{width:350px;}
+        
+    header .container{
+        flex-direction: row;
+        justify-content: space-between;
+        
+    }
+    header nav{
+        flex-direction: row;
+        padding-bottom: 0;
+        padding-right: 0px;
+       
+    }
+}
