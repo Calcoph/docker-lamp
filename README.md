@@ -1,6 +1,8 @@
 # Librerium
 Página web para publicar libros, reseñarlos y comentarlos.
 
+Hecho por: Francisco González, Diego Esteban, Ibai Mendivil.
+
 ## Instrucciones
 1. Crear el contenedor **web**:
     * `$ sudo docker build -t="web" .`

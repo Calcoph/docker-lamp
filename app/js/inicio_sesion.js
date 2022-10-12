@@ -8,9 +8,11 @@ function registrar_usuario() {
     let tel = document.form_inicio_sesion.tlf.value
     let fecha = document.form_inicio_sesion.fnacimiento.value
     let dni = document.form_inicio_sesion.dni.value
+
     let patternTel = /[0-9]{9}/
     let pattern_letras = new RegExp('^[A-Z]+$', 'i'); // Expresión regular de solo letras
-    let regex_email = /.+@.+\..+/ // El regex es poco restrictivo a propósito, algunos regex pre-hechos para email no permiten algunos emails válidos
+     // El regex del email es poco restrictivo a propósito, algunos regex pre-hechos para email no permiten algunos emails válidos
+    let regex_email = /.+@.+\..+/ // busca: X@X.X Donde X es cualquier caracter 1 o más veces
     if (nombre == "") {
         window.alert("Introduzca su nombre")
         return
@@ -28,9 +30,11 @@ function registrar_usuario() {
         return
     }
     if (!dni_valido(dni)) {
+        // Aquí no hay window.alert(), porque las genera dni_valido()
         return
     }
     if (!fecha_valida(fecha)) {
+        // Aquí no hay window.alert(), porque las genera fecha_valida()
         return
     }
     if (tel == "") {
@@ -54,7 +58,7 @@ function registrar_usuario() {
         return
     }
     if (contraseña.length > 20) {
-        // Porque guardamos las contraseñas en texto plano
+        // Porque guardamos las contraseñas en texto plano y en la base de datos se guarda como un Varchar(20)
         window.alert("La contraseña es demasiado larga. Usa como mucho 20 caracteres")
         return
     }
@@ -63,6 +67,7 @@ function registrar_usuario() {
         return
     }
     if (usuario.length > 20) {
+        // en la base de datos se guarda como un Varchar(20)
         window.alert("El nombre de usuario es demasiado largo. Usa como mucho 20 caracteres")
         return
     }
@@ -71,11 +76,14 @@ function registrar_usuario() {
         return
     }
 
+    // Código obtenido de https://stackoverflow.com/questions/247483/http-get-request-in-javascript
+    // Modificaciones: la URL, y la función de callback
     var get_contraseña = new XMLHttpRequest();
     get_contraseña.onreadystatechange = function () {
         if (get_contraseña.readyState == 4 && get_contraseña.status == 200) {
             var contraseña2 = get_contraseña.responseText;
             if (contraseña2 === "") {
+                // Si el usuario no tiene contraseña, significa que no está en la base de datos
                 document.form_inicio_sesion.submit()
                 document.cookie = "username=" + usuario + "; path=/"
             } else {
@@ -172,6 +180,9 @@ function dni_valido(dni) {
 function iniciar_sesion() {
     let usuario = document.form_inicio_sesion.usuario.value
     let contraseña = document.form_inicio_sesion.pswd.value
+
+    // Código obtenido de https://stackoverflow.com/questions/247483/http-get-request-in-javascript
+    // Modificaciones: la URL, y la función de callback
     var get_contraseña = new XMLHttpRequest();
     get_contraseña.onreadystatechange = function () {
         if (get_contraseña.readyState == 4 && get_contraseña.status == 200) {

@@ -11,5 +11,6 @@
   $usuario = $_GET["username"];
 
   $query = mysqli_query($conn, "SELECT * FROM usuario WHERE `Used ID`='$usuario'") or die (mysqli_error($conn));
+  // Devuelve la contreseña del usuario que intenta loguearse
   echo mysqli_fetch_array($query)["Password"];
 ?>
