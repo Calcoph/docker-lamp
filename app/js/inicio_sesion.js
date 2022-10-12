@@ -9,25 +9,40 @@ function registrar_usuario() {
     let fecha = document.form_inicio_sesion.fnacimiento.value
     let dni = document.form_inicio_sesion.dni.value
     let patternTel = /[0-9]{9}/
-    let pattern = new RegExp('^[A-Z]+$', 'i'); // Expresión regular de solo letras
+    let pattern_letras = new RegExp('^[A-Z]+$', 'i'); // Expresión regular de solo letras
     let regex_email = /.+@.+\..+/ // El regex es poco restrictivo a propósito, algunos regex pre-hechos para email no permiten algunos emails válidos
-    if (!pattern.test(nombre)) {
-        window.alert("Nombre no válido, porfavor utilice solo letras");
+    if (nombre == "") {
+        window.alert("Introduzca su nombre")
         return
     }
-    if (!pattern.test(apellido)) {
-        window.alert("apellido no válido, porfavor utilice solo letras");
+    if (!pattern_letras.test(nombre)) {
+        window.alert("Nombre no válido, por favor utilice solo letras");
+        return
+    }
+    if (apellido == "") {
+        window.alert("Introduzca su apellido")
+        return
+    }
+    if (!pattern_letras.test(apellido)) {
+        window.alert("apellido no válido, por favor utilice solo letras");
         return
     }
     if (!dni_valido(dni)) {
-        window.alert("Dni inválido")
         return
     }
     if (!fecha_valida(fecha)) {
         return
     }
+    if (tel == "") {
+        window.alert("Introduzca su teléfono")
+        return
+    }
     if (!patternTel.test(tel)) {
-        window.alert("Teléfono no válido")
+        window.alert("Teléfono no válido. Tiene que tener este formato: 123456789")
+        return
+    }
+    if (email == "") {
+        window.alert("Introduzca su email")
         return
     }
     if (!regex_email.test(email)) {
@@ -40,7 +55,7 @@ function registrar_usuario() {
     }
     if (contraseña.length > 20) {
         // Porque guardamos las contraseñas en texto plano
-        window.alert("Las contraseña es demasiado larga. Usa como mucho 20 caracteres")
+        window.alert("La contraseña es demasiado larga. Usa como mucho 20 caracteres")
         return
     }
     if (contraseña.length < 3) {
@@ -74,6 +89,10 @@ function registrar_usuario() {
 }
 
 function fecha_valida(fecha) {
+    if (fecha == "") {
+        window.alert("Introduzca la fecha de nacimiento")
+        return false
+    }
     let patternFecha = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
     var mes30 = [4, 6, 9, 11]
     if (!patternFecha.test(fecha)) {
@@ -127,24 +146,27 @@ function fecha_valida(fecha) {
 }
 
 function dni_valido(dni) {
-    expresion_regular_dni = /^\d{8}-[a-zA-Z]$/; //Expresion regular de un DNI
-    if (expresion_regular_dni.test(dni)) {
-        numero = dni.substr(0, dni.length - 2);
-        letr = dni.substr(dni.length - 1, 1);
-        numero = numero % 23;
-        letra = 'TRWAGMYFPDXBNJZSQVHLCKET'; // Alfabeto con el cual se calcula la letra del DNI
-        letra = letra.substring(numero, numero + 1);
-        if (letra != letr.toUpperCase()) {
-            alert('Dni erroneo, la letra del DNI no se corresponde');
-            return false
-        } else {
-            return true
-        }
-    }
-    else {
-        alert('Dni erroneo, formato no válido');
+    if (dni != "") {
+        window.alert("Introduzca su DNI")
         return false
     }
+    expresion_regular_dni = /^\d{8}-[a-zA-Z]$/; //Expresion regular de un DNI
+    if (!expresion_regular_dni.test(dni)) {
+        window.alert('Dni erroneo, formato no válido. El formato es 12345678-L');
+        return false
+    }
+
+    numero = dni.substr(0, dni.length - 2);
+    letr = dni.substr(dni.length - 1, 1);
+    numero = numero % 23;
+    letra = 'TRWAGMYFPDXBNJZSQVHLCKET'; // Alfabeto con el cual se calcula la letra del DNI
+    letra = letra.substring(numero, numero + 1);
+    if (letra != letr.toUpperCase()) {
+        alert('Dni erroneo, la letra del DNI no se corresponde');
+        return false
+    }
+
+    return true
 }
 
 function iniciar_sesion() {
