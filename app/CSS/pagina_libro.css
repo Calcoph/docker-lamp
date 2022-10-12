@@ -94,8 +94,8 @@ img{
     box-shadow: 1px 2px 4px rgba(0,0,0,.5);
     
 }
-#siguiente{
-    
+.btncontainer{
+    padding-top: 10px;
 }
 #cajon_comentarios button{
     font-size: 0.8em;
