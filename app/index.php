@@ -1,10 +1,14 @@
 <?php
+  // Si está logueado, tiene la cookie "username"
   if (isset($_COOKIE["username"])) {
     $username = $_COOKIE["username"];
   } else {
     $username = "Iniciar Sesión";
   }
+
+  // pone el nombre de usuario en el header
   $header = str_replace('%usuario%', $username, file_get_contents('/var/www/html/HTML/header.html')); 
+  // inserta el header en la página
   $index = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/index.html'));
   echo $index
 ?>

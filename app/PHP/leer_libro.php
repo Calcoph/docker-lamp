@@ -12,32 +12,28 @@
     $titulo = $_GET["titulo"];
     $capitulo = $_GET["capitulo"];
 
+    // Si está logueado, tiene la cookie "username"
     if (isset($_COOKIE["username"])) {
         $username = $_COOKIE["username"];
     } else {
         $username = "Iniciar Sesión";
     }
+    // pone el nombre de usuario en el header
     $header = str_replace('%usuario%', $username, file_get_contents('/var/www/html/HTML/header_small.html')); 
+    // inserta el header en la página
     $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/leer_libro.html'));
 
+    // Obtiene el capítulo que se ha pedido
     $query = mysqli_query($conn, "SELECT * FROM capitulo WHERE `Book ID`='$titulo' AND `Chapter Num`=$capitulo")
         or die (mysqli_error($conn));
 
     $row = mysqli_fetch_assoc($query);
+    // inserta el texto en la página
     $pagina = str_replace('%texto%', $row["Texto"], $pagina);
-    // capitulos
-    while ($row = mysqli_fetch_assoc($query)) {
-        // $pagina .= // TODO: borrar este while
-        // "<tr>
-        // <td>{$row["Chapter_ID"]}</td>
-        // <td>{$row["Book ID"]}</td>
-        // <td>{$row["Chapter num"]}</td>
-        // <td>{$row["Texto"]}</td>
-        // </tr>";
-    }
 
     $cap_anterior = intval($capitulo)-1;
     $anterior = "";
+    // El botón de capítulo anterior no está en el primer capítulo
     if ($cap_anterior >= 1) {
         $cap_anterior = strval($cap_anterior);
         $anterior = "
@@ -49,11 +45,12 @@
     }
 
 
+    // El botón de capítulo siguiente no está en el último capítulo
     $cap_siguiente = strval(intval($capitulo)+1);
     $query = mysqli_query($conn, "SELECT * FROM capitulo WHERE `Book ID`='$titulo' AND `Chapter Num`=$cap_siguiente")
         or die (mysqli_error($conn));
     $siguiente = "";
-    while ($row = mysqli_fetch_assoc($query)) {
+    while ($row = mysqli_fetch_assoc($query)) { // Este while solo se va a ejecutar 1 vez (o ninguna, si es el último)
         $siguiente = "
     <form metod=\"get\" action=\"/PHP/leer_libro.php\">
         <Button>Capítulo siguiente</Button>
@@ -61,7 +58,10 @@
         <input type=\"hidden\" name=\"capitulo\" value=\"$cap_siguiente\" />
     </form>";
     }
+
+    // inserta los botones de "capítulo anterior", tanto arriba como abajo
     $pagina = str_replace('%boton anterior%', $anterior, $pagina);
+    // inserta los botones de "capítulo siguiente", tanto arriba como abajo
     $pagina = str_replace('%boton siguiente%', $siguiente, $pagina);
 
     echo $pagina;
