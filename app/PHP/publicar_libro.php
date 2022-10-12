@@ -42,6 +42,10 @@
     // Almacena el capítulo
     $query = mysqli_query($conn, "INSERT INTO capitulo(Chapter_ID, `Book ID`, `Chapter Num`, Texto) VALUES ('Cap 0', '$titulo', 1, '$texto')") or die (mysqli_error($conn));
 
+    $username = $_COOKIE["username"];
+    // Almacena quien lo ha publicado
+    $query = mysqli_query($conn, "INSERT INTO escritos(`Book ID`, `Used ID`) VALUES ('$titulo', '$username')") or die (mysqli_error($conn));
+
     // Vuelve a la página principal
     include "../index.php";
 ?>
