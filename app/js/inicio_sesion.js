@@ -260,3 +260,9 @@ function datos_validos(
 
     return true
 }
+
+function cerrar_sesion() {
+    // Simplemente borramos la cookie, y decimos que expira en el pasado. De: https://www.w3schools.com/js/js_cookies.asp
+    document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    window.location = "/index.php"
+}
