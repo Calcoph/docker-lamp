@@ -9,70 +9,11 @@ function registrar_usuario() {
     let fecha = document.form_inicio_sesion.fnacimiento.value
     let dni = document.form_inicio_sesion.dni.value
 
-    let patternTel = /[0-9]{9}/
-    let pattern_letras = new RegExp('^[A-Z]+$', 'i'); // Expresión regular de solo letras
-     // El regex del email es poco restrictivo a propósito, algunos regex pre-hechos para email no permiten algunos emails válidos
-    let regex_email = /.+@.+\..+/ // busca: X@X.X Donde X es cualquier caracter 1 o más veces
-    if (nombre == "") {
-        window.alert("Introduzca su nombre")
-        return
-    }
-    if (!pattern_letras.test(nombre)) {
-        window.alert("Nombre no válido, por favor utilice solo letras");
-        return
-    }
-    if (apellido == "") {
-        window.alert("Introduzca su apellido")
-        return
-    }
-    if (!pattern_letras.test(apellido)) {
-        window.alert("apellido no válido, por favor utilice solo letras");
-        return
-    }
-    if (!dni_valido(dni)) {
-        // Aquí no hay window.alert(), porque las genera dni_valido()
-        return
-    }
-    if (!fecha_valida(fecha)) {
-        // Aquí no hay window.alert(), porque las genera fecha_valida()
-        return
-    }
-    if (tel == "") {
-        window.alert("Introduzca su teléfono")
-        return
-    }
-    if (!patternTel.test(tel)) {
-        window.alert("Teléfono no válido. Tiene que tener este formato: 123456789")
-        return
-    }
-    if (email == "") {
-        window.alert("Introduzca su email")
-        return
-    }
-    if (!regex_email.test(email)) {
-        window.alert("Email no válido")
-        return
-    }
-    if (contraseña != contraseña2) {
-        window.alert("Las contraseñas no coinciden")
-        return
-    }
-    if (contraseña.length > 20) {
-        // Porque guardamos las contraseñas en texto plano y en la base de datos se guarda como un Varchar(20)
-        window.alert("La contraseña es demasiado larga. Usa como mucho 20 caracteres")
-        return
-    }
-    if (contraseña.length < 3) {
-        window.alert("La contraseña es demasiado corta. Usa como mínimo 3 caracteres")
-        return
-    }
-    if (usuario.length > 20) {
-        // en la base de datos se guarda como un Varchar(20)
-        window.alert("El nombre de usuario es demasiado largo. Usa como mucho 20 caracteres")
-        return
-    }
-    if (usuario.length < 4) {
-        window.alert("El nombre de usuario es demasiado corto. Usa como mínimo 4 caracteres")
+    if (!datos_validos(
+        email, usuario, contraseña,
+        contraseña2, nombre, apellido,
+        tel, fecha, dni
+    )) {
         return
     }
 
@@ -204,4 +145,118 @@ function iniciar_sesion() {
     let url = window.location.href.split("HTML/inicio_sesion.html")[0];
     get_contraseña.open("GET", url + "PHP/get_contrasena.php/?username=" + usuario, true);
     get_contraseña.send(null);
+}
+
+function cambiar_datos() {
+    let email = document.form_cambio_datos.email.value
+    let usuario = document.form_cambio_datos.usuario.value
+    let contraseña = document.form_cambio_datos.pswd.value
+    let contraseña2 = document.form_cambio_datos.conf_pswd.value
+    let nombre = document.form_cambio_datos.nombre.value
+    let apellido = document.form_cambio_datos.apellido.value
+    let tel = document.form_cambio_datos.tlf.value
+    let fecha = document.form_cambio_datos.fnacimiento.value
+    let dni = document.form_cambio_datos.dni.value
+
+    if (datos_validos(
+        email, usuario, contraseña,
+        contraseña2, nombre, apellido,
+        tel, fecha, dni
+    )) {
+        return
+    }
+
+    // Código obtenido de https://stackoverflow.com/questions/247483/http-get-request-in-javascript
+    // Modificaciones: la URL, y la función de callback
+    var get_contraseña = new XMLHttpRequest();
+    get_contraseña.onreadystatechange = function () {
+        if (get_contraseña.readyState == 4 && get_contraseña.status == 200) {
+            var contraseña2 = get_contraseña.responseText;
+            if (contraseña2 === "") {
+                // Si el usuario no tiene contraseña, significa que no está en la base de datos
+                document.cambiar_datos.submit()
+                document.cookie = "username=" + usuario + "; path=/"
+            } else {
+                window.alert("Ese usuario ya existe")
+            }
+        }
+    }
+    let url = window.location.href.split("HTML/register.html")[0];
+    get_contraseña.open("GET", url + "PHP/get_contrasena.php/?username=" + usuario, true);
+    get_contraseña.send(null);
+}
+
+function datos_validos(
+    email, usuario, contraseña,
+    contraseña2, nombre, apellido,
+    tel, fecha, dni
+) {
+    let patternTel = /[0-9]{9}/
+    let pattern_letras = new RegExp('^[A-Z]+$', 'i'); // Expresión regular de solo letras
+     // El regex del email es poco restrictivo a propósito, algunos regex pre-hechos para email no permiten algunos emails válidos
+    let regex_email = /.+@.+\..+/ // busca: X@X.X Donde X es cualquier caracter 1 o más veces
+    if (nombre == "") {
+        window.alert("Introduzca su nombre")
+        return false
+    }
+    if (!pattern_letras.test(nombre)) {
+        window.alert("Nombre no válido, por favor utilice solo letras");
+        return false
+    }
+    if (apellido == "") {
+        window.alert("Introduzca su apellido")
+        return false
+    }
+    if (!pattern_letras.test(apellido)) {
+        window.alert("apellido no válido, por favor utilice solo letras");
+        return false
+    }
+    if (!dni_valido(dni)) {
+        // Aquí no hay window.alert(), porque las genera dni_valido()
+        return false
+    }
+    if (!fecha_valida(fecha)) {
+        // Aquí no hay window.alert(), porque las genera fecha_valida()
+        return false
+    }
+    if (tel == "") {
+        window.alert("Introduzca su teléfono")
+        return false
+    }
+    if (!patternTel.test(tel)) {
+        window.alert("Teléfono no válido. Tiene que tener este formato: 123456789")
+        return false
+    }
+    if (email == "") {
+        window.alert("Introduzca su email")
+        return false
+    }
+    if (!regex_email.test(email)) {
+        window.alert("Email no válido")
+        return false
+    }
+    if (contraseña != contraseña2) {
+        window.alert("Las contraseñas no coinciden")
+        return false
+    }
+    if (contraseña.length > 20) {
+        // Porque guardamos las contraseñas en texto plano y en la base de datos se guarda como un Varchar(20)
+        window.alert("La contraseña es demasiado larga. Usa como mucho 20 caracteres")
+        return false
+    }
+    if (contraseña.length < 3) {
+        window.alert("La contraseña es demasiado corta. Usa como mínimo 3 caracteres")
+        return false
+    }
+    if (usuario.length > 20) {
+        // en la base de datos se guarda como un Varchar(20)
+        window.alert("El nombre de usuario es demasiado largo. Usa como mucho 20 caracteres")
+        return false
+    }
+    if (usuario.length < 4) {
+        window.alert("El nombre de usuario es demasiado corto. Usa como mínimo 4 caracteres")
+        return false
+    }
+
+    return true
 }
