@@ -6,80 +6,55 @@ function registrar_usuario() {
     let nombre = document.form_inicio_sesion.nombre.value
     let apellido = document.form_inicio_sesion.apellido.value
     let tel = document.form_inicio_sesion.tlf.value
+    let fecha = document.form_inicio_sesion.fnacimiento.value
+    let dni = document.form_inicio_sesion.dni.value
     let patternTel = /[0-9]{9}/
     let pattern = new RegExp('^[A-Z]+$', 'i'); // Expresión regular de solo letras
     let regex_email = /.+@.+\..+/ // El regex es poco restrictivo a propósito, algunos regex pre-hechos para email no permiten algunos emails válidos
     if (!pattern.test(nombre)) {
-        alert("Nombre no válido, porfavor utilice solo letras");
+        window.alert("Nombre no válido, porfavor utilice solo letras");
         return
     }
-    else {
-        if (!pattern.test(apellido)) {
-            alert("apellido no válido, porfavor utilice solo letras");
-            return
-        }
-        else {
-            if (!validarDNI()) {
-                return
-            }
-            else {
-                //fecha
-                if (!validarFecha()) {
-                    return
-                }
-                else {
-                    //telefono
-                    if (!patternTel.test(tel)) {
-                        window.alert("Teléfono no válido")
-                        return
-                    }
-
-                    else {
-                        if (!regex_email.test(email)) {
-                            window.alert("Email no válido")
-                            return
-                        }
-                        else {
-                            if (contraseña != contraseña2) {
-                                window.alert("Las contraseñas no coinciden")
-                                return
-                            }
-                            else {
-                                if (contraseña.length > 20) {
-                                    // Porque guardamos las contraseñas en texto plano
-                                    window.alert("Las contraseña es demasiado larga. Usa como mucho 20 caracteres")
-                                    return
-                                }
-                                else {
-                                    if (contraseña.length < 3) {
-                                        window.alert("La contraseña es demasiado corta. Usa como mínimo 3 caracteres")
-                                        return
-                                    }
-                                    else {
-                                        if (usuario.length > 20) {
-                                            window.alert("El nombre de usuario es demasiado largo. Usa como mucho 20 caracteres")
-                                            return
-                                        }
-                                        if (usuario.length < 4) {
-                                            window.alert("El nombre de usuario es demasiado corto. Usa como mínimo 4 caracteres")
-                                            return
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    if (!pattern.test(apellido)) {
+        window.alert("apellido no válido, porfavor utilice solo letras");
+        return
     }
-
-
-
-
-
-
-
+    if (!dni_valido(dni)) {
+        window.alert("Dni inválido")
+        return
+    }
+    if (!fecha_valida(fecha)) {
+        return
+    }
+    if (!patternTel.test(tel)) {
+        window.alert("Teléfono no válido")
+        return
+    }
+    if (!regex_email.test(email)) {
+        window.alert("Email no válido")
+        return
+    }
+    if (contraseña != contraseña2) {
+        window.alert("Las contraseñas no coinciden")
+        return
+    }
+    if (contraseña.length > 20) {
+        // Porque guardamos las contraseñas en texto plano
+        window.alert("Las contraseña es demasiado larga. Usa como mucho 20 caracteres")
+        return
+    }
+    if (contraseña.length < 3) {
+        window.alert("La contraseña es demasiado corta. Usa como mínimo 3 caracteres")
+        return
+    }
+    if (usuario.length > 20) {
+        window.alert("El nombre de usuario es demasiado largo. Usa como mucho 20 caracteres")
+        return
+    }
+    if (usuario.length < 4) {
+        window.alert("El nombre de usuario es demasiado corto. Usa como mínimo 4 caracteres")
+        return
+    }
 
     var get_contraseña = new XMLHttpRequest();
     get_contraseña.onreadystatechange = function () {
@@ -98,76 +73,60 @@ function registrar_usuario() {
     get_contraseña.send(null);
 }
 
-function validarFecha() {
-    let fecha = document.form_inicio_sesion.fnacimiento.value
+function fecha_valida(fecha) {
     let patternFecha = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
-    var mes31 = [1, 3, 5, 7, 8, 10, 12]
     var mes30 = [4, 6, 9, 11]
-    if (patternFecha.test(fecha)) {
-        anno = parseInt(fecha.substr(0, 4))
-        mes = parseInt(fecha.substr(5, 2))
-        dia = parseInt(fecha.substr(8, 2))
-
-        if (anno <= 2022) {
-            if (mes31.includes(mes)) {
-                if (dia > 0 && dia <= 31) {
-                    return true
-                }
-                else {
-                    alert("fecha incorrecta")
-                    return false
-                }
-
+    if (!patternFecha.test(fecha)) {
+        window.alert("El formato es YYYY-MM-DD (12 de febrero de 2000 = 2000-2-12)")
+        return false
+    }
+    anno = parseInt(fecha.substr(0, 4))
+    mes = parseInt(fecha.substr(5, 2))
+    dia = parseInt(fecha.substr(8, 2))
+    if (anno > new Date().getFullYear()) {
+        window.alert("Esta fecha de nacimiento es del futuro")
+        return false
+    }
+    if (anno == 0) {
+        window.alert("El año 0 no existe")
+        return false
+    }
+    if (dia <= 0) {
+        window.alert("El día 0 no existe (fecha de nacimiento)")
+        return false
+    }
+    if (mes <= 0) {
+        window.alert("El mes 0 no existe (fecha de nacimiento)")
+        return false
+    }
+    if (mes > 12) {
+        window.alert("El formato es YYYY-MM-DD (12 de febrero de 2000 = 2000-2-12)")
+        return false
+    }
+    if (dia > 31) {
+        window.alert("Ningún mes tiene tantos días (fecha de nacimiento)")
+        return false
+    }
+    if (mes == 2) {
+        if (anno % 400 == 0 || (anno % 4 == 0 && anno % 100 != 0)) {
+            if (dia > 29) {
+                alert("Febrero no tiene tantos días (fecha de nacimiento)")
             }
-            else {
-                if (mes30.includes(mes)) {
-                    if (dia > 0 && dia <= 30) {
-                        return true
-                    }
-                    else {
-                        alert("fecha incorrecta")
-                        return false
-                    }
-
-                }
-                else {
-                    if (anno % 400 == 0 || (anno % 4 == 0 && anno % 100 != 0)) {
-                        if (mes == 2) {
-                            if (dia > 0 && dia <= 29) {
-                                return true
-                            }
-                            else {
-                                alert("fecha incorrecta")
-                                return false
-                            }
-                        }
-
-                    }
-                    else {
-                        if (mes == 2) {
-                            if (dia > 0 && dia <= 28) {
-                                return true
-                            }
-                            else {
-                                alert("fecha incorrecta")
-                                return false
-                            }
-                        }
-                    }
-
-
-                }
-            }
+        } else if (dia > 28) {
+            alert("Febrero no tiene tantos días (fecha de nacimiento)")
+            return false
         }
     }
-    else {
-        alert("fecha incorrecta")
-        return false;
+    if (mes30.includes(mes)) {
+        if (dia == 31) {
+            window.alert("Ese mes sólo tiene 30 días (fecha de nacimiento)")
+            return false
+        }
     }
+    return true
 }
 
-function validarDNI() {
-    let dni = document.form_inicio_sesion.dni.value
+function dni_valido(dni) {
     expresion_regular_dni = /^\d{8}-[a-zA-Z]$/; //Expresion regular de un DNI
     if (expresion_regular_dni.test(dni)) {
         numero = dni.substr(0, dni.length - 2);
