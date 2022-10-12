@@ -28,6 +28,8 @@
         or die (mysqli_error($conn));
 
     $row = mysqli_fetch_assoc($query);
+    // Guarda el nombre del capítulo para luego
+    $chap_id = $row["Chapter_ID"];
     // inserta el texto en la página
     $pagina = str_replace('%texto%', $row["Texto"], $pagina);
 
@@ -63,6 +65,21 @@
     $pagina = str_replace('%boton anterior%', $anterior, $pagina);
     // inserta los botones de "capítulo siguiente", tanto arriba como abajo
     $pagina = str_replace('%boton siguiente%', $siguiente, $pagina);
+
+    // Los comentarios
+    $query = mysqli_query($conn, "SELECT * FROM `comentario capitulo` WHERE `Book ID`='$titulo' AND Chapter_ID='$chap_id'")
+        or die (mysqli_error($conn));
+    $comentarios = "";
+    while ($row = mysqli_fetch_assoc($query)) {
+        $comentarios .= "<div class=\"comentario\">
+            <div class=\"infocoment\">
+                <h4>{$row['User ID']}</h4>
+                <p>{$row['Texto']}</p>
+            </div>
+        </div>";
+    }
+
+    $pagina = str_replace('%comentario%', $comentarios, $pagina);
 
     echo $pagina;
 ?>

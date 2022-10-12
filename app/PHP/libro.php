@@ -47,14 +47,17 @@
     $query = mysqli_query($conn, "SELECT * FROM `comentario libro` WHERE `Book ID`='$titulo'")
         or die (mysqli_error($conn));
 
+    $comentarios = "";
     while ($row = mysqli_fetch_assoc($query)) {
-        // $pagina .= // TODO: hacer los comentarios
-        // "<tr>
-        // <td>{$row["nombre comentarista"]}</td>
-        // <td>{$row["fecha"]}</td>
-        // <td>{$row["comentario"]}</td>
-        // </tr>";
+        $comentarios .= "<div class=\"comentario\">
+            <div class=\"infocoment\">
+                <h4>{$row['User ID']}</h4>
+                <p>{$row['Texto']}</p>
+            </div>
+        </div>";
     }
+
+    $pagina = str_replace('%comentario%', $comentarios, $pagina);
 
     echo $pagina
 ?>
