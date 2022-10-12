@@ -43,6 +43,11 @@
     // inserta el botón de leer en la página
     $pagina = str_replace('%boton leer%', $boton, $pagina);
 
+    $boton = "
+    <input type=\"hidden\" name=\"titulo\" value=\"$titulo\" />";
+    // Para que publicar_comentario.php sepa de que libro es el comentario
+    $pagina = str_replace('%datos comentario%', $boton, $pagina);
+
     // Los comentarios
     $query = mysqli_query($conn, "SELECT * FROM `comentario libro` WHERE `Book ID`='$titulo'")
         or die (mysqli_error($conn));

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/CSS/pagina_libro.css">
+    <script src="/js/publicar_comentario.js"></script>
 </head>
 
 <body>
@@ -18,13 +19,16 @@
                 <h3>%titulo%</h3>
                 <p>%descripcion%</p>
                 %boton leer%
-                <div class="container2">
-                    <h4>Escribe un comentario</h4>
-                    <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
-                </div>
-                <div class="btncontainer">
-                <button id="btn_enviar_comentario">Enviar comentario</button>
-            </div>
+                <form name="form_publicar_comentario" action="/PHP/publicar_comentario.php" method="post" class="form" enctype="multipart/form-data">
+                    <div class="container2">
+                        <h4>Escribe un comentario</h4>
+                        <textarea id="comentario_nuevo" name="comentario_nuevo" rows="4" cols="50"></textarea>
+                    </div>
+                    %datos comentario%
+                    <div class="btncontainer">
+                        <button id="btn_enviar_comentario" onclick="publicar_comentario()">Enviar comentario</button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
