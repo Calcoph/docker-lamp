@@ -44,7 +44,7 @@ function fecha_valida(fecha) {
     let patternFecha = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
     var mes30 = [4, 6, 9, 11]
     if (!patternFecha.test(fecha)) {
-        window.alert("El formato es YYYY-MM-DD (12 de febrero de 2000 = 2000-2-12)")
+        window.alert("El formato es YYYY-MM-DD (12 de febrero de 2000 = 2000-02-12)")
         return false
     }
     anno = parseInt(fecha.substr(0, 4))
@@ -94,7 +94,7 @@ function fecha_valida(fecha) {
 }
 
 function dni_valido(dni) {
-    if (dni != "") {
+    if (dni == "") {
         window.alert("Introduzca su DNI")
         return false
     }
