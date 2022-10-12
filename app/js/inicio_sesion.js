@@ -32,9 +32,8 @@ function registrar_usuario() {
             }
         }
     }
-    let url = window.location.href.split("HTML/register.html")[0];
-    get_contraseña.open("GET", url + "PHP/get_contrasena.php/?username=" + usuario, true);
-    get_contraseña.send(null);
+
+    llamar_get_contraseña(get_contraseña, usuario)
 }
 
 function fecha_valida(fecha) {
@@ -136,15 +135,13 @@ function iniciar_sesion() {
                     document.cookie = "username=" + usuario + "; path=/"
                     document.form_inicio_sesion.submit()
                 } else {
-                    console.log(contraseña2)
+                    console.log("Login fail")
                     window.alert("Contraseña incorrecta")
                 }
             }
         }
     }
-    let url = window.location.href.split("HTML/inicio_sesion.html")[0];
-    get_contraseña.open("GET", url + "PHP/get_contrasena.php/?username=" + usuario, true);
-    get_contraseña.send(null);
+    llamar_get_contraseña(get_contraseña, usuario)
 }
 
 function cambiar_datos() {
@@ -181,8 +178,28 @@ function cambiar_datos() {
             }
         }
     }
-    let url = window.location.href.split("HTML/register.html")[0];
-    get_contraseña.open("GET", url + "PHP/get_contrasena.php/?username=" + usuario, true);
+    
+    llamar_get_contraseña(get_contraseña, usuario)
+}
+
+function llamar_get_contraseña(get_contraseña, usuario) {
+    // Código obtenido de https://stackoverflow.com/questions/247483/http-get-request-in-javascript
+    // Modificaciones: la URL, y la función de callback
+    var pre = ""
+    var url = window.location.href.split("http://")[1]; // por si acaso
+    if (url === undefined) { // Por si no tiene http://
+        url = window.location.href
+    } else {
+        pre = "http://"
+    }
+    var url1 = url.split("https://")[1]; // por si acaso
+    if (url1 === undefined) { // Por si no tiene https://
+        url1 = url
+    } else {
+        pre = "https://"
+    }
+    url = url1.split("/")[0]; // Asumo que la url será lo que haya antes del primer / (habiendo eliminado https:// y http://)
+    get_contraseña.open("GET", pre + url + "/PHP/get_contrasena.php/?username=" + usuario, true);
     get_contraseña.send(null);
 }
 
