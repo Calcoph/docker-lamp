@@ -32,6 +32,7 @@
     $chap_id = $row["Chapter_ID"];
     // inserta el texto en la página
     $pagina = str_replace('%texto%', $row["Texto"], $pagina);
+    $pagina = str_replace('%TitCapitulo%', $row["Chapter_ID"], $pagina);
 
     $cap_anterior = intval($capitulo)-1;
     $anterior = "";

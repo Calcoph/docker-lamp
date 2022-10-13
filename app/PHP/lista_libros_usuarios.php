@@ -26,7 +26,7 @@
             <input name=\"libros_borrados[]\" type=\"checkbox\" value=\"{$row["Book ID"]}\"><a href=\"/PHP/libro.php/?titulo={$row["Book ID"]}\">{$row["Book ID"]}</a>
         </th>
         <th>
-        descripcion
+
         </th>
 </tr>";
     }

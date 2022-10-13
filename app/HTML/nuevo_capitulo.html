@@ -13,40 +13,18 @@
     %header%
     <div class="signupFrm">
         <form name="form_publicar_libro" action="/PHP/publicar_libro.php" method="post" class="form" enctype="multipart/form-data">
-          <h1 class="title">Nuevo libro</h1>
+          <h1 class="title">Nuevo capitulo</h1>
           <h4>Titulo</h4>
           <div class="inputContainer">
-            <input name="titulo" type="text" class="input" placeholder="Escribe el título del libro">
-          </div>
-          <h4>Titulo Capitulo</h4>
-          <div class="inputContainer">
-            <input name="titulo" type="text" class="input" placeholder="Escribe el título del capitulo">
+            <input name="titulo" type="text" class="input" placeholder="Escribe el título del Capitulo">
           </div>
           <h4>Capitulo</h4>
           <div class="inputContainer">
             <textarea name="texto" class="input" cols="90" rows="5" placeholder="Escribe tu libro!"></textarea>
           </div>
-          <h4>Portada</h4>
-          <div class="portadas">
-            <img src="/img/portada 1.png" alt=""></imgsrc>
-            <img src="/img/portada 2.png" alt=""></imgsrc>
-            <img src="/img/portada 3.png" alt=""></imgsrc>
-          </div>
-          
-          <div class="inputContainer">
-            <input type="radio" name="portada" value="portada 1">
-            <label for="portada 1">portada1</label>
-            <input type="radio" name="portada" value="portada 2">
-            <label for="portada 2">portada2</label>
-            <input type="radio" name="portada" value="portada 3">
-            <label for="portada 3">portada3</label>
-            <input type="file" name="portada_personalizada">
-            <label for="portada_personalizada">portada personalizada</label>
-          </div>
           <div class="btn_container">
             <input type="button" class="loginBtn" value="Publicar" onclick="publicar()">
             <input type="button" class="loginBtn" value="Siguiente Capitulo" onclick="publicar()">
-
           </div>
         </form>
     </div>
