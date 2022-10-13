@@ -50,6 +50,8 @@ button:hover{
     background-color: rgb(175, 102, 6);
 }
 #Descripcion_libro{
+    background-image: linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(/img/leaf-106568.jpg);
+    color: white;
     display: flex;
     height: 50em;
     background-color:rgba(228, 146, 70, 0.952);
@@ -65,17 +67,13 @@ button:hover{
 img{
     border-radius: 15px;
 }
-p{
+#Descripcion_libro p{
     text-align: left;
     padding-left: 50px;
 }
 
-#comentarios{
-    background-color: burlywood;
-    padding: 200px 12px;
-    align-items: center;
-    
-}
+
+
 #Descripcion_libro a{
     font-size: 1em;
     font-weight: bold;
@@ -92,15 +90,47 @@ p{
 }
 
 #btn_enviar_comentario{
-    position: relative;
-    top: 10px;
-    left: 0px;
+
 }
-#w3review{
+#comentario_nuevo{
     box-shadow: 1px 2px 4px rgba(0,0,0,.5);
+    
+}
+.btncontainer{
+    padding-top: 10px;
+}
+#cajon_comentarios button{
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 15px;
+    border: 1px solid rgba(0,0,0,1);
+    box-shadow:  2px 2px 2px rgba(0,0,0,1);
+    background-color: burlywood;
+   
+   
+}
+.comentario{
+    padding: 0px 200px;
+    text-align: center;
+
+}
+.infocoment{
+    text-align: left;
 }
 
 
+footer{
+    margin: 0;
+    padding: 12px;
+    background-color:gray;
+    text-align: center;
+    display: flex;
+
+}
+footer .containerf{
+    text-align: center;
+}
 
 @media (min-width:720px){
     header{

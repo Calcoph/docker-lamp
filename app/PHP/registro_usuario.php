@@ -12,7 +12,10 @@
     $usuario = $_POST["usuario"];
     $contraseña = $_POST["pswd"];
 
+    // Inserta el usuario y contraseña en la base de datos
     $query = mysqli_query($conn, "INSERT INTO usuario(`Used ID`, Password) VALUES ('$usuario', '$contraseña')") or die (mysqli_error($conn));
 
-    include "../index.php";
+    // Vuelve a la página principal
+    header('Location: '."/index.php");
+    die();
 ?>
