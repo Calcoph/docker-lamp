@@ -24,15 +24,14 @@
 
     $imagen = 2;
     $titulo_ = 0;
-    $nota = 1; // TODO: poner $datos[$nota] en alguna parte
+    $descripcion = 3;
     $datos = mysqli_fetch_row($query);
     // inserta la imagen en la página
     $pagina  = str_replace('%ruta imagen%', $datos[$imagen], $pagina);
     // inserta el título del libro en la página
     $pagina  = str_replace('%titulo%', $datos[$titulo_], $pagina);
-    $descripcion = "Descripción: Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae sed vitae, tempore aspernatur saepe aliquam, delectus, possimus reprehenderit ipsa nobis reiciendis incidunt praesentium porro sapiente amet dignissimos quidem esse velit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio recusandae cum sequi voluptatem nesciunt facilis possimus explicabo illo, harum temporibus dolorem alias, ea ex quae dolorum atque quisquam! Labore, itaque? lore adipisicing elit. Sit ipsum minima ut nisi reprehenderit aliquam iste maxime quisquam, rerum, ullam sequi fuga quidem in voluptates incidunt quibusdam beatae officiis omnis?";
-    // inserta la descripción del libro en la página //TODO
-    $pagina  = str_replace('%descripcion%', $descripcion, $pagina);
+    // inserta la descripción del libro en la página
+    $pagina  = str_replace('%descripcion%', $datos[$descripcion], $pagina);
     // El botón de leer envía al usuario al primer capítulo
     $boton = "
 <form metod=\"get\" action=\"/PHP/leer_libro.php\">
