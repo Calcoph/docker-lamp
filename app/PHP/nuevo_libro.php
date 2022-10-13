@@ -8,7 +8,9 @@
     $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/nuevo_libro.html'));
     echo $pagina;
   } else {
+
     // Si no está logueado no puede publicar un libro
-    include "inicio_sesion.php";
+    header('Location: '."/PHP/inicio_sesion.php");
+    die();
   }
 ?>

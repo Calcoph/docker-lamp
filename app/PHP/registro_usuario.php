@@ -16,5 +16,6 @@
     $query = mysqli_query($conn, "INSERT INTO usuario(`Used ID`, Password) VALUES ('$usuario', '$contraseña')") or die (mysqli_error($conn));
 
     // Vuelve a la página principal
-    include "../index.php";
+    header('Location: '."/index.php");
+    die();
 ?>

@@ -47,5 +47,6 @@
     $query = mysqli_query($conn, "INSERT INTO escritos(`Book ID`, `Used ID`) VALUES ('$titulo', '$username')") or die (mysqli_error($conn));
 
     // Vuelve a la página principal
-    include "../index.php";
+    header('Location: '."/index.php");
+    die();
 ?>

@@ -26,10 +26,11 @@
 
     $query = mysqli_query($conn, "INSERT INTO `comentario libro`(`Comentario ID`, `User ID`, `Book ID`, `Texto`) VALUES ($max_id+1, '$username', '$titulo', '$comentario')") or die (mysqli_error($conn));
 
-    $_GET["titulo"] = $titulo; // libro.php espera leer el titulo de _GET
-    include "libro.php";
+    header('Location: '."/PHP/libro.php/?titulo=$titulo");
+    die();
   } else {
     // Si no está logueado no puede publicar un comentario
-    include "inicio_sesion.php";
+    header('Location: '."/PHP/inicio_sesion.php");
+    die();
   }
 ?>
