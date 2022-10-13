@@ -11,7 +11,7 @@ Hecho por: Francisco González, Diego Esteban, Ibai Mendivil.
 3. Asegurarse de que el contenedor **librerium_web_1** existe:
     * `$ sudo docker ps -a`
 4. En caso de no existir, cambiar el comando del paso 5 para que sea el contenedor que tenga **web** en alguna parte de su nombre, en vez de `librerium_web_1`
-5. Dar permiso a php para escribir en **/home/www-data/uploads**:
+5. Dar permiso a php para escribir en **/home/www-data/uploads** (Esto es porque para poder subir una portada personalizada para el libro, porque php utiliza el usuario www-data, pero docker-compose monta el volumen siempre como root):
     * `$ sudo docker exec librerium_web_1 chown www-data:www-data /var/www/html/uploads`
 6. Abrir el navegador en **http://localhost:8890/**
 8. Iniciar sesión con usuario: **admin**, contraseña: **test**
