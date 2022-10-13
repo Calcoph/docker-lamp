@@ -1,5 +1,3 @@
-
-
 <?php
     // La carpeta donde se van a guardar los archivos
     $target_dir = "/var/www/html/uploads/";
@@ -16,7 +14,7 @@
         // código sacado de https://www.w3schools.com/php/php_file_upload.asp
         // modificaciones: Hemos eliminado todos los checks
         if (move_uploaded_file($_FILES["portada_personalizada"]["tmp_name"], $target_file)) {
-            echo $target_file;
+
         } else {
             echo "Ha habido un error al subir la portada.";
             return;
