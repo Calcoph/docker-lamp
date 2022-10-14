@@ -1,5 +1,3 @@
-
-
 <?php
     // La carpeta donde se van a guardar los archivos
     $target_dir = "/var/www/html/uploads/";
@@ -16,7 +14,7 @@
         // código sacado de https://www.w3schools.com/php/php_file_upload.asp
         // modificaciones: Hemos eliminado todos los checks
         if (move_uploaded_file($_FILES["portada_personalizada"]["tmp_name"], $target_file)) {
-            echo $target_file;
+
         } else {
             echo "Ha habido un error al subir la portada.";
             return;
@@ -38,10 +36,15 @@
     }
 
     // Almacena el libro
-    $query = mysqli_query($conn, "INSERT INTO libro(`Book ID`, Nota, img) VALUES ('$titulo', 0.0, '$save_path')") or die (mysqli_error($conn));
+    $query = mysqli_query($conn, "INSERT INTO libro(`Book ID`, Nota, imglink) VALUES ('$titulo', 0.0, '$save_path')") or die (mysqli_error($conn));
     // Almacena el capítulo
     $query = mysqli_query($conn, "INSERT INTO capitulo(Chapter_ID, `Book ID`, `Chapter Num`, Texto) VALUES ('Cap 0', '$titulo', 1, '$texto')") or die (mysqli_error($conn));
 
+    $username = $_COOKIE["username"];
+    // Almacena quien lo ha publicado
+    $query = mysqli_query($conn, "INSERT INTO escritos(`Book ID`, `Used ID`) VALUES ('$titulo', '$username')") or die (mysqli_error($conn));
+
     // Vuelve a la página principal
-    include "../index.php";
+    header('Location: '."/index.php");
+    die();
 ?>

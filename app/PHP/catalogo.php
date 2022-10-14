@@ -23,6 +23,7 @@
     while ($row = mysqli_fetch_row($query)) {
         $pagina .= "<tr>
         <th><a href=\"/PHP/libro.php/?titulo={$row[$titulo]}\">{$row[$titulo]}</a></th>
+        <th>{$row[$nota]}</th>
     </tr>";
     }
     // unimos la parte inferior que hemos separado antes
