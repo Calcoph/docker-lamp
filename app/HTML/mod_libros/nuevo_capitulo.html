@@ -7,13 +7,13 @@
     <title>Librerium</title>
     <link rel="stylesheet" href="/CSS/nuevo_libro.css">
     <link rel="icon" type="image/png" href="/img/book_read_icon-icons.com_49930.ico" sizes="16x16">
-    <script src="/js/nuevo_libro.js"></script>
+    <script src="/js/publicar_capitulo.js"></script>
 </head>
 <body>
     %header%
     <div class="signupFrm">
-        <form name="form_publicar_libro" action="/PHP/publicar_libro.php" method="post" class="form" enctype="multipart/form-data">
-          <h1 class="title">Nuevo capitulo</h1>
+        <form name="form_publicar_capitulo" action="/PHP/mod_libros/publicar_capitulo.php" method="post" class="form" enctype="multipart/form-data">
+          <h1 class="title">Nuevo capitulo de %titulo%</h1>
           <h4>Titulo</h4>
           <div class="inputContainer">
             <input name="titulo" type="text" class="input" placeholder="Escribe el título del Capitulo">
@@ -22,9 +22,11 @@
           <div class="inputContainer">
             <textarea name="texto" class="input" cols="90" rows="5" placeholder="Escribe tu libro!"></textarea>
           </div>
+          <input type="hidden" name="titulo_libro" value="%titulo%">
           <div class="btn_container">
-            <input type="button" class="loginBtn" value="Publicar" onclick="publicar()">
-            <input type="button" class="loginBtn" value="Siguiente Capitulo" onclick="publicar()">
+            <input type="button" class="loginBtn" value="Publicar" onclick="solo_publicar()">
+            <input type="button" class="loginBtn" value="Siguiente Capitulo" onclick="publicar_y_seguir()">
+            <input type="hidden" name="boton" value="" />
           </div>
         </form>
     </div>

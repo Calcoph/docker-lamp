@@ -9,7 +9,7 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $query = mysqli_query($conn, "SELECT * FROM libro")
+    $query = mysqli_query($conn, "SELECT `Book ID`, Text_corto FROM libro")
         or die (mysqli_error($conn));
 
     // parte la página por la mitad, para insertar el catalogo en medio
@@ -17,14 +17,12 @@
     $pagina = $partes[0];
 
     // Para acceder mediante índice
-    $imagen = 2;
     $titulo = 0;
-    $nota = 1;
+    $descripcion = 1;
     while ($row = mysqli_fetch_row($query)) {
         $pagina .= "<tr>
         <th><a href=\"/PHP/libro.php/?titulo={$row[$titulo]}\">{$row[$titulo]}</a></th>
-        <th>                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, reprehenderit earum. Laborum mollitia sunt totam repellendus illo nam? Nobis sint aliquam quae perferendis suscipit dignissimos tempore vitae consequuntur consectetur doloribus? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis, soluta incidunt? Ipsam beatae itaque libero aperiam cum labore, voluptates consequuntur sed incidunt voluptas, maiores amet assumenda harum repellendus nobis illum.</p>
-        </th>
+        <th>{$row[$descripcion]}</th>
     </tr>";
     }
     // unimos la parte inferior que hemos separado antes
