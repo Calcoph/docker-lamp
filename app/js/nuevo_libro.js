@@ -15,12 +15,12 @@ function modificar() {
     let titulo = document.form_modificar_libro.titulo.value
     let descripcion = document.form_modificar_libro.descripcion.value
     let resumen = document.form_modificar_libro.resumen.value
-    let texto = document.form_modificar_libro.texto.value
+    let texto = "a" // TODO: cambiarlo por document.form_modificar_libro.texto.value
     let portada = document.form_modificar_libro.portada.value
     let portada_personalizada = document.form_modificar_libro.portada_personalizada.value
 
     if (valido(titulo, descripcion, resumen, texto, portada, portada_personalizada)) {
-        document.form_publicar_libro.submit()
+        document.form_modificar_libro.submit()
     }
 }
 
