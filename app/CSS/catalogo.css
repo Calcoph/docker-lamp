@@ -21,6 +21,13 @@ body{
     font-family: 'Roboro', sans-serif;
     margin: 0;
 }
+.scroll_vertical {
+	
+        width:1000px;
+        overflow: auto;
+        
+    
+}
 .container{
     max-width: 1400px;
     margin: auto;
@@ -84,7 +91,7 @@ html{
 table{
     text-align: left;
     border-collapse: collapse;
-    width: 50%;
+    width: 100%;
 }
 th,td{
     border: solid 1px black;
