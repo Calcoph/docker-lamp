@@ -4,6 +4,8 @@
     // La dirección que se ve desde el html (para insertar las imágenes luego)
     $save_path = "/uploads/";
     $titulo = $_POST["titulo"];
+    $descripcion = $_POST["descripcion"];
+    $resumen = $_POST["resumen"];
     $texto = $_POST["texto"];
     if (file_exists($_FILES["portada_personalizada"]["tmp_name"])) {
         // Si ha elegido una portada personalizada, la descargamos
@@ -36,7 +38,7 @@
     }
 
     // Almacena el libro
-    $query = mysqli_query($conn, "INSERT INTO libro(`Book ID`, Nota, imglink) VALUES ('$titulo', 0.0, '$save_path')") or die (mysqli_error($conn));
+    $query = mysqli_query($conn, "INSERT INTO libro(`Book ID`, Nota, imglink, Text_corto, Text_largo) VALUES ('$titulo', 0.0, '$save_path', '$descripcion', '$resumen')") or die (mysqli_error($conn));
     // Almacena el capítulo
     $query = mysqli_query($conn, "INSERT INTO capitulo(Chapter_ID, `Book ID`, `Chapter Num`, Texto) VALUES ('Cap 0', '$titulo', 1, '$texto')") or die (mysqli_error($conn));
 

@@ -1,8 +1,20 @@
 function publicar() {
     let titulo = document.form_publicar_libro.titulo.value
+    let descripcion = document.form_publicar_libro.descripcion.value
+    let resumen = document.form_publicar_libro.resumen.value
     let texto = document.form_publicar_libro.texto.value
     let portada = document.form_publicar_libro.portada.value
     let portada_personalizada = document.form_publicar_libro.portada_personalizada.value
+
+    if (!descripcion) {
+        window.alert("Añade una descripción")
+        return
+    }
+
+    if (!resumen) {
+        window.alert("Añade un resumen")
+        return
+    }
 
     if (!titulo) {
         window.alert("El libro necesita un título")
