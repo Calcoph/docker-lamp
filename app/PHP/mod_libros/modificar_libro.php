@@ -20,48 +20,28 @@
         $username = "Iniciar Sesión";
     }
     $header = str_replace('%usuario%', $username, file_get_contents('/var/www/html/HTML/header_small.html'));
-    $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/modificar_libro.html'));
+    $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/mod_libros/modificar_libro.html'));
 
     $imagen = 2;
     $titulo_ = 0;
     $descripcion = 3;
+    $resumen = 4;
     $datos = mysqli_fetch_row($query);
     // inserta la imagen en la página
-    $pagina  = str_replace('%ruta imagen%', $datos[$imagen], $pagina);
+    $pagina  = str_replace('%imagen%', $datos[$imagen], $pagina);
     // inserta el título del libro en la página
     $pagina  = str_replace('%titulo%', $datos[$titulo_], $pagina);
     // inserta la descripción del libro en la página
     $pagina  = str_replace('%descripcion%', $datos[$descripcion], $pagina);
-    // El botón de leer envía al usuario al primer capítulo
-    $boton = "
-<form metod=\"get\" action=\"/PHP/leer_libro.php\">
-    <button>leer</button>
-    <input type=\"hidden\" name=\"titulo\" value=\"$titulo\" />
-    <input type=\"hidden\" name=\"capitulo\" value=\"1\" />
-</form>";
-    // inserta el botón de leer en la página
-    $pagina = str_replace('%boton leer%', $boton, $pagina);
+    // inserta el resumen del libro en la página
+    $pagina  = str_replace('%resumen%', $datos[$resumen], $pagina);
 
-    $boton = "
-    <input type=\"hidden\" name=\"titulo\" value=\"$titulo\" />";
-    // Para que publicar_comentario.php sepa de que libro es el comentario
-    $pagina = str_replace('%datos comentario%', $boton, $pagina);
-
-    // Los comentarios
-    $query = mysqli_query($conn, "SELECT * FROM `comentario libro` WHERE `Book ID`='$titulo'")
+    $query = mysqli_query($conn, "SELECT * FROM capitulo WHERE `Book ID`='$titulo'")
         or die (mysqli_error($conn));
-
-    $comentarios = "";
     while ($row = mysqli_fetch_assoc($query)) {
-        $comentarios .= "<div class=\"comentario\">
-            <div class=\"infocoment\">
-                <h4>{$row['User ID']}</h4>
-                <p>{$row['Texto']}</p>
-            </div>
-        </div>";
-    }
-
-    $pagina = str_replace('%comentario%', $comentarios, $pagina);
+        $caps .= "<a href=\"/PHP/mod_libros/modificar_capitulo.php/?titulo=$titulo&capitulo={$row["Chapter Num"]}\">{$row["Chapter Num"]}</a> ";
+    };
+    $pagina  = str_replace('%capitulos%', $caps, $pagina);
 
     echo $pagina
 ?>

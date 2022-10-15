@@ -4,7 +4,7 @@
     // pone el nombre de usuario en el header
     $header = str_replace('%usuario%', $usuario, file_get_contents('/var/www/html/HTML/header_small.html'));
     // inserta el header en la página
-    $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/lista_borrar_libros.html'));
+    $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/mod_libros/lista_borrar_libros.html'));
 
     $hostname = "db";
     $username = "admin";
