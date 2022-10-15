@@ -1,62 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iniciar_sesion</title>
-    <link rel="stylesheet" href="/CSS/inicio_sesion.css">
-    <script src="/js/inicio_sesion.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iniciar_sesion</title>
+  <link rel="stylesheet" href="/CSS/inicio_sesion.css">
+  <script src="/js/inicio_sesion.js"></script>
 </head>
+
 <body>
-    <div class="signupFrm">
-        <form name="form_cambio_datos" action="" class="form">
-          <h1 class="title">Librerium</h1>   
-          <div class="inputContainer">
-            <input name="nombre" type="text" class="input" placeholder="a">
-            <label for="" class="label">Nombre</label>
-          </div>
-          <div class="inputContainer">
-            <input name="apellido" type="text" class="input" placeholder="a">
-            <label for="" class="label">Apellido</label>
-          </div>
-          <div class="inputContainer">
-            <input name="dni" type="text" class="input" placeholder="a">
-            <label for="" class="label">DNI</label>
-          </div>
-          <div class="inputContainer">
-            <input name="fnacimiento" type="text" class="input" placeholder="a">
-            <label for="" class="label">Fecha de nacimiento</label>
-          </div>
-          <div class="inputContainer">
-            <input name="tlf" type="text" class="input" placeholder="a">
-            <label for="" class="label">Teléfono</label>
-          </div>
-          <div class="inputContainer">
-            <input name="email" type="text" class="input" placeholder="a">
-            <label for="" class="label">Email</label>
-          </div>
-          <div class="inputContainer">
-            <input name="usuario" type="text" class="input" placeholder="a">
-            <label for="" class="label">Username</label>
-          </div>
-    
-          <div class="inputContainer">
-            <input name="pswd" type="password" class="input" placeholder="a">
-            <label for="" class="label">Password</label>
-          </div>
-    
-          <div class="inputContainer">
-            <input name="conf_pswd" type="password" class="input" placeholder="a">
-            <label for="" class="label">Confirm Password</label>
-          </div>
-          <div class="btn_container">
-            <input type="button" class="submitBtn" value="Cerrar sesión" onclick="cerrar_sesion()">
-          </div>
-          <div class="btn_container">
-            <input type="button" class="submitBtn" value="Cambiar datos" onclick="cambiar_datos()">
-          </div>
-        </form>
+  <div class="signupFrm">
+    <form name="form_cambio_datos" action="" class="form">
+      <h1 class="title">Librerium</h1>
+      <div class="inputContainer">
+        <input name="nombre" type="text" class="input" placeholder="a">
+        <label for="" class="label">Nombre:%nombre%</label>
       </div>
+      <div class="inputContainer">
+        <input name="apellido" type="text" class="input" placeholder="a">
+        <label for="" class="label">Apellido:%apellido%</label>
+      </div>
+      <div class="inputContainer">
+        <input name="dni" type="text" class="input" placeholder="a">
+        <label for="" class="label">DNI:%DNI%</label>
+      </div>
+      <div class="inputContainer">
+        <input name="fnacimiento" type="text" class="input" placeholder="a">
+        <label for="" class="label">Fecha de nacimiento:%Fecha%</label>
+      </div>
+      <div class="inputContainer">
+        <input name="tlf" type="text" class="input" placeholder="a">
+        <label for="" class="label">Teléfono:%tlf%</label>
+      </div>
+      <div class="inputContainer">
+        <input name="email" type="text" class="input" placeholder="a">
+        <label for="" class="label">Email:%email%</label>
+      </div>
+      <div class="inputContainer">
+        <input name="usuario" type="text" class="input" placeholder="a">
+        <label for="" class="label">Username:%user%</label>
+      </div>
+
+      <div class="inputContainer">
+        <input name="pswd" type="password" class="input" placeholder="a">
+        <label for="" class="label">Password</label>
+      </div>
+
+      <div class="inputContainer">
+        <input name="conf_pswd" type="password" class="input" placeholder="a">
+        <label for="" class="label">Confirm Password</label>
+      </div>
+      <div class="botones">
+        <div class="btn_container">
+          <input type="button" class="submitBtn" value="Cambiar datos" onclick="cambiar_datos()">
+        </div>
+      </div>
+
+    </form>
+  </div>
 </body>
+
 </html>
