@@ -44,6 +44,13 @@ Para avanzar y retroceder los capítulos, se pueden utilizar el **Botón 1** y e
 ![inicio_sesion]
 
 # Pantalla 4: opciones de usuario
+![ajustes_usuario]
+En esta panntalla, que se accede pulsando sobre el username de la cabecera, se le mostrarán al usuario las siguientes funciones:
+            - Cerrar sesión
+            - Cambiar datos
+            - Borrar un libro
+            - Modificar un libro
+
 *insertar imagen opciones de usuario*
 # Pantalla 5: Introducir un nuevo libro
 ![Nuevo_libro]
@@ -61,3 +68,4 @@ Cuando se introduzca la información necesaria para publicar un libro, se da la 
 [cap_botones]: imagenes/cap_botones.png
 [inicio_sesion]: imagenes/inicio_sesion.png
 [Nuevo_libro]: imagenes/Nuevo_libro.png
+[ajustes_usuario]: imagenes/ajustes_usuario.png
