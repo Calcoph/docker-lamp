@@ -17,7 +17,7 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $query = mysqli_query($conn, "SELECT `Chapter Num` FROM capitulo WHERE `Book ID`='$titulo_libro' ORDER BY `Chapter Num` ASC")
+    $query = mysqli_query($conn, "SELECT `Chapter Num` FROM capitulo WHERE `Book ID`='$titulo_libro' ORDER BY `Chapter Num` DESC")
         or die (mysqli_error($conn));
     $row = mysqli_fetch_assoc($query);
     $cap = $row["Chapter Num"]+1;
