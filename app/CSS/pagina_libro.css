@@ -53,7 +53,7 @@ button:hover{
     background-image: linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(/img/leaf-106568.jpg);
     color: white;
     display: flex;
-    height: 50em;
+    height: 93vh;
     background-color:rgba(228, 146, 70, 0.952);
     align-items: center;
 }
@@ -89,9 +89,6 @@ img{
     background-color: rgb(175, 102, 6);
 }
 
-#btn_enviar_comentario{
-
-}
 #comentario_nuevo{
     box-shadow: 1px 2px 4px rgba(0,0,0,.5);
     

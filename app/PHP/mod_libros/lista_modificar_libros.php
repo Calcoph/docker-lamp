@@ -28,6 +28,8 @@
         <th>
             {$row["Text_corto"]}
             <br>
+        </th>
+        <th id=\"col_botones\">
             <form name=\"form_modificar_libro\" action=\"/PHP/mod_libros/modificar_libro.php\" method=\"get\" class=\"form\">
                 <input id=\"btn\" type=\"submit\" value=\"Modificar\">
                 <input type=\"hidden\" name=\"titulo\" value=\"{$row["Book ID"]}\">
