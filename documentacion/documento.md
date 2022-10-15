@@ -57,6 +57,20 @@ En esta panntalla, que se accede pulsando sobre el username de la cabecera, se l
 Un usuario que esté identificado, mediante este apartado, puede añadir al catálogo un nuevo libro.
 Cuando se introduzca la información necesaria para publicar un libro, se da la opción ( mediante los botones ) de publicarlo, o seguir escribiendo el siguiente capítulo.
 
+# TODO: modificar libro
+![modificar_libro]
+# TODO: modificar capitulo
+![modificar_capitulo]
+
+# TODO: nuevo capitulo
+![nuevo_capitulo]
+
+# TODO: modificar libros
+![modificar_libros]
+
+# TODO: borrar libros
+![borrar_libros]
+
 
 
 [diagrama de páginas]: imagenes/diagrama_paginas.png
@@ -69,3 +83,8 @@ Cuando se introduzca la información necesaria para publicar un libro, se da la 
 [inicio_sesion]: imagenes/inicio_sesion.png
 [Nuevo_libro]: imagenes/Nuevo_libro.png
 [ajustes_usuario]: imagenes/ajustes_usuario.png
+[modificar_libro]: imagenes/modificar_libro.png
+[modificar_capitulo]: imagenes/modificar_capitulo.png
+[nuevo_capitulo]: imagenes/nuevo_capitulo.png
+[modificar_libros]: imagenes/modificar_libros.png
+[borrar_libros]: imagenes/borrar_libros.png
