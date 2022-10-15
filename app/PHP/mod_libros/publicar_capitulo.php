@@ -24,14 +24,13 @@
     // Almacena el capítulo
     $query = mysqli_query($conn, "INSERT INTO capitulo(Chapter_ID, `Book ID`, `Chapter Num`, Texto) VALUES ('$titulo', '$titulo_libro', $cap, '$texto')") or die (mysqli_error($conn));
 
-/* TODO: Descomentar
     if ($_POST['boton'] == "solo_publicar") {
         // Vuelve a la página principal
         header('Location: '."/index.php");
         die();
       } else {
         // Sigue añadiendo capítulos
-        header('Location: '."/PHP/mod_libros/nuevo_capitulo.php/?titulo=$titulo");
+        header('Location: '."/PHP/mod_libros/nuevo_capitulo.php/?titulo=$titulo_libro");
         die();
-    } */
+    }
 ?>
