@@ -36,7 +36,7 @@
     // inserta el resumen del libro en la página
     $pagina  = str_replace('%resumen%', $datos[$resumen], $pagina);
 
-    $query = mysqli_query($conn, "SELECT * FROM capitulo WHERE `Book ID`='$titulo'")
+    $query = mysqli_query($conn, "SELECT * FROM capitulo WHERE `Book ID`='$titulo' ORDER BY `Chapter Num` ASC")
         or die (mysqli_error($conn));
     while ($row = mysqli_fetch_assoc($query)) {
         $caps .= "<a href=\"/PHP/mod_libros/modificar_capitulo.php/?titulo=$titulo&capitulo={$row["Chapter Num"]}\">{$row["Chapter Num"]}</a> ";
