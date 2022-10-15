@@ -17,6 +17,6 @@
 
   
     // Vuelve a la página principal
-    header('Location: '."/PHP/lista_libros_usuarios.php");
+    header('Location: '."/PHP/mod_libros/lista_borrar_libros.php");
     die();
 ?>

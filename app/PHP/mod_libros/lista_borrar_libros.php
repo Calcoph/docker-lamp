@@ -4,7 +4,7 @@
     // pone el nombre de usuario en el header
     $header = str_replace('%usuario%', $usuario, file_get_contents('/var/www/html/HTML/header_small.html'));
     // inserta el header en la página
-    $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/lista_libros_usuarios.html'));
+    $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/lista_borrar_libros.html'));
 
     $hostname = "db";
     $username = "admin";
@@ -26,7 +26,7 @@
             <input name=\"libros_borrados[]\" type=\"checkbox\" value=\"{$row["Book ID"]}\"><a href=\"/PHP/libro.php/?titulo={$row["Book ID"]}\">{$row["Book ID"]}</a>
         </th>
         <th>
-        descripcion
+            {$row["Text_corto"]}
         </th>
 </tr>";
     }
