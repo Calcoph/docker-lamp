@@ -44,6 +44,9 @@ Para avanzar y retroceder los capítulos, se pueden utilizar el **Botón 1** y e
 ![inicio_sesion]
 
 # Pantalla 4: opciones de usuario
+# Pantalla 5: Introducir un nuevo libro
+Un usuario que esté identificado, mediante este apartado, puede añadir al catálogo un nuevo libro
+![Nuevo_libro]
 
 *insertar imagen opciones de usuario*
 
@@ -55,3 +58,4 @@ Para avanzar y retroceder los capítulos, se pueden utilizar el **Botón 1** y e
 [capitulo]: imagenes/capitulo.png
 [cap_botones]: imagenes/cap_botones.png
 [inicio_sesion]: imagenes/inicio_sesion.png
+[Nuevo_libro]: imagenes/Nuevo_libro.png
