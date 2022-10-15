@@ -73,6 +73,9 @@ header a:hover{
     background-size: cover;
     
 }
+#col_botones{
+    max-width: 40px;
+}
 #btn{
     font-size: 1em;
     font-weight: bold;
