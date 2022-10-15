@@ -26,8 +26,8 @@
             <a href=\"/PHP/libro.php/?titulo={$row["Book ID"]}\">{$row["Book ID"]}</a>
         </th>
         <th>
-            {$row["Text_corto"]}
-            <br>
+           <p>{$row["Text_corto"]}</p>
+            
         </th>
         <th id=\"col_botones\">
             <form name=\"form_modificar_libro\" action=\"/PHP/mod_libros/modificar_libro.php\" method=\"get\" class=\"form\">
