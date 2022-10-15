@@ -6,34 +6,60 @@ function publicar() {
     let portada = document.form_publicar_libro.portada.value
     let portada_personalizada = document.form_publicar_libro.portada_personalizada.value
 
+    if (valido(titulo, descripcion, resumen, texto, portada, portada_personalizada)) {
+        document.form_publicar_libro.submit()
+    }
+}
+
+function modificar() {
+    let titulo = document.form_modificar_libro.titulo.value
+    let descripcion = document.form_modificar_libro.descripcion.value
+    let resumen = document.form_modificar_libro.resumen.value
+    let texto = document.form_modificar_libro.texto.value
+    let portada = document.form_modificar_libro.portada.value
+    let portada_personalizada = document.form_modificar_libro.portada_personalizada.value
+
+    if (valido(titulo, descripcion, resumen, texto, portada, portada_personalizada)) {
+        document.form_publicar_libro.submit()
+    }
+}
+
+function valido(
+    titulo,
+    descripcion,
+    resumen,
+    texto,
+    portada_personalizada,
+    portada
+) {
     if (!descripcion) {
         window.alert("Añade una descripción")
-        return
+        return false
     }
 
     if (!resumen) {
         window.alert("Añade un resumen")
-        return
+        return false
     }
 
     if (!titulo) {
         window.alert("El libro necesita un título")
-        return
+        return false
     }
 
     if (!texto) {
         window.alert("El libro está vacío")
-        return
+        return false
     }
 
     if (!portada_personalizada) {
         if (!portada) {
             window.alert("Debes elegir una portada")
-            return
+            return false
         }
     }
 
-    document.form_publicar_libro.submit()
+    return true
 }
 
 function solo_publicar() {

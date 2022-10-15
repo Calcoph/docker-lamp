@@ -7,7 +7,7 @@
     <title>Librerium</title>
     <link rel="stylesheet" href="/CSS/nuevo_libro.css">
     <link rel="icon" type="image/png" href="/img/book_read_icon-icons.com_49930.ico" sizes="16x16">
-    <script>"/js/publicar_capitulo.js"</script>
+    <script src="/js/publicar_capitulo.js"></script>
 </head>
 <body>
     %header%
@@ -18,7 +18,7 @@
           <div class="inputContainer">
             <textarea name="titulo" id="titulo" class="input" cols="90" rows="10" placeholder="Título del capítulo"></textarea>
             <script>
-              document.getElementById('titulo').value = '%titulo%';
+              document.getElementById('titulo').value = '%titulo_capitulo%';
             </script>
           </div>
 
@@ -28,9 +28,10 @@
               document.getElementById('texto').value = '%texto%';
             </script>
           </div>
-
+          <input type="hidden" name="titulo_libro" value="%titulo_libro%">
+          <input type="hidden" name="titulo_anterior" value="%titulo_capitulo%">
           <div class="btn_container">
-            <input type="button" class="loginBtn" value="Actualizar" onclick="publicar()">
+            <input type="button" class="loginBtn" value="Actualizar" onclick="modificar()">
           </div>
         </form>
     </div>
