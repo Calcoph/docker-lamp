@@ -55,8 +55,11 @@
             <label for="portada 2">portada2</label>
             <input type="radio" name="portada" value="portada 3">
             <label for="portada 3">portada3</label>
-            <input type="radio" name="portada" value="anterior">
+            <input type="radio" name="portada" id="portada" value="anterior">
             <label for="anterior">No modificar</label>
+            <script>
+              document.getElementById('portada').checked = true;
+            </script>
             <br>
             <input type="file" name="portada_personalizada">
             <label for="portada_personalizada">portada personalizada (nueva)</label>
