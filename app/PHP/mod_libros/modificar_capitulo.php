@@ -22,7 +22,7 @@
     }
     $header = str_replace('%usuario%', $username, file_get_contents('/var/www/html/HTML/header_small.html'));
     $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/mod_libros/modificar_capitulo.html'));
-
+    $pagina  = str_replace('%titulo_libro%', $titulo, $pagina);
     $titulo_ = 0;
     $datos = mysqli_fetch_row($query);
 
@@ -34,6 +34,7 @@
     // inserta el título del libro en la página
     $titulo .= ": {$row["Chapter_ID"]}";
     $pagina  = str_replace('%titulo%', $titulo, $pagina);
+    $pagina  = str_replace('%titulo_capitulo%', $row["Chapter_ID"], $pagina);
 
     echo $pagina
 ?>
