@@ -211,7 +211,7 @@ function datos_validos(
     let patternTel = /[0-9]{9}/
     let pattern_letras = new RegExp('^[A-Z]+$', 'i'); // Expresión regular de solo letras
      // El regex del email es poco restrictivo a propósito, algunos regex pre-hechos para email no permiten algunos emails válidos
-    let regex_email = /.+@.+\..+/ // busca: X@X.X Donde X es cualquier caracter 1 o más veces
+    let regex_email = /\S+@\S+\.\S+/ // busca: X@X.X Donde X es cualquier caracter (que no sea espacio en blanco) 1 o más veces
     if (nombre == "") {
         window.alert("Introduzca su nombre")
         return false

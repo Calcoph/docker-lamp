@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Librerium</title>
+    <link rel="stylesheet" href="/CSS/nuevo_libro.css">
+    <link rel="icon" type="image/png" href="/img/book_read_icon-icons.com_49930.ico" sizes="16x16">
+    <script src="/js/nuevo_libro.js"></script>
+</head>
+<body>
+    %header%
+    <div class="signupFrm">
+        <form name="form_modificar_libro" action="/PHP/mod_libros/cambiar_libro.php" method="post" class="form" enctype="multipart/form-data">
+          <h1 class="title">%titulo%</h1>
+    
+          <div class="inputContainer">
+            <input name="titulo" id="titulo" type="text" class="input" placeholder="Escribe el título del libro">
+            <script>
+              document.getElementById('titulo').value = '%titulo%';
+            </script>
+            <label for="titulo">Titulo</label>
+          </div>
+
+          <div class="inputContainer">
+            <input name="descripcion" id="descripcion" type="text" class="input" placeholder="Descripción del libro">
+            <script>
+              document.getElementById('descripcion').value = '%descripcion%';
+            </script>
+            <label for="descripcion">Descripción</label>
+          </div>
+
+          <div class="inputContainer">
+            <textarea name="resumen" id="resumen" class="input" cols="60" rows="2" placeholder="Resumen del libro"></textarea>
+            <script>
+              document.getElementById('resumen').value = '%resumen%';
+            </script>
+            <label for="resumen">Resumen</label>
+          </div>
+          
+          <h4>Modificar capítulos</h4>
+          <div class="inputContainer">
+            %capitulos%
+          </div>
+
+          <img src="/img/portada 1.png" alt=""></imgsrc>
+          <img src="/img/portada 2.png" alt=""></imgsrc>
+          <img src="/img/portada 3.png" alt=""></imgsrc>
+          <img src="%imagen%" alt=""></imgsrc>
+
+          <input type="hidden" name="titulo_anterior" value="%titulo%">
+          <div class="inputContainer">
+            <input type="radio" name="portada" value="portada 1">
+            <label for="portada 1">portada1</label>
+            <input type="radio" name="portada" value="portada 2">
+            <label for="portada 2">portada2</label>
+            <input type="radio" name="portada" value="portada 3">
+            <label for="portada 3">portada3</label>
+            <input type="radio" name="portada" id="portada" value="anterior">
+            <label for="anterior">No modificar</label>
+            <script>
+              document.getElementById('portada').checked = true;
+            </script>
+            <br>
+            <input type="file" name="portada_personalizada">
+            <label for="portada_personalizada">portada personalizada (nueva)</label>
+          </div>
+          <div class="btn_container">
+            <input type="button" class="loginBtn" value="Cambiar" onclick="modificar()">
+          </div>
+        </form>
+    </div>
+    <footer>
+        <div class="container">
+            <p>&copy; Ibai&Diego&Francisco</p>
+        </div>
+    </footer>
+</body>
+</html>

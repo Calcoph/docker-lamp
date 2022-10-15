@@ -4,7 +4,7 @@
     // pone el nombre de usuario en el header
     $header = str_replace('%usuario%', $usuario, file_get_contents('/var/www/html/HTML/header_small.html'));
     // inserta el header en la página
-    $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/lista_libros_usuarios.html'));
+    $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/mod_libros/lista_modificar_libros.html'));
 
     $hostname = "db";
     $username = "admin";
@@ -23,10 +23,19 @@
     while ($row = mysqli_fetch_assoc($query)) {
         $libros .= "<tr>
         <th>
-            <input name=\"libros_borrados[]\" type=\"checkbox\" value=\"{$row["Book ID"]}\"><a href=\"/PHP/libro.php/?titulo={$row["Book ID"]}\">{$row["Book ID"]}</a>
+            <a href=\"/PHP/libro.php/?titulo={$row["Book ID"]}\">{$row["Book ID"]}</a>
         </th>
         <th>
-
+            {$row["Text_corto"]}
+            <br>
+            <form name=\"form_modificar_libro\" action=\"/PHP/mod_libros/modificar_libro.php\" method=\"get\" class=\"form\">
+                <input type=\"submit\" value=\"Modificar\">
+                <input type=\"hidden\" name=\"titulo\" value=\"{$row["Book ID"]}\">
+            </form>
+            <form name=\"form_anadir_capitulo\" action=\"/PHP/mod_libros/nuevo_capitulo.php\" method=\"get\" class=\"form\">
+                <input type=\"submit\" value=\"Añadir capitulo\">
+                <input type=\"hidden\" name=\"titulo\" value=\"{$row["Book ID"]}\">
+            </form>
         </th>
 </tr>";
     }

@@ -4,26 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link rel="stylesheet" href="/CSS/catalogo.css">
+    <title>Document</title>
 </head>
 <body>
     %header%
-    
-        <div class="catalogo_container">
-            <div class="scroll_vertical">
-            
+    <div class="catalogo_container">
         <table class="default">
-            
             <tr>
                 <th>Titulo</th>
                 <th>Descripcion corta</th>
             </tr>
-            <tr>
-            %catalogo%
+            %titulos%
         </table>
-     
-        </div>
+        <button type="button" onclick="borrar_libros()">Borrar libros</button>
     </div>
     <footer>
         <div class="container">
@@ -32,4 +26,3 @@
     </footer>
 </body>
 </html>
-

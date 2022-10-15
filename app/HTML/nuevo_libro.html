@@ -24,7 +24,16 @@
           </div>
           <h4>Capitulo</h4>
           <div class="inputContainer">
-            <textarea name="texto" class="input" cols="90" rows="5" placeholder="Escribe tu libro!"></textarea>
+            <input name="descripcion" type="text" class="input" placeholder="Descripción del libro">
+            <label for="descripcion">Descripción</label>
+          </div>
+
+          <div class="inputContainer">
+            <textarea name="resumen" class="input" cols="60" rows="2" placeholder="Resumen del libro"></textarea>
+          </div>
+
+          <div class="inputContainer">
+            <textarea name="texto" class="input" cols="90" rows="5" placeholder="Escribe el primer capítulo!"></textarea>
           </div>
           <h4>Portada</h4>
           <div class="portadas">
@@ -40,13 +49,14 @@
             <label for="portada 2">portada2</label>
             <input type="radio" name="portada" value="portada 3">
             <label for="portada 3">portada3</label>
+            <br>
             <input type="file" name="portada_personalizada">
             <label for="portada_personalizada">portada personalizada</label>
           </div>
           <div class="btn_container">
-            <input type="button" class="loginBtn" value="Publicar" onclick="publicar()">
-            <input type="button" class="loginBtn" value="Siguiente Capitulo" onclick="publicar()">
-
+            <input type="button" class="loginBtn" value="Publicar" onclick="solo_publicar()">
+            <input type="button" class="loginBtn" value="Siguiente Capitulo" onclick="publicar_y_seguir()">
+            <input type="hidden" name="boton" value="" />
           </div>
         </form>
     </div>
