@@ -34,7 +34,7 @@
                 <input id=\"btn\" type=\"submit\" value=\"Modificar\">
                 <input type=\"hidden\" name=\"titulo\" value=\"{$row["Book ID"]}\">
             </form>
-            <form name=\"form_anadir_capitulo\" action=\"/PHP/mod_libros/anadir_capitulo.php\" method=\"post\" class=\"form\">
+            <form name=\"form_anadir_capitulo\" action=\"/PHP/mod_libros/nuevo_capitulo.php\" method=\"get\" class=\"form\">
                 <input id=\"btn\" type=\"submit\" value=\"Añadir capitulo\">
                 <input type=\"hidden\" name=\"titulo\" value=\"{$row["Book ID"]}\">
             </form>
