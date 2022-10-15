@@ -35,3 +35,13 @@ function publicar() {
 
     document.form_publicar_libro.submit()
 }
+
+function solo_publicar() {
+    document.form_publicar_libro.boton.value = "solo_publicar"
+    publicar()
+}
+
+function publicar_y_seguir() {
+    document.form_publicar_libro.boton.value = "publicar_y_seguir"
+    publicar()
+}

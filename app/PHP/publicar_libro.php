@@ -46,7 +46,13 @@
     // Almacena quien lo ha publicado
     $query = mysqli_query($conn, "INSERT INTO escritos(`Book ID`, `Used ID`) VALUES ('$titulo', '$username')") or die (mysqli_error($conn));
 
-    // Vuelve a la página principal
-    header('Location: '."/index.php");
-    die();
+    if ($_POST['boton'] == "solo_publicar") {
+        // Vuelve a la página principal
+        header('Location: '."/index.php");
+        die();
+      } else {
+        // Sigue añadiendo capítulos
+        header('Location: '."/PHP/mod_libros/nuevo_capitulo.php");
+        die();
+    }
 ?>
