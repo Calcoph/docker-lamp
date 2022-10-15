@@ -55,7 +55,7 @@ En esta panntalla, que se accede pulsando sobre el username de la cabecera, se l
 # Pantalla 5: Introducir un nuevo libro
 ![Nuevo_libro]
 Un usuario que esté identificado, mediante este apartado, puede añadir al catálogo un nuevo libro.
-Cuando se introduzca la información necesaria para publicar un libro, se da la opción ( mediante los botones ) de publicarlo, o seguir escribiendo el siguiente cap
+Cuando se introduzca la información necesaria para publicar un libro, se da la opción ( mediante los botones ) de publicarlo, o seguir escribiendo el siguiente capítulo.
 
 
 
