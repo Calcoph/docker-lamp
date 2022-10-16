@@ -88,6 +88,8 @@ Un usuario que esté identificado, mediante este apartado, puede añadir al cat�
 Cuando se introduzca la información necesaria para publicar un libro, se da la opción ( mediante los botones ) de publicarlo, o seguir escribiendo el siguiente capítulo.
 
 # Pantalla 4.3: Modificar datos usuario
+![cambiar_datos]
+
 # Fuentes
 * Imágenes: https://pixabay.com/es/
 * Scrollbar: https://www.jose-aguilar.com/blog/scrollbar-vertical-horizontal/
@@ -99,7 +101,7 @@ Cuando se introduzca la información necesaria para publicar un libro, se da la 
 * Función Inicio de sesión: https://stackoverflow.com/questions/247483/http-get-request-in-javascript
 * Función para portada personalizada: https://www.w3schools.com/php/php_file_upload.asp
 
-
+[cambiar_datos]: imagenes/cambiar_datos.png
 [diagrama de páginas]: imagenes/diagrama_paginas.png
 [inicio]: imagenes/index.png
 [cabecera]: imagenes/cabecera.png
