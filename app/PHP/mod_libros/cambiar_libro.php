@@ -40,7 +40,7 @@
 
     if ($_POST["portada"] == "anterior") {
         // Actualizar todo menos la portada
-        $query = mysqli_query($conn, "UPDATE libro SET `Book ID`='$titulo', imglink='$save_path', Text_corto='$descripcion', Text_largo='$resumen' Prologue='$texto' WHERE `Book ID`='$titulo_anterior'") or die (mysqli_error($conn));
+        $query = mysqli_query($conn, "UPDATE libro SET `Book ID`='$titulo', imglink='$save_path', Text_corto='$descripcion', Text_largo='$resumen', Prologue='$texto' WHERE `Book ID`='$titulo_anterior'") or die (mysqli_error($conn));
     } else {
         // Actualizar todo
         $query = mysqli_query($conn, "UPDATE libro SET `Book ID`='$titulo', Text_corto='$descripcion', Text_largo='$resumen' Prologue='$texto' WHERE `Book ID`='$titulo_anterior'") or die (mysqli_error($conn));
