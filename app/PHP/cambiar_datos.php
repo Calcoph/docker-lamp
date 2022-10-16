@@ -22,7 +22,7 @@
 
     // Inserta el usuario y contraseña en la base de datos
     $query = mysqli_query($conn, "UPDATE usuario
-    SET `Used ID`='$usuario', Password='$contraseña', DNI='$dni', email='$email', Nombre='$nombre', Apellidos='$apellido', Telefono=$tlf, fecha_nacimiento='$fnacimiento'
+    SET `Used ID`='$usuario', Password='$contraseña', DNI='$dni', email='$email', Nombre='$nombre', Apellidos='$apellido', Telefono='$tlf', fecha_nacimiento='$fnacimiento'
     WHERE `Used ID`='$usuario_anterior'") or die (mysqli_error($conn));
     echo $usuario_anterior;
     echo $usuario;
