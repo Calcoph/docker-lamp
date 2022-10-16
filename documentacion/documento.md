@@ -102,4 +102,4 @@ Cuando se introduzca la información necesaria para publicar un libro, se da la 
 [modificar_capitulo]: imagenes/modificar_capitulo.png
 [nuevo_capitulo]: imagenes/nuevo_capitulo.png
 [modificar_libros]: imagenes/modificar_libros.png
-[borrar_libros]: imagenes/borrar_libros.png
+[borrar_libros]: imagenes/borrar_libros.png 
