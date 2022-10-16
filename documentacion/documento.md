@@ -89,12 +89,16 @@ Cuando se introduzca la información necesaria para publicar un libro, se da la 
 
 # Pantalla 4.3: Modificar datos usuario
 # Fuentes
-* Imágenes:https://pixabay.com/es/
-* Scrollbar:https://www.jose-aguilar.com/blog/scrollbar-vertical-horizontal/
-* Validar DNI:https://donnierock.com/2011/11/05/validar-un-dni-con-javascript/
-* Ocultar contraseñas:https://es.acervolima.com/como-ocultar-la-contrasena-en-html/
-* Propiedad Display CSS:https://uniwebsidad.com/libros/css-avanzado/capitulo-4/propiedad-display
-* HTML y CSS:https://www.youtube.com/watch?v=8-RC-Q7Wtzc
+* Imágenes: https://pixabay.com/es/
+* Scrollbar: https://www.jose-aguilar.com/blog/scrollbar-vertical-horizontal/
+* Validar DNI: https://donnierock.com/2011/11/05/validar-un-dni-con-javascript/
+* Ocultar contraseñas: https://es.acervolima.com/como-ocultar-la-contrasena-en-html/
+* Propiedad Display CSS: https://uniwebsidad.com/libros/css-avanzado/capitulo-4/propiedad-display
+* HTML y CSS: https://www.youtube.com/watch?v=8-RC-Q7Wtzc
+* Función borrar libros: https://stackoverflow.com/questions/19010177/javascript-get-form-array-values
+* Función Inicio de sesión: https://stackoverflow.com/questions/247483/http-get-request-in-javascript
+* Función para portada personalizada: https://www.w3schools.com/php/php_file_upload.asp
+
 
 [diagrama de páginas]: imagenes/diagrama_paginas.png
 [inicio]: imagenes/index.png
