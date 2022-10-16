@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-10-2022 a las 11:41:27
+-- Tiempo de generación: 16-10-2022 a las 13:06:56
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -272,7 +272,7 @@ CREATE TABLE `usuario` (
   `email` varchar(50) NOT NULL DEFAULT 'y@gmail.com',
   `Nombre` varchar(50) NOT NULL DEFAULT 'z',
   `Apellidos` varchar(50) NOT NULL DEFAULT 'x',
-  `Telefono` int(11) NOT NULL DEFAULT 1,
+  `Telefono` varchar(50) NOT NULL DEFAULT '1',
   `fecha_nacimiento` date NOT NULL DEFAULT '2000-08-21'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Se trata del usuario de la pagina, ya sea admin oh persona normal, esta es la informacion que se guardara de el';
 
@@ -281,11 +281,11 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`Used ID`, `Password`, `DNI`, `email`, `Nombre`, `Apellidos`, `Telefono`, `fecha_nacimiento`) VALUES
-('Admin', 'test', '', 'Admind@admindistrator.com', 'Admin', 'Yes', 0, '2000-08-21'),
-('Aitor', 'VIVA CHILE', '', 'BestAtor@hotmail.com', 'Aitor', '', 0, '2000-08-21'),
-('Aligator 250', '214134351131253412771315171846123 41424251421 caba', '', 'TheRealRealRealBestAtor@gmail.com', 'Ane', '', 0, '2000-08-21'),
-('Mikel', 'legenda1234', '', 'Mikel2000@gmail.com', 'Mikel', '', 0, '2000-08-21'),
-('简单的', 'Simple', '', 'Sun@gmail.com', 'Liang', 'Zhuge', 0, '2000-08-21');
+('Admin', 'test', '', 'Admind@admindistrator.com', 'Admin', 'Yes', '0', '2000-08-21'),
+('Aitor', 'VIVA CHILE', '', 'BestAtor@hotmail.com', 'Aitor', '', '0', '2000-08-21'),
+('Aligator 250', '214134351131253412771315171846123 41424251421 caba', '', 'TheRealRealRealBestAtor@gmail.com', 'Ane', '', '0', '2000-08-21'),
+('Mikel', 'legenda1234', '', 'Mikel2000@gmail.com', 'Mikel', '', '0', '2000-08-21'),
+('简单的', 'Simple', '', 'Sun@gmail.com', 'Liang', 'Zhuge', '0', '2000-08-21');
 
 --
 -- Índices para tablas volcadas
