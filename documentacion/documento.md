@@ -9,7 +9,7 @@ Hecho por: Francisco González, Diego Esteban, Ibai Mendivil.
 # Pantalla 1: Inicio
 ![inicio]
 Desde esta pantalla podremos:
- * Acceder al catálogo (**Botónes 1**)
+ * Acceder al catálogo (**Botón 1**)
  * Iniciar sesión o acceder a las opciones de usuario, dependiendo si hemos iniciados esión o no. (**Botón 2**)
 
 En casi todas las demás páginas habrá una cabecera (ilustración 1) con el que se puede volver a esta página (**Botón 3**), el header también contiene el **Botón 2**.
@@ -52,10 +52,10 @@ se registra el usuario si son correctas. Se puede volver a la pantalla de inicia
 # Pantalla 4: opciones de usuario
 ![ajustes_usuario]
 En esta pantalla, que se accede pulsando sobre el username de la cabecera, se le mostrarán al usuario las siguientes funciones:
- * Cerrar sesión
- * Cambiar datos
- * Borrar un libro
- * Modificar un libro
+ * Cerrar sesión (**Botón 1**)
+ * Cambiar datos (**Botón 2**)
+ * Borrar un libro (**Botón 3**)
+ * Modificar un libro (**Botón 4**)
 
 Sólo se puede acceder si se ha iniciado la sesión.
 
@@ -74,6 +74,7 @@ Desde aquí, se nos mostrarán los capítulos del libro. Para modificarlos tendr
 # Pantalla 4.1.1.1: modificar capitulo
 ![modificar_capitulo]
 
+
 # Pantalla 4.1.2: nuevo capitulo
 ![nuevo_capitulo]
 
@@ -87,7 +88,7 @@ Cuando se introduzca la información necesaria para publicar un libro, se da la 
 
 # Pantalla 4.3: Modificar datos usuario
 # Fuentes
-Imágenes:https://pixabay.com/es/
+* Imágenes:https://pixabay.com/es/
 * Scrollbar:https://www.jose-aguilar.com/blog/scrollbar-vertical-horizontal/
 * Validar DNI:https://donnierock.com/2011/11/05/validar-un-dni-con-javascript/
 * Ocultar contraseñas:https://es.acervolima.com/como-ocultar-la-contrasena-en-html/
