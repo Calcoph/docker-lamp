@@ -4,6 +4,8 @@ Página web para publicar libros, reseñarlos y comentarlos.
 Hecho por: Francisco González, Diego Esteban, Ibai Mendivil.
 
 ## Instrucciones
+En caso de que alguno de los siguientes comandos de un error de permisos, hay que ejecutarlo poniendo `sudo` delante.
+
 1. Crear la imagen **web**:
     * `$ docker build -t="web" .`
 2. Iniciar los contenedores:
