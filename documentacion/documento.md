@@ -86,7 +86,13 @@ Un usuario que esté identificado, mediante este apartado, puede añadir al cat�
 Cuando se introduzca la información necesaria para publicar un libro, se da la opción ( mediante los botones ) de publicarlo, o seguir escribiendo el siguiente capítulo.
 
 # Pantalla 4.3: Modificar datos usuario
-
+# Fuentes
+Imágenes:https://pixabay.com/es/
+Scrollbar:https://www.jose-aguilar.com/blog/scrollbar-vertical-horizontal/
+Validar DNI:https://donnierock.com/2011/11/05/validar-un-dni-con-javascript/
+Ocultar contraseñas:https://es.acervolima.com/como-ocultar-la-contrasena-en-html/
+Propiedad Display CSS:https://uniwebsidad.com/libros/css-avanzado/capitulo-4/propiedad-display
+HTML y CSS:https://www.youtube.com/watch?v=8-RC-Q7Wtzc
 
 [diagrama de páginas]: imagenes/diagrama_paginas.png
 [inicio]: imagenes/index.png
