@@ -89,6 +89,7 @@ Cuando se introduzca la información necesaria para publicar un libro, se da la 
 
 # Pantalla 4.3: Modificar datos usuario
 ![cambiar_datos]
+En esta pestaña el usuario puede modificar todos sus datos. Como se ve en la ilustración, los campos aparecen con los datos actuales. Para que los cambios se ejecuten, se deberá pulsar sobre el botón **Cambiar datos**
 
 # Fuentes
 * Imágenes: https://pixabay.com/es/
