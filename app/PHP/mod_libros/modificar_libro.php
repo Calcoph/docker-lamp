@@ -22,19 +22,19 @@
     $header = str_replace('%usuario%', $username, file_get_contents('/var/www/html/HTML/header_small.html'));
     $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/mod_libros/modificar_libro.html'));
 
-    $imagen = 2;
+    $imagen = 1;
     $titulo_ = 0;
-    $descripcion = 3;
-    $resumen = 4;
+    $descripcion = 2;
+    $resumen = 3;
+    $prologo = 4;
     $datos = mysqli_fetch_row($query);
     // inserta la imagen en la página
     $pagina  = str_replace('%imagen%', $datos[$imagen], $pagina);
-    // inserta el título del libro en la página
+    // inserta los datos actuales del libro en la página
     $pagina  = str_replace('%titulo%', $datos[$titulo_], $pagina);
-    // inserta la descripción del libro en la página
     $pagina  = str_replace('%descripcion%', $datos[$descripcion], $pagina);
-    // inserta el resumen del libro en la página
     $pagina  = str_replace('%resumen%', $datos[$resumen], $pagina);
+    $pagina  = str_replace('%texto%', $datos[$prologo], $pagina);
 
     $query = mysqli_query($conn, "SELECT * FROM capitulo WHERE `Book ID`='$titulo' ORDER BY `Chapter Num` ASC")
         or die (mysqli_error($conn));

@@ -15,7 +15,7 @@ function modificar() {
     let titulo = document.form_modificar_libro.titulo.value
     let descripcion = document.form_modificar_libro.descripcion.value
     let resumen = document.form_modificar_libro.resumen.value
-    let texto = "a" // TODO: cambiarlo por document.form_modificar_libro.texto.value
+    let texto = document.form_modificar_libro.texto.value
     let portada = document.form_modificar_libro.portada.value
     let portada_personalizada = document.form_modificar_libro.portada_personalizada.value
 
