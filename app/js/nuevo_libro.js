@@ -6,9 +6,25 @@ function publicar() {
     let portada = document.form_publicar_libro.portada.value
     let portada_personalizada = document.form_publicar_libro.portada_personalizada.value
 
-    if (valido(titulo, descripcion, resumen, texto, portada, portada_personalizada)) {
-        document.form_publicar_libro.submit()
+    if (!valido(titulo, descripcion, resumen, texto, portada, portada_personalizada)) {
+        return
     }
+
+    // Código obtenido de https://stackoverflow.com/questions/247483/http-get-request-in-javascript
+    // Modificaciones: la URL, y la función de callback
+    var get_titulo = new XMLHttpRequest();
+    get_titulo.onreadystatechange = function () {
+        if (get_titulo.readyState == 4 && get_titulo.status == 200) {
+            var titulo2 = get_titulo.responseText;
+            if (titulo2 === "") {
+                document.form_publicar_libro.submit()
+            } else {
+                window.alert("Ya existe un libro con ese título")
+            }
+        }
+    }
+
+    llamar_get_titulo(get_titulo, titulo)
 }
 
 function modificar() {
@@ -19,9 +35,46 @@ function modificar() {
     let portada = document.form_modificar_libro.portada.value
     let portada_personalizada = document.form_modificar_libro.portada_personalizada.value
 
-    if (valido(titulo, descripcion, resumen, texto, portada, portada_personalizada)) {
-        document.form_modificar_libro.submit()
+    if (!valido(titulo, descripcion, resumen, texto, portada, portada_personalizada)) {
+        return
     }
+
+    // Código obtenido de https://stackoverflow.com/questions/247483/http-get-request-in-javascript
+    // Modificaciones: la URL, y la función de callback
+    var get_titulo = new XMLHttpRequest();
+    get_titulo.onreadystatechange = function () {
+        if (get_titulo.readyState == 4 && get_titulo.status == 200) {
+            var titulo2 = get_titulo.responseText;
+            if (titulo2 === "") {
+                document.form_modificar_libro.submit()
+            } else {
+                window.alert("Ya existe un libro con ese título")
+            }
+        }
+    }
+
+    llamar_get_titulo(get_titulo, titulo)
+}
+
+function llamar_get_titulo(get_titulo, titulo) {
+    // Código obtenido de https://stackoverflow.com/questions/247483/http-get-request-in-javascript
+    // Modificaciones: la URL, y la función de callback
+    var pre = ""
+    var url = window.location.href.split("http://")[1]; // por si acaso
+    if (url === undefined) { // Por si no tiene http://
+        url = window.location.href
+    } else {
+        pre = "http://"
+    }
+    var url1 = url.split("https://")[1]; // por si acaso
+    if (url1 === undefined) { // Por si no tiene https://
+        url1 = url
+    } else {
+        pre = "https://"
+    }
+    url = url1.split("/")[0]; // Asumo que la url será lo que haya antes del primer / (habiendo eliminado https:// y http://)
+    get_titulo.open("GET", pre + url + "/PHP/get_titulo.php/?titulo=" + titulo, true);
+    get_titulo.send(null);
 }
 
 function valido(
