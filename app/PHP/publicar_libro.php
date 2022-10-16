@@ -1,11 +1,11 @@
-
-
 <?php
     // La carpeta donde se van a guardar los archivos
     $target_dir = "/var/www/html/uploads/";
     // La dirección que se ve desde el html (para insertar las imágenes luego)
     $save_path = "/uploads/";
     $titulo = $_POST["titulo"];
+    $descripcion = $_POST["descripcion"];
+    $resumen = $_POST["resumen"];
     $texto = $_POST["texto"];
     if (file_exists($_FILES["portada_personalizada"]["tmp_name"])) {
         // Si ha elegido una portada personalizada, la descargamos
@@ -16,7 +16,7 @@
         // código sacado de https://www.w3schools.com/php/php_file_upload.asp
         // modificaciones: Hemos eliminado todos los checks
         if (move_uploaded_file($_FILES["portada_personalizada"]["tmp_name"], $target_file)) {
-            echo $target_file;
+
         } else {
             echo "Ha habido un error al subir la portada.";
             return;
@@ -38,15 +38,19 @@
     }
 
     // Almacena el libro
-    $query = mysqli_query($conn, "INSERT INTO libro(`Book ID`, Nota, imglink) VALUES ('$titulo', 0.0, '$save_path')") or die (mysqli_error($conn));
-    // Almacena el capítulo
-    $query = mysqli_query($conn, "INSERT INTO capitulo(Chapter_ID, `Book ID`, `Chapter Num`, Texto) VALUES ('Cap 0', '$titulo', 1, '$texto')") or die (mysqli_error($conn));
+    $query = mysqli_query($conn, "INSERT INTO libro(`Book ID`, imglink, Text_corto, Text_largo, Prologue) VALUES ('$titulo', '$save_path', '$descripcion', '$resumen', '$texto')") or die (mysqli_error($conn));
 
     $username = $_COOKIE["username"];
     // Almacena quien lo ha publicado
     $query = mysqli_query($conn, "INSERT INTO escritos(`Book ID`, `Used ID`) VALUES ('$titulo', '$username')") or die (mysqli_error($conn));
 
-    // Vuelve a la página principal
-    header('Location: '."/index.php");
-    die();
+    if ($_POST['boton'] == "solo_publicar") {
+        // Vuelve a la página principal
+        header('Location: '."/index.php");
+        die();
+      } else {
+        // Sigue añadiendo capítulos
+        header('Location: '."/PHP/mod_libros/nuevo_capitulo.php/?titulo=$titulo");
+        die();
+    }
 ?>

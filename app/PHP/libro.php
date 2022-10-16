@@ -22,9 +22,9 @@
     $header = str_replace('%usuario%', $username, file_get_contents('/var/www/html/HTML/header_small.html'));
     $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/pagina_libro.html'));
 
-    $imagen = 2;
+    $imagen = 1;
     $titulo_ = 0;
-    $descripcion = 3;
+    $descripcion = 2;
     $datos = mysqli_fetch_row($query);
     // inserta la imagen en la página
     $pagina  = str_replace('%ruta imagen%', $datos[$imagen], $pagina);
@@ -34,10 +34,9 @@
     $pagina  = str_replace('%descripcion%', $datos[$descripcion], $pagina);
     // El botón de leer envía al usuario al primer capítulo
     $boton = "
-<form metod=\"get\" action=\"/PHP/leer_libro.php\">
+<form metod=\"get\" action=\"/PHP/leer_prologo.php\">
     <button>leer</button>
     <input type=\"hidden\" name=\"titulo\" value=\"$titulo\" />
-    <input type=\"hidden\" name=\"capitulo\" value=\"1\" />
 </form>";
     // inserta el botón de leer en la página
     $pagina = str_replace('%boton leer%', $boton, $pagina);

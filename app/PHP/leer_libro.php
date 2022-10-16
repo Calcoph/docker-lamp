@@ -32,6 +32,7 @@
     $chap_id = $row["Chapter_ID"];
     // inserta el texto en la página
     $pagina = str_replace('%texto%', $row["Texto"], $pagina);
+    $pagina = str_replace('%TitCapitulo%', $row["Chapter_ID"], $pagina);
 
     $cap_anterior = intval($capitulo)-1;
     $anterior = "";
@@ -44,6 +45,12 @@
         <input type=\"hidden\" name=\"titulo\" value=\"$titulo\" />
         <input type=\"hidden\" name=\"capitulo\" value=\"$cap_anterior\" />
     </form>";
+    } else {
+        $anterior = "
+        <form metod=\"get\" action=\"/PHP/leer_prologo.php\">
+            <Button>Capítulo anterior</Button>
+            <input type=\"hidden\" name=\"titulo\" value=\"$titulo\" />
+        </form>";
     }
 
 
@@ -52,7 +59,7 @@
     $query = mysqli_query($conn, "SELECT * FROM capitulo WHERE `Book ID`='$titulo' AND `Chapter Num`=$cap_siguiente")
         or die (mysqli_error($conn));
     $siguiente = "";
-    while ($row = mysqli_fetch_assoc($query)) { // Este while solo se va a ejecutar 1 vez (o ninguna, si es el último)
+    if ($row = mysqli_fetch_assoc($query)) { // Este while solo se va a ejecutar 1 vez (o ninguna, si es el último)
         $siguiente = "
     <form metod=\"get\" action=\"/PHP/leer_libro.php\">
         <Button>Capítulo siguiente</Button>

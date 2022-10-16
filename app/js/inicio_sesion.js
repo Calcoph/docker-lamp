@@ -147,6 +147,7 @@ function iniciar_sesion() {
 function cambiar_datos() {
     let email = document.form_cambio_datos.email.value
     let usuario = document.form_cambio_datos.usuario.value
+    let usuario_anterior = document.form_cambio_datos.usuario_anterior.value
     let contraseña = document.form_cambio_datos.pswd.value
     let contraseña2 = document.form_cambio_datos.conf_pswd.value
     let nombre = document.form_cambio_datos.nombre.value
@@ -155,7 +156,7 @@ function cambiar_datos() {
     let fecha = document.form_cambio_datos.fnacimiento.value
     let dni = document.form_cambio_datos.dni.value
 
-    if (datos_validos(
+    if (!datos_validos(
         email, usuario, contraseña,
         contraseña2, nombre, apellido,
         tel, fecha, dni
@@ -171,14 +172,16 @@ function cambiar_datos() {
             var contraseña2 = get_contraseña.responseText;
             if (contraseña2 === "") {
                 // Si el usuario no tiene contraseña, significa que no está en la base de datos
-                document.cambiar_datos.submit()
                 document.cookie = "username=" + usuario + "; path=/"
+                document.form_cambio_datos.submit()
+            } else if (usuario == usuario_anterior) {
+                document.form_cambio_datos.submit()
             } else {
                 window.alert("Ese usuario ya existe")
             }
         }
     }
-    
+
     llamar_get_contraseña(get_contraseña, usuario)
 }
 
@@ -211,7 +214,7 @@ function datos_validos(
     let patternTel = /[0-9]{9}/
     let pattern_letras = new RegExp('^[A-Z]+$', 'i'); // Expresión regular de solo letras
      // El regex del email es poco restrictivo a propósito, algunos regex pre-hechos para email no permiten algunos emails válidos
-    let regex_email = /.+@.+\..+/ // busca: X@X.X Donde X es cualquier caracter 1 o más veces
+    let regex_email = /\S+@\S+\.\S+/ // busca: X@X.X Donde X es cualquier caracter (que no sea espacio en blanco) 1 o más veces
     if (nombre == "") {
         window.alert("Introduzca su nombre")
         return false
