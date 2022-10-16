@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-10-2022 a las 11:36:23
+-- Tiempo de generación: 16-10-2022 a las 11:41:27
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -262,28 +262,6 @@ INSERT INTO `libro` (`Book ID`, `imglink`, `Text_corto`, `Text_largo`, `Prologue
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `review`
---
-
-CREATE TABLE `review` (
-  `Used ID` varchar(50) NOT NULL,
-  `Book ID` varchar(50) NOT NULL,
-  `Nota` decimal(2,1) NOT NULL DEFAULT 0.0,
-  `ID Review` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `review`
---
-
-INSERT INTO `review` (`Used ID`, `Book ID`, `Nota`, `ID Review`) VALUES
-('Aitor', 'Beware of Chicken', '5.0', 3),
-('Mikel', 'Beware of Chicken', '4.8', 2),
-('Mikel', 'Worm', '5.0', 1);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `usuario`
 --
 
@@ -360,14 +338,6 @@ ALTER TABLE `libro`
   ADD PRIMARY KEY (`Book ID`);
 
 --
--- Indices de la tabla `review`
---
-ALTER TABLE `review`
-  ADD PRIMARY KEY (`Used ID`,`Book ID`,`ID Review`),
-  ADD KEY `Book ID` (`Book ID`),
-  ADD KEY `Used ID` (`Used ID`);
-
---
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -411,13 +381,6 @@ ALTER TABLE `comentario libro`
 ALTER TABLE `escritos`
   ADD CONSTRAINT `Book_ID E` FOREIGN KEY (`Book ID`) REFERENCES `libro` (`Book ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Used_ID E` FOREIGN KEY (`Used ID`) REFERENCES `usuario` (`Used ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `review`
---
-ALTER TABLE `review`
-  ADD CONSTRAINT `Book ID R` FOREIGN KEY (`Book ID`) REFERENCES `libro` (`Book ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `User ID R` FOREIGN KEY (`Used ID`) REFERENCES `usuario` (`Used ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
