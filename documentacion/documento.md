@@ -35,7 +35,7 @@ En la parte inferior de la página, se muestran los comentarios.
 
 # Pantalla 2.2: Lectura
 ![capitulo]
-Al igual que los libros, cada capítulo también tiene comentarios. Pero están temporalmente deshabilitados para evitar spoilers.
+Al igual que los libros, cada capítulo también tiene comentarios. Pero publicarlos está temporalmente deshabilitado para evitar spoilers.
 
 ![cap_botones]
 Para avanzar y retroceder los capítulos, se pueden utilizar el **Botón 1** y el **Botón 2**, respectivamente.
@@ -44,7 +44,8 @@ Para avanzar y retroceder los capítulos, se pueden utilizar el **Botón 1** y e
 ![inicio_sesion]
 Como es esperable, puedes iniciar sesión pulsando el **Botón 1**. En caso de no tener una cuenta, puedes registrar una pulsando el **Botón 2**.
 
-# TODO: Registro
+# Pantalla 3.1 Registro
+![registro]
 Para registrarse, es necesario rellenar todos los campos, con los formatos especificados en cada uno de ellos.
 En caso de que algún campo no sea válido, se le avisará al usuario. Al pulsar el **Botón 1** se hacen las comprobaciones y
 se registra el usuario si son correctas. Se puede volver a la pantalla de iniciar sesión pulsando el **Botón 2**.
@@ -62,7 +63,7 @@ Sólo se puede acceder si se ha iniciado la sesión.
 # Pantalla 4.1: modificar libros
 ![modificar_libros]
 Se muestra la lista de todos los libros *escritos por el suuario que ha iniciado sesión*.
-Puede leer los libros haciendo click sobre sus títulos, también tiene la opción de modificar sus datos o añadir nuevos capítulos a los mismos.
+Puede leer los libros haciendo click sobre sus títulos, también tiene la opción de modificar sus datos (**Botón 1**) o añadir nuevos capítulos a los mismos (**Botón 2**).
 
 # Pantalla 4.1.1: Modificar libro
 ![modificar_libro]
@@ -73,14 +74,15 @@ Desde aquí, se nos mostrarán los capítulos del libro. Para modificarlos tendr
 
 # Pantalla 4.1.1.1: Modificar capitulo
 ![modificar_capitulo]
-
+Podemos cambiar tanto el título como el contenido de los capítulos. Por defecto se rellenan las casillas con los datos actuales del capítulo.
 
 # Pantalla 4.1.2: Nuevo capitulo
 ![nuevo_capitulo]
+Podemos añadir nuevos capítulos a un libro mediante esta pantalla. Si pulsamos el **Botón 1** publicaremos el capítulo, si pulsamos el **Botón 2** publicaremos el capítulo y empezaremos a escribir el siguiente.
 
 # Pantalla 4.2: Borrar libros
 ![borrar_libros]
-Aquí el usuario puede eliminar de la web un libro suyo clickando sobre la checkbox correspondiente y luego dándole al botón de borrar.
+Aquí el usuario puede eliminar de la web un libro suyo clickando sobre la checkbox correspondiente y luego dándole al botón de borrar. Se pueden borrar más de un libro a la vez. La página pedirá confirmación para asegurarse de que de verdad se quieren borrar los libros marcados.
 
 # Pantalla 5: Introducir un nuevo libro
 ![Nuevo_libro]
@@ -120,3 +122,4 @@ En esta pestaña el usuario puede modificar todos sus datos. Como se ve en la il
 [nuevo_capitulo]: imagenes/nuevo_capitulo.png
 [modificar_libros]: imagenes/modificar_libros.png
 [borrar_libros]: imagenes/borrar_libros.png 
+[registro]: imagenes/registro.png 
