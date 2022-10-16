@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-10-2022 a las 10:48:13
+-- Tiempo de generación: 16-10-2022 a las 02:35:36
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -52,7 +52,7 @@ INSERT INTO `bookmarks` (`Book ID`, `User ID`) VALUES
 CREATE TABLE `capitulo` (
   `Chapter_ID` varchar(50) NOT NULL,
   `Book ID` varchar(50) NOT NULL,
-  `Chapter Num` int(10) DEFAULT NULL,
+  `Chapter Num` int(10) NOT NULL,
   `Texto` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -236,8 +236,8 @@ CREATE TABLE `libro` (
   `Book ID` varchar(50) NOT NULL DEFAULT '',
   `Nota` decimal(2,1) NOT NULL DEFAULT 0.0,
   `imglink` varchar(50) NOT NULL DEFAULT '/uploads/portada 1.png',
-  `Text_corto` mediumtext DEFAULT NULL,
-  `Text_largo` mediumtext DEFAULT NULL
+  `Text_corto` mediumtext NOT NULL DEFAULT 'x',
+  `Text_largo` mediumtext NOT NULL DEFAULT 'xx'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -245,16 +245,16 @@ CREATE TABLE `libro` (
 --
 
 INSERT INTO `libro` (`Book ID`, `Nota`, `imglink`, `Text_corto`, `Text_largo`) VALUES
-('Beneath the Dragoneye Moons', '0.0', '/uploads/portada 1.png', NULL, NULL),
-('Beware of Chicken', '4.9', '/uploads/portada 1.png', NULL, NULL),
-('Cinnamon Bun', '0.0', '/uploads/portada 1.png', NULL, NULL),
-('Forge of Destiny', '0.0', '/uploads/portada 1.png', NULL, NULL),
-('I Have No Mouth, and I Must Scream', '0.0', '/uploads/portada 1.png', NULL, NULL),
-('Mother of Learning', '0.0', '/uploads/portada 1.png', NULL, NULL),
-('Snow Crash', '0.0', '/uploads/portada 1.png', NULL, NULL),
-('Synners', '0.0', '/uploads/portada 1.png', NULL, NULL),
-('There is no Epic Loot here, Only Puns.', '0.0', '/uploads/portada 1.png', NULL, NULL),
-('Worm', '5.0', '/uploads/portada 1.png', NULL, NULL);
+('Beneath the Dragoneye Moons', '0.0', '/uploads/portada 1.png', 'Elaine is ripped from this world to Pallos, a land of unlimited possibilities made real by a grand System governing classes, skills, and magic.\r\n\r\nAn ideal society? What is this, a fantasy novel?\r\n\r\nAdventures? Right this way!\r\n', '\r\n\r\nElaine is ripped from this world to Pallos, a land of unlimited possibilities made real by a grand System governing classes, skills, and magic.\r\n\r\nAn ideal society? What is this, a fantasy novel?\r\n\r\nAdventures? Right this way!\r\n\r\nA Grand quest? Nah.\r\n\r\nFriends and loot? Heck yes!\r\n\r\nHumans are the top dog? Nope, dinosaur food.\r\n\r\nHealing and fighting? Well, everything is trying to eat her.\r\n\r\nJoin Elaine as she travels around Pallos, discovering all the wonders and mysteries of the world, trying to find a place where she belongs, hunting those elusive mangos, all while the ominous Dragoneye Moons watch her every move.'),
+('Beware of Chicken', '4.9', '/uploads/portada 1.png', 'Jin Rou wanted to be a cultivator who defied the heavens, and surpassed all limits.\r\n\r\nUnfortunately for him, he died, and now I’m stuck here. Arrogant young masters? Heavenly tribulations? Cultivating for days on end, then getting into life or death battles?\r\n\r\nYeah, no thanks. I\'m getting out of here.\r\n\r\nIn which a transmigrator decides that the only winning move is not to play.', 'Jin Rou wanted to be a cultivator who defied the heavens, and surpassed all limits.\r\n\r\nUnfortunately for him, he died, and now I’m stuck here. Arrogant young masters? Heavenly tribulations? Cultivating for days on end, then getting into life or death battles?\r\n\r\nYeah, no thanks. I\'m getting out of here.\r\n\r\nIn which a transmigrator decides that the only winning move is not to play.'),
+('Cinnamon Bun', '0.0', '/uploads/portada 1.png', 'The world called out for a hero to purge it of a great evil. It received Broccoli Bunch, explorer, expert cleaner, occasional ghost-buster, and full time Cinnamon Bun. ', 'The world called out for a hero to purge it of a great evil. It received Broccoli Bunch, explorer, expert cleaner, occasional ghost-buster, and full time Cinnamon Bun. '),
+('Forge of Destiny', '0.0', '/uploads/portada 1.png', 'In the Celestial Empire, a land ruled by Immortals and stalked by Spirits and Beasts, a young girl from the slums of an unimportant city is found to have the Talent. In the great Sect of Argent Peak, she will take her first unsteady steps upon the way.\r\n\r\nCan she learn to not only survive, but thrive on her journey?', 'In the Celestial Empire, a land ruled by Immortals and stalked by Spirits and Beasts, a young girl from the slums of an unimportant city is found to have the Talent. In the great Sect of Argent Peak, she will take her first unsteady steps upon the way.\r\n\r\nCan she learn to not only survive, but thrive on her journey?'),
+('I Have No Mouth, and I Must Scream', '0.0', '/uploads/portada 1.png', 'x', 'xx'),
+('Mother of Learning', '0.0', '/uploads/portada 1.png', 'Zorian is a teenage mage of humble birth and slightly above-average skill, attending his third year of education at Cyoria\'s magical academy. He is a driven and irritable young man, consumed by a desire to ensure his own future and free himself of the influence of his family, whom he resents for favoring his brothers over him. Consequently, he has no time for pointless distractions or paying attention to other people\'s problems. As it happens, time is something he is about to get plenty of. On the eve of the Cyoria\'s annual summer festival, he is killed and brought back to the beginning of the month, just before he was about to take a train to Cyoria. Suddenly trapped in a time loop with no clear end or exit, Zorian will have to look both within and ', 'Zorian is a teenage mage of humble birth and slightly above-average skill, attending his third year of education at Cyoria\'s magical academy. He is a driven and irritable young man, consumed by a desire to ensure his own future and free himself of the influence of his family, whom he resents for favoring his brothers over him. Consequently, he has no time for pointless distractions or paying attention to other people\'s problems. As it happens, time is something he is about to get plenty of. On the eve of the Cyoria\'s annual summer festival, he is killed and brought back to the beginning of the month, just before he was about to take a train to Cyoria. Suddenly trapped in a time loop with no clear end or exit, Zorian will have to look both within and without to unravel the mystery before him. And he does have to unravel it, for the time loop hadn\'t been made for his sake and dangers lurk everywhere... Repetition is the mother of learning, but Zorian will have to first make sure he survives to try again - in a world of magic, even a time traveler isn\'t safe from those who wish him ill.'),
+('Snow Crash', '0.0', '/uploads/portada 1.png', 'x', 'xx'),
+('Synners', '0.0', '/uploads/portada 1.png', 'x', 'xx'),
+('There is no Epic Loot here, Only Puns.', '0.0', '/uploads/portada 1.png', '\r\n\r\nShe became a dungeon core.\r\n\r\nEverything pointed Delta to murdering her way to success. People were just mana farms, right?\r\n\r\nNo, that was wrong. Delta refused. Then everything became odd.\r\n', '\r\n\r\nShe became a dungeon core.\r\n\r\nEverything pointed Delta to murdering her way to success. People were just mana farms, right?\r\n\r\nNo, that was wrong. Delta refused. Then everything became odd.\r\n'),
+('Worm', '5.0', '/uploads/portada 1.png', 'x', 'xx');
 
 -- --------------------------------------------------------
 
@@ -287,23 +287,25 @@ INSERT INTO `review` (`Used ID`, `Book ID`, `Nota`, `ID Review`) VALUES
 CREATE TABLE `usuario` (
   `Used ID` varchar(50) NOT NULL DEFAULT '',
   `Password` varchar(50) NOT NULL DEFAULT '',
-  `img` longblob DEFAULT NULL,
-  `DNI` varchar(50) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `Nombre` varchar(50) DEFAULT NULL,
-  `Apellidos` varchar(50) DEFAULT NULL
+  `img` longblob NOT NULL DEFAULT 'no',
+  `DNI` varchar(50) NOT NULL DEFAULT 'DNI',
+  `email` varchar(50) NOT NULL DEFAULT 'y@gmail.com',
+  `Nombre` varchar(50) NOT NULL DEFAULT 'z',
+  `Apellidos` varchar(50) NOT NULL DEFAULT 'x',
+  `Telefono` int(11) NOT NULL DEFAULT 1,
+  `fecha_nacimiento` date NOT NULL DEFAULT '2000-08-21'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tendra unas cuantas cosas dentro de si, como contraseña, nombreID, Lista de Libros';
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`Used ID`, `Password`, `img`, `DNI`, `email`, `Nombre`, `Apellidos`) VALUES
-('Admin', 'test', NULL, NULL, 'Admind@admindistrator.com', 'Admin', 'Yes'),
-('Aitor', 'VIVA CHILE', NULL, NULL, 'BestAtor@hotmail.com', 'Aitor', NULL),
-('Aligator 250', '214134351131253412771315171846123 41424251421 caba', NULL, NULL, 'TheRealRealRealBestAtor@gmail.com', 'Ane', NULL),
-('Mikel', 'legenda1234', NULL, NULL, 'Mikel2000@gmail.com', 'Mikel', NULL),
-('简单的', 'Simple', NULL, NULL, 'Sun@gmail.com', 'Liang', 'Zhuge');
+INSERT INTO `usuario` (`Used ID`, `Password`, `img`, `DNI`, `email`, `Nombre`, `Apellidos`, `Telefono`, `fecha_nacimiento`) VALUES
+('Admin', 'test', '', '', 'Admind@admindistrator.com', 'Admin', 'Yes', 0, '2000-08-21'),
+('Aitor', 'VIVA CHILE', '', '', 'BestAtor@hotmail.com', 'Aitor', '', 0, '2000-08-21'),
+('Aligator 250', '214134351131253412771315171846123 41424251421 caba', '', '', 'TheRealRealRealBestAtor@gmail.com', 'Ane', '', 0, '2000-08-21'),
+('Mikel', 'legenda1234', '', '', 'Mikel2000@gmail.com', 'Mikel', '', 0, '2000-08-21'),
+('简单的', 'Simple', '', '', 'Sun@gmail.com', 'Liang', 'Zhuge', 0, '2000-08-21');
 
 --
 -- Índices para tablas volcadas
