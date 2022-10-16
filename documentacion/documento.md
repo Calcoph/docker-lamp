@@ -42,35 +42,50 @@ Para avanzar y retroceder los capítulos, se pueden utilizar el **Botón 1** y e
 
 # Pantalla 3: Inicio sesión
 ![inicio_sesion]
+Como es esperable, puedes iniciar sesión pulsando el **Botón 1**. En caso de no tener una cuenta, puedes registrar una pulsando el **Botón 2**.
+
+# TODO: Registro
+Para registrarse, es necesario rellenar todos los campos, con los formatos especificados en cada uno de ellos.
+En caso de que algún campo no sea válido, se le avisará al usuario. Al pulsar el **Botón 1** se hacen las comprobaciones y
+se registra el usuario si son correctas. Se puede volver a la pantalla de iniciar sesión pulsando el **Botón 2**.
 
 # Pantalla 4: opciones de usuario
 ![ajustes_usuario]
-En esta panntalla, que se accede pulsando sobre el username de la cabecera, se le mostrarán al usuario las siguientes funciones:
-            - Cerrar sesión
-            - Cambiar datos
-            - Borrar un libro
-            - Modificar un libro
+En esta pantalla, que se accede pulsando sobre el username de la cabecera, se le mostrarán al usuario las siguientes funciones:
+ * Cerrar sesión
+ * Cambiar datos
+ * Borrar un libro
+ * Modificar un libro
 
-*insertar imagen opciones de usuario*
+Sólo se puede acceder si se ha iniciado la sesión.
+
+# Pantalla 4.1: modificar libros
+![modificar_libros]
+Se muestra la lista de todos los libros *escritos por el suuario que ha iniciado sesión*.
+Puede leer los libros haciendo click sobre sus títulos, también tiene la opción de modificar sus datos o añadir nuevos capítulos a los mismos.
+
+# Pantalla 4.1.1: modificar libro
+![modificar_libro]
+Al modificar un libro, los campos se rellenarán con los datos actuales, incluyendo la portada, en la que se marcará la opción de "no modificar".
+Al igual que al publicar libros, si se selecciona una portada personalizada, se ignorará la elección en los botones radio.
+
+Desde aquí, se nos mostrarán los capítulos del libro. Para modificarlos tendremos que pinchar en su número.
+
+# Pantalla 4.1.1.1: modificar capitulo
+![modificar_capitulo]
+
+# Pantalla 4.1.2: nuevo capitulo
+![nuevo_capitulo]
+
+# Pantalla 4.2: borrar libros
+![borrar_libros]
+
 # Pantalla 5: Introducir un nuevo libro
 ![Nuevo_libro]
 Un usuario que esté identificado, mediante este apartado, puede añadir al catálogo un nuevo libro.
 Cuando se introduzca la información necesaria para publicar un libro, se da la opción ( mediante los botones ) de publicarlo, o seguir escribiendo el siguiente capítulo.
 
-# TODO: modificar libro
-![modificar_libro]
-# TODO: modificar capitulo
-![modificar_capitulo]
-
-# TODO: nuevo capitulo
-![nuevo_capitulo]
-
-# TODO: modificar libros
-![modificar_libros]
-
-# TODO: borrar libros
-![borrar_libros]
-
+# Pantalla 4.3: Modificar datos usuario
 
 
 [diagrama de páginas]: imagenes/diagrama_paginas.png
