@@ -29,7 +29,7 @@ Aquí se muestra la portada del libro, junto a su título y descripción.
 
 Al pulsar el **Botón 1**, Empezaremos a leer el primer capítulo.
 
-También tenemos la opción de enviar un comentario **Botón 2**, para lo que tendremos que haber iniciado sesión previamente. TODO: Hacer que solo puedas escribir si inicias sesión.
+También tenemos la opción de enviar un comentario **Botón 2**, para lo que tendremos que haber iniciado sesión previamente, de no ser así se nos pedirá iniciar sesión al pulsar el botón.
 
 En la parte inferior de la página, se muestran los comentarios.
 
