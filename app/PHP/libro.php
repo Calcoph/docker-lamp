@@ -34,10 +34,9 @@
     $pagina  = str_replace('%descripcion%', $datos[$descripcion], $pagina);
     // El botón de leer envía al usuario al primer capítulo
     $boton = "
-<form metod=\"get\" action=\"/PHP/leer_libro.php\">
+<form metod=\"get\" action=\"/PHP/leer_prologo.php\">
     <button>leer</button>
     <input type=\"hidden\" name=\"titulo\" value=\"$titulo\" />
-    <input type=\"hidden\" name=\"capitulo\" value=\"1\" />
 </form>";
     // inserta el botón de leer en la página
     $pagina = str_replace('%boton leer%', $boton, $pagina);
