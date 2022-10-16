@@ -62,7 +62,7 @@ Sólo se puede acceder si se ha iniciado la sesión.
 
 # Pantalla 4.1: modificar libros
 ![modificar_libros]
-Se muestra la lista de todos los libros *escritos por el suuario que ha iniciado sesión*.
+Se muestra la lista de todos los libros *escritos por el usuario que ha iniciado sesión*.
 Puede leer los libros haciendo click sobre sus títulos, también tiene la opción de modificar sus datos (**Botón 1**) o añadir nuevos capítulos a los mismos (**Botón 2**).
 
 # Pantalla 4.1.1: Modificar libro
