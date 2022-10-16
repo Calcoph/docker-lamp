@@ -10,7 +10,9 @@ function borrar_libros() {
         }
     }
     if (alguno_seleccionado) {
-        document.form_borrar_libros.submit()
+        if (confirm("Estás seguro de que quieres eliminar permanentemente estos libros?")) {
+            document.form_borrar_libros.submit()
+        }
     } else {
         window.alert("Selecciona algún libro")
         return

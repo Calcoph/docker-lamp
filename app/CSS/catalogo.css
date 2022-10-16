@@ -5,7 +5,7 @@ h1{font-size: 3.5em; text-align: center;}
 h2{font-size: 2.7em;}
 h3{font-size: 2em;}
 p{font-size: 1.25em;}
-button{
+#btnatras, button{
     font-size: 2em;
     font-weight: bold;
     padding: 10px 50px;
@@ -13,8 +13,10 @@ button{
     border: 1px solid rgba(0,0,0,1);
     box-shadow:  2px 2px 2px rgba(0,0,0,1);
     background-color: burlywood;
+    text-decoration: none;
+    color: black;
 }
-button:hover{
+#btnatras:hover{
     background-color: rgb(175, 102, 6);
 }
 body{
@@ -22,8 +24,13 @@ body{
     margin: 0;
 }
 .scroll_vertical {
-    width:1000px;
-    overflow: auto;
+	
+        width:1000px;
+        overflow-y: auto;
+        position: relative;
+        left: 225px;
+        
+   
 }
 .container{
     max-width: 1400px;
@@ -62,6 +69,7 @@ header a:hover{
     color:rgb(224, 176, 113);
 }
 .libros_container{
+    position: relative;
     height: 100vh;
     padding-top: 150px;
     padding-left: 50px;
@@ -71,7 +79,9 @@ header a:hover{
     
 }
 #col_botones{
-    max-width: 40px;
+    max-width: 60px;
+    min-width: 60px;
+    border: none;
 }
 #btn{
     font-size: 1em;
@@ -102,7 +112,8 @@ html{
 table{
     text-align: left;
     border-collapse: collapse;
-    width: 100%;
+    width: 80%;
+    
 }
 th,td{
     border: solid 1px black;
@@ -120,32 +131,11 @@ footer{
 .box{
     justify-content: center;
 }
-.container-3{
-    display: inline-flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
+
  h4{
     padding-right: 20px;
  }
-  .container-3 input#search{
-    width: 300px;
-    height: 50px;
-    background: whites;
-    border: none;
-    font-size: 10pt;
-    float: left;
-    color: #262626;
-    padding-left: 45px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    color: #fff;
-  }
-  #sig{
-    position: absolute;
-    bottom: 500px;
-  }
+
 
 @media (min-width:720px){
     header{
