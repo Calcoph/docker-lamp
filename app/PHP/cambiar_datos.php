@@ -24,11 +24,8 @@
     $query = mysqli_query($conn, "UPDATE usuario
     SET `Used ID`='$usuario', Password='$contraseña', DNI='$dni', email='$email', Nombre='$nombre', Apellidos='$apellido', Telefono='$tlf', fecha_nacimiento='$fnacimiento'
     WHERE `Used ID`='$usuario_anterior'") or die (mysqli_error($conn));
-    echo $usuario_anterior;
-    echo $usuario;
 
-    // modifica el capítulo
-    $query = mysqli_query($conn, "UPDATE capitulo SET Chapter_ID = '$titulo', Texto = '$texto' WHERE `Book ID` = '$titulo_libro' AND Chapter_ID = '$titulo_anterior'") or die (mysqli_error($conn));
-
-    //header('Location: '."/index.php");
+    // Vuelve a la página principal
+    header('Location: '."/index.php");
+    die();
 ?>
