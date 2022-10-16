@@ -64,22 +64,23 @@ Sólo se puede acceder si se ha iniciado la sesión.
 Se muestra la lista de todos los libros *escritos por el suuario que ha iniciado sesión*.
 Puede leer los libros haciendo click sobre sus títulos, también tiene la opción de modificar sus datos o añadir nuevos capítulos a los mismos.
 
-# Pantalla 4.1.1: modificar libro
+# Pantalla 4.1.1: Modificar libro
 ![modificar_libro]
 Al modificar un libro, los campos se rellenarán con los datos actuales, incluyendo la portada, en la que se marcará la opción de "no modificar".
 Al igual que al publicar libros, si se selecciona una portada personalizada, se ignorará la elección en los botones radio.
 
 Desde aquí, se nos mostrarán los capítulos del libro. Para modificarlos tendremos que pinchar en su número.
 
-# Pantalla 4.1.1.1: modificar capitulo
+# Pantalla 4.1.1.1: Modificar capitulo
 ![modificar_capitulo]
 
 
-# Pantalla 4.1.2: nuevo capitulo
+# Pantalla 4.1.2: Nuevo capitulo
 ![nuevo_capitulo]
 
-# Pantalla 4.2: borrar libros
+# Pantalla 4.2: Borrar libros
 ![borrar_libros]
+Aquí el usuario puede eliminar de la web un libro suyo clickando sobre la checkbox correspondiente y luego dándole al bot
 
 # Pantalla 5: Introducir un nuevo libro
 ![Nuevo_libro]
