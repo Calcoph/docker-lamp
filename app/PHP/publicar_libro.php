@@ -50,7 +50,7 @@
         die();
       } else {
         // Sigue añadiendo capítulos
-        header('Location: '."/PHP/mod_libros/nuevo_capitulo.php");
+        header('Location: '."/PHP/mod_libros/nuevo_capitulo.php/?titulo=$titulo");
         die();
     }
 ?>
