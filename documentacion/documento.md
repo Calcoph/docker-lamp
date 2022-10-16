@@ -95,6 +95,7 @@ En esta pestaña el usuario puede modificar todos sus datos. Como se ve en la il
 * Imágenes: https://pixabay.com/es/
 * Scrollbar: https://www.jose-aguilar.com/blog/scrollbar-vertical-horizontal/
 * Validar DNI: https://donnierock.com/2011/11/05/validar-un-dni-con-javascript/
+* Validaciones: https://lenguajehtml.com/html/formularios/validaciones-html5/
 * Ocultar contraseñas: https://es.acervolima.com/como-ocultar-la-contrasena-en-html/
 * Propiedad Display CSS: https://uniwebsidad.com/libros/css-avanzado/capitulo-4/propiedad-display
 * HTML y CSS: https://www.youtube.com/watch?v=8-RC-Q7Wtzc
