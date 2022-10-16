@@ -10,7 +10,6 @@
     }
 
     $titulo = $_GET["titulo"];
-    $capitulo = $_GET["capitulo"];
 
     // Si está logueado, tiene la cookie "username"
     if (isset($_COOKIE["username"])) {
@@ -24,42 +23,24 @@
     $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/leer_libro.html'));
 
     // Obtiene el capítulo que se ha pedido
-    $query = mysqli_query($conn, "SELECT * FROM capitulo WHERE `Book ID`='$titulo' AND `Chapter Num`=$capitulo")
+    $query = mysqli_query($conn, "SELECT * FROM libro WHERE `Book ID`='$titulo'")
         or die (mysqli_error($conn));
 
     $row = mysqli_fetch_assoc($query);
     // Guarda el nombre del capítulo para luego
     $chap_id = $row["Chapter_ID"];
     // inserta el texto en la página
-    $pagina = str_replace('%texto%', $row["Texto"], $pagina);
-    $pagina = str_replace('%TitCapitulo%', $row["Chapter_ID"], $pagina);
+    $pagina = str_replace('%texto%', $row["Prologue"], $pagina);
+    $pagina = str_replace('%TitCapitulo%', "Prólogo", $pagina);
 
-    $cap_anterior = intval($capitulo)-1;
     $anterior = "";
-    // El botón de capítulo anterior no está en el primer capítulo
-    if ($cap_anterior >= 1) {
-        $cap_anterior = strval($cap_anterior);
-        $anterior = "
-    <form metod=\"get\" action=\"/PHP/leer_libro.php\">
-        <Button>Capítulo anterior</Button>
-        <input type=\"hidden\" name=\"titulo\" value=\"$titulo\" />
-        <input type=\"hidden\" name=\"capitulo\" value=\"$cap_anterior\" />
-    </form>";
-    } else {
-        $anterior = "
-        <form metod=\"get\" action=\"/PHP/leer_prologo.php\">
-            <Button>Capítulo anterior</Button>
-            <input type=\"hidden\" name=\"titulo\" value=\"$titulo\" />
-        </form>";
-    }
-
 
     // El botón de capítulo siguiente no está en el último capítulo
-    $cap_siguiente = strval(intval($capitulo)+1);
+    $cap_siguiente = "1";
     $query = mysqli_query($conn, "SELECT * FROM capitulo WHERE `Book ID`='$titulo' AND `Chapter Num`=$cap_siguiente")
         or die (mysqli_error($conn));
     $siguiente = "";
-    if ($row = mysqli_fetch_assoc($query)) { // Este while solo se va a ejecutar 1 vez (o ninguna, si es el último)
+    if ($row = mysqli_fetch_assoc($query)) {
         $siguiente = "
     <form metod=\"get\" action=\"/PHP/leer_libro.php\">
         <Button>Capítulo siguiente</Button>
