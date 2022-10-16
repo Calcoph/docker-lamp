@@ -80,7 +80,7 @@ Desde aquí, se nos mostrarán los capítulos del libro. Para modificarlos tendr
 
 # Pantalla 4.2: Borrar libros
 ![borrar_libros]
-Aquí el usuario puede eliminar de la web un libro suyo clickando sobre la checkbox correspondiente y luego dándole al bot
+Aquí el usuario puede eliminar de la web un libro suyo clickando sobre la checkbox correspondiente y luego dándole al botón de borrar.
 
 # Pantalla 5: Introducir un nuevo libro
 ![Nuevo_libro]
