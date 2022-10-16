@@ -272,7 +272,7 @@ CREATE TABLE `usuario` (
   `email` varchar(50) NOT NULL DEFAULT 'y@gmail.com',
   `Nombre` varchar(50) NOT NULL DEFAULT 'z',
   `Apellidos` varchar(50) NOT NULL DEFAULT 'x',
-  `Telefono` varchar(50) NOT NULL DEFAULT '1',
+  `Telefono` varchar(9) NOT NULL DEFAULT '1',
   `fecha_nacimiento` date NOT NULL DEFAULT '2000-08-21'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Se trata del usuario de la pagina, ya sea admin oh persona normal, esta es la informacion que se guardara de el';
 
