@@ -12,7 +12,7 @@ Desde esta pantalla podremos:
  * Acceder al catálogo (**Botón 1**)
  * Iniciar sesión o acceder a las opciones de usuario, dependiendo si hemos iniciados esión o no. (**Botón 2**)
 
-En casi todas las demás páginas habrá una cabecera (ilustración 1) con el que se puede volver a esta página (**Botón 3**), el header también contiene el **Botón 2**.
+En casi todas las demás páginas habrá una cabecera (*ilustración 1*) con el que se puede volver a esta página (**Botón 3**), el header también contiene el **Botón 2**.
 
 ![cabecera]
 ##### Ilustración 1
