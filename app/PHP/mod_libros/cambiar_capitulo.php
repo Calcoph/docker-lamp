@@ -1,8 +1,4 @@
 <?php
-    // La carpeta donde se van a guardar los archivos
-    $target_dir = "/var/www/html/uploads/";
-    // La dirección que se ve desde el html (para insertar las imágenes luego)
-    $save_path = "/uploads/";
     $titulo_libro = $_POST["titulo_libro"];
     $titulo_anterior = $_POST["titulo_anterior"];
     $titulo = $_POST["titulo"];
