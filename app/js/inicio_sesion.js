@@ -147,6 +147,7 @@ function iniciar_sesion() {
 function cambiar_datos() {
     let email = document.form_cambio_datos.email.value
     let usuario = document.form_cambio_datos.usuario.value
+    let usuario_anterior = document.form_cambio_datos.usuario_anterior.value
     let contraseña = document.form_cambio_datos.pswd.value
     let contraseña2 = document.form_cambio_datos.conf_pswd.value
     let nombre = document.form_cambio_datos.nombre.value
@@ -162,8 +163,26 @@ function cambiar_datos() {
     )) {
         return
     }
-    document.cookie = "username=" + usuario + "; path=/"
-    document.form_cambio_datos.submit()
+
+    // Código obtenido de https://stackoverflow.com/questions/247483/http-get-request-in-javascript
+    // Modificaciones: la URL, y la función de callback
+    var get_contraseña = new XMLHttpRequest();
+    get_contraseña.onreadystatechange = function () {
+        if (get_contraseña.readyState == 4 && get_contraseña.status == 200) {
+            var contraseña2 = get_contraseña.responseText;
+            if (contraseña2 === "") {
+                // Si el usuario no tiene contraseña, significa que no está en la base de datos
+                document.cookie = "username=" + usuario + "; path=/"
+                document.form_cambio_datos.submit()
+            } else if (usuario == usuario_anterior) {
+                document.form_cambio_datos.submit()
+            } else {
+                window.alert("Ese usuario ya existe")
+            }
+        }
+    }
+
+    llamar_get_contraseña(get_contraseña, usuario)
 }
 
 function llamar_get_contraseña(get_contraseña, usuario) {
