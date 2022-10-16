@@ -30,6 +30,20 @@ p{font-size: 1.25em;}
     background-color: rgb(175, 102, 6);
 
 }
+.btn_container a{
+    font-size: 2em;
+    font-weight: bold;
+    padding: 10px 50px;
+    border-radius: 15px;
+    border: 1px solid rgba(0,0,0,1);
+    box-shadow:  2px 2px 2px rgba(0,0,0,1);
+    background-color: burlywood;
+    text-decoration: none;
+    color: black;
+}
+btn_container a:hover{
+    background-color: rgb(175, 102, 6);
+}
 body{
     font-family: 'Roboro', sans-serif;
     margin: 0;
