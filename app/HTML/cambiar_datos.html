@@ -12,7 +12,7 @@
 
 <body>
   <div class="signupFrm">
-    <form name="form_cambio_datos" action="" class="form">
+    <form name="form_cambio_datos" action="/PHP/cambiar_datos.php" class="form" method="post">
       <h1 class="title">Librerium</h1>
       <div class="inputContainer">
         <input name="nombre" id="nombre" type="text" class="input" placeholder="a">
@@ -63,7 +63,7 @@
           document.getElementById('usuario').value = '%usuario%';
         </script>
       </div>
-
+      <input type="hidden" name="usuario_anterior" value="%usuario%">
       <div class="inputContainer">
         <input name="pswd" id="pswd" type="password" class="input" placeholder="a">
         <label for="" class="label">Password</label>

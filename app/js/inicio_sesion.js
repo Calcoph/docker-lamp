@@ -155,31 +155,15 @@ function cambiar_datos() {
     let fecha = document.form_cambio_datos.fnacimiento.value
     let dni = document.form_cambio_datos.dni.value
 
-    if (datos_validos(
+    if (!datos_validos(
         email, usuario, contraseña,
         contraseña2, nombre, apellido,
         tel, fecha, dni
     )) {
         return
     }
-
-    // Código obtenido de https://stackoverflow.com/questions/247483/http-get-request-in-javascript
-    // Modificaciones: la URL, y la función de callback
-    var get_contraseña = new XMLHttpRequest();
-    get_contraseña.onreadystatechange = function () {
-        if (get_contraseña.readyState == 4 && get_contraseña.status == 200) {
-            var contraseña2 = get_contraseña.responseText;
-            if (contraseña2 === "") {
-                // Si el usuario no tiene contraseña, significa que no está en la base de datos
-                document.cambiar_datos.submit()
-                document.cookie = "username=" + usuario + "; path=/"
-            } else {
-                window.alert("Ese usuario ya existe")
-            }
-        }
-    }
-    
-    llamar_get_contraseña(get_contraseña, usuario)
+    document.cookie = "username=" + usuario + "; path=/"
+    document.form_cambio_datos.submit()
 }
 
 function llamar_get_contraseña(get_contraseña, usuario) {
