@@ -38,9 +38,7 @@
     }
 
     // Almacena el libro
-    $query = mysqli_query($conn, "INSERT INTO libro(`Book ID`, Nota, imglink, Text_corto, Text_largo) VALUES ('$titulo', 0.0, '$save_path', '$descripcion', '$resumen')") or die (mysqli_error($conn));
-    // Almacena el capítulo
-    $query = mysqli_query($conn, "INSERT INTO capitulo(Chapter_ID, `Book ID`, `Chapter Num`, Texto) VALUES ('Cap 0', '$titulo', 1, '$texto')") or die (mysqli_error($conn));
+    $query = mysqli_query($conn, "INSERT INTO libro(`Book ID`, imglink, Text_corto, Text_largo, Prologue) VALUES ('$titulo', '$save_path', '$descripcion', '$resumen', '$texto')") or die (mysqli_error($conn));
 
     $username = $_COOKIE["username"];
     // Almacena quien lo ha publicado
