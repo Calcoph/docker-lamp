@@ -1,13 +1,13 @@
 # Problemas encontrados
 ## Problemas encontrados por ZAP
-* [dasdsa](#Cross-site-scripting-(reflected))
-* [gfdg](#Application-Error-Disclosure)
-* [dsad](#X\-Frame\-Options-Header-Not-Set)
-* [aSD](#Absence-of-Anti\-CSRF-Tokens)
-* [adsad](#Server-Leaks-Information-via-"X\-Powered\-By"-HTTP-Response-Header-Field)
-* [adsa](#Timestamp-Disclosure)
-* [adsad](#X\-Content\-Type\-Options-Header-Missing)
-* [dasds](#Information-Disclosure-\--Suspicious-Comments)
+* [Cross site scripting](#Cross-site-scripting-(reflected))
+* [Application Error Disclosure](#Application-Error-Disclosure)
+* [X-Frame-Options Header Not Set](#X\-Frame\-Options-Header-Not-Set)
+* [Absence of Anti-CSRF Tokens](#Absence-of-Anti\-CSRF-Tokens)
+* [Server Leaks Information](#Server-Leaks-Information-via-"X\-Powered\-By"-HTTP-Response-Header-Field)
+* [Timestamp Disclosure](#Timestamp-Disclosure-\--UNIX)
+* [X-Content-Type-Options Header Missing](#X\-Content\-Type\-Options-Header-Missing)
+* [Information Disclosure](#Information-Disclosure-\--Suspicious-Comments)
 
 ### Cross site scripting (reflected)
 *TODO: Explicación del problema*
@@ -41,7 +41,7 @@ Archivos afectado:
 Archivos afectado:
 * Prácticamente todos.
 
-### Timestamp Disclosure
+### Timestamp Disclosure - UNIX
 *TODO: Explicación del problema*
 *TODO: Explicar por qué a nosotros no nos afecta*
 
