@@ -91,3 +91,28 @@ Archivos afectados:
 
 #### TODO
 Cinnamon bun capitulo 2 da un error
+
+## Problemas encontrados manualmente
+*TODO: Formatearlo bien*
+
+* Damos al cliente más información de la que necesita (por ejemplo le enviamos la contraseña del usuario que se intenta registrar para ver si el usuario ya existe)
+* Almacenamos las contraseñas en plaintext.
+* No utilizamos encryption at rest.
+* No parametrizamos los comandos SQL.
+* No validamos los datos desde el servidor, sólo desde el cliente.
+* Para saber si alguien tiene la sesión iniciada solo miramos la cookie de "username", no verificamos que tenga una contraseña.
+* Las sesiones no expiran.
+* No escapamos caracteres especiales. Al publicar un libro cualquiera puede meter elementos HTML, incluyendo \<script\>\</script\>.
+* No hacemos ninguna verificación sobre el archivo que se supone que es la portada del libro.
+    * Ni siquiera miramos si es una imagen.
+    * No hay límite de lo grande que puede ser la imagen.
+    * Si ya existe una imágen con ese nombre, se sobreescribe.
+* Para mirar si la contraseña introducida es la correcta, le enviamos al cliente la contraseña correcta, y el cliente hace la comparación.
+* Podría ser un problema que solo miremos que no haya 2 usernames repetidos (tlfs, emails y dnis pueden repetirse).
+* No hay límites de accesos por segundo/minuto.
+    * Podrían registrar cientos de libros con imágenes enormes, llenando así el disco duro del servidor.
+    * Podrían hacerse ataques de fuerza bruta para conseguir la contraseña de un usuario.
+* Usamos las credenciales por defecto
+    * La contraseña del usuario admin para acceder a la base de datos es *test*
+    * La contraseña del usuario admin, dentro de la página en sí, tamibén es *test*
+* Usamos una conexión no cifrada (HTTP)
