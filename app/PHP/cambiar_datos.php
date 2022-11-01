@@ -25,6 +25,21 @@
     SET `Used ID`='$usuario', Password='$contraseña', DNI='$dni', email='$email', Nombre='$nombre', Apellidos='$apellido', Telefono='$tlf', fecha_nacimiento='$fnacimiento'
     WHERE `Used ID`='$usuario_anterior'") or die (mysqli_error($conn));
 
+    $query = mysqli_prepare($conn, "UPDATE usuario
+    SET `Used ID`=?, Password=?, DNI=?, email=?, Nombre=?, Apellidos=?, Telefono=?, fecha_nacimiento=?
+    WHERE `Used ID`=?") or die (mysqli_error($conn));
+    mysqli_stmt_bind_param($query, "sssssssss", $us, $cont, $dn, $em, $nom, $ap, $telef, $fnac, $uant);
+    $us = $usuario;
+    $cont = $contraseña;
+    $dn = $dni;
+    $em = $email;
+    $nom = $nombre;
+    $ap = $apellido;
+    $telef = $tlf;
+    $fnac = $fnacimiento;
+    $uant = $usuario_anterior;
+    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+
     // Vuelve a la página principal
     header('Location: '."/index.php");
     die();

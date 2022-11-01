@@ -15,7 +15,13 @@
     }
 
     // modifica el capítulo
-    $query = mysqli_query($conn, "UPDATE capitulo SET Chapter_ID = '$titulo', Texto = '$texto' WHERE `Book ID` = '$titulo_libro' AND Chapter_ID = '$titulo_anterior'") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "UPDATE capitulo SET Chapter_ID = ?, Texto = ? WHERE `Book ID` = ? AND Chapter_ID = ?") or die (mysqli_error($conn));
+    mysqli_stmt_bind_param($query, "ssss", $tit_cap, $tex, $tit_lib, $tit_ant);
+    $tit_cap = $titulo;
+    $tex = $texto;
+    $tit_lib = $titulo_libro;
+    $tit_ant = $titulo_anterior;
+    mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     header('Location: '."/PHP/mod_libros/modificar_libro.php/?titulo=$titulo_libro");
 ?>

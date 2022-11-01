@@ -12,7 +12,10 @@
     $libros = $_POST["libros_borrados"];
     $arrlength = count($libros);
     for($x = 0; $x < $arrlength; $x++) {
-        $query = mysqli_query($conn, "DELETE FROM libro WHERE `Book ID`='{$libros[$x]}'") or die (mysqli_error($conn));
+      $query = mysqli_prepare($conn, "DELETE FROM libro WHERE `Book ID`=?") or die (mysqli_error($conn));
+      mysqli_stmt_bind_param($query, "s", $lib_id);
+      $lib_id = $libros[$x];
+      mysqli_stmt_execute($query) or die (mysqli_error($conn));
     }
 
   

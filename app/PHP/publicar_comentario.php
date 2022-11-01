@@ -24,7 +24,13 @@
         }
     }
 
-    $query = mysqli_query($conn, "INSERT INTO `comentario libro`(`Comentario ID`, `User ID`, `Book ID`, `Texto`) VALUES ($max_id+1, '$username', '$titulo', '$comentario')") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "INSERT INTO `comentario libro`(`Comentario ID`, `User ID`, `Book ID`, `Texto`) VALUES (?, ?, ?, ?)") or die (mysqli_error($conn));
+    mysqli_stmt_bind_param($query, "isss", $m_id, $us, $tit, $comen);
+    $m_id = $max_id + 1;
+    $us = $username;
+    $tit = $titulo;
+    $comen = $comentario;
+    mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     header('Location: '."/PHP/libro.php/?titulo=$titulo");
     die();

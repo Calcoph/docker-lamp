@@ -38,11 +38,22 @@
     }
 
     // Almacena el libro
-    $query = mysqli_query($conn, "INSERT INTO libro(`Book ID`, imglink, Text_corto, Text_largo, Prologue) VALUES ('$titulo', '$save_path', '$descripcion', '$resumen', '$texto')") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "INSERT INTO libro(`Book ID`, imglink, Text_corto, Text_largo, Prologue) VALUES (?, ?, ?, ?, ?)") or die (mysqli_error($conn));
+    mysqli_stmt_bind_param($query, "sssss", $tit, $s_p, $desc, $res, $txt);
+    $tit = $titulo;
+    $s_p = $save_path;
+    $desc = $descripcion;
+    $res = $resumen;
+    $txt = $texto;
+    mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     $username = $_COOKIE["username"];
     // Almacena quien lo ha publicado
-    $query = mysqli_query($conn, "INSERT INTO escritos(`Book ID`, `Used ID`) VALUES ('$titulo', '$username')") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "INSERT INTO escritos(`Book ID`, `Used ID`) VALUES (?, ?)") or die (mysqli_error($conn));
+    mysqli_stmt_bind_param($query, "ss", $tit, $us);
+    $tit = $titulo;
+    $us = $username;
+    mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     if ($_POST['boton'] == "solo_publicar") {
         // Vuelve a la página principal

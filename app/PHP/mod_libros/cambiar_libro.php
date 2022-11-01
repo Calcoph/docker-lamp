@@ -40,10 +40,25 @@
 
     if ($_POST["portada"] == "anterior") {
         // Actualizar todo menos la portada
-        $query = mysqli_query($conn, "UPDATE libro SET `Book ID`='$titulo', imglink='$save_path', Text_corto='$descripcion', Text_largo='$resumen', Prologue='$texto' WHERE `Book ID`='$titulo_anterior'") or die (mysqli_error($conn));
+        $query = mysqli_prepare($conn, "UPDATE libro SET `Book ID`=?, Text_corto=?, Text_largo=? Prologue=? WHERE `Book ID`=?") or die (mysqli_error($conn));
+        mysqli_stmt_bind_param($query, "sssss", $b_id, $corto, $largo, $prologo, $tit_ant);
+        $b_id = $titulo;
+        $corto = $descripcion;
+        $largo = $resumen;
+        $prologo = $texto;
+        $tit_ant = $titulo_anterior;
+        mysqli_stmt_execute($query) or die (mysqli_error($conn));
     } else {
         // Actualizar todo
-        $query = mysqli_query($conn, "UPDATE libro SET `Book ID`='$titulo', Text_corto='$descripcion', Text_largo='$resumen' Prologue='$texto' WHERE `Book ID`='$titulo_anterior'") or die (mysqli_error($conn));
+        $query = mysqli_prepare($conn, "UPDATE libro SET `Book ID`=?, imglink=?, Text_corto=?, Text_largo=?, Prologue=? WHERE `Book ID`=?") or die (mysqli_error($conn));
+        mysqli_stmt_bind_param($query, "ssssss", $b_id, $link, $corto, $largo, $prologo, $tit_ant);
+        $b_id = $titulo;
+        $link = $save_path;
+        $corto = $descripcion;
+        $largo = $resumen;
+        $prologo = $texto;
+        $tit_ant = $titulo_anterior;
+        mysqli_stmt_execute($query) or die (mysqli_error($conn));
     }
 
     header('Location: '."/index.php");

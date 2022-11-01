@@ -22,7 +22,13 @@
     $row = mysqli_fetch_assoc($query);
     $cap = $row["Chapter Num"]+1;
     // Almacena el capítulo
-    $query = mysqli_query($conn, "INSERT INTO capitulo(Chapter_ID, `Book ID`, `Chapter Num`, Texto) VALUES ('$titulo', '$titulo_libro', $cap, '$texto')") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "INSERT INTO capitulo(Chapter_ID, `Book ID`, `Chapter Num`, Texto) VALUES (?, ?, ?, ?)") or die (mysqli_error($conn));
+    mysqli_stmt_bind_param($query, "ssis", $c_id, $b_id, $c_num, $txt);
+    $c_id = $titulo;
+    $b_id = $titulo_libro;
+    $c_num = $cap;
+    $txt = $texto;
+    mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     if ($_POST['boton'] == "solo_publicar") {
         // Vuelve a la página principal
