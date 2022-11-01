@@ -28,14 +28,17 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $query = mysqli_query($conn, "SELECT * FROM libro WHERE `Book ID`='$titulo'")
-        or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT Chapter_ID FROM libro WHERE `Book ID`=?") or die (mysqli_error($conn));
+    mysqli_stmt_bind_param($query, "s", $tit);
+    $tit = $titulo;
+    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+    
+    mysqli_stmt_bind_result($query, $chap_id, $prologo);
 
-    $row = mysqli_fetch_assoc($query);
-    // Guarda el nombre del capítulo para luego
-    $chap_id = $row["Chapter_ID"];
+    mysqli_stmt_fetch($query);
+
     // inserta el texto en la página
-    $pagina = str_replace('%texto%', $row["Prologue"], $pagina);
+    $pagina = str_replace('%texto%', $prologo, $pagina);
     $pagina = str_replace('%TitCapitulo%', "Prólogo", $pagina);
 
     $anterior = "";
@@ -46,11 +49,14 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $cap_siguiente = "1";
-    $query = mysqli_query($conn, "SELECT * FROM capitulo WHERE `Book ID`='$titulo' AND `Chapter Num`=$cap_siguiente")
-        or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT * FROM capitulo WHERE `Book ID`=? AND `Chapter Num`=?") or die (mysqli_error($conn));
+    mysqli_stmt_bind_param($query, "si", $tit, $c_num);
+    $tit = $titulo;
+    $c_num = "1";
+    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+
     $siguiente = "";
-    if ($row = mysqli_fetch_assoc($query)) {
+    if (mysqli_stmt_fetch($query)) {
         $siguiente = "
     <form metod=\"get\" action=\"/PHP/leer_libro.php\">
         <Button>Capítulo siguiente</Button>
