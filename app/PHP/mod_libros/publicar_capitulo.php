@@ -27,6 +27,10 @@
     $cap = $cap + 1;
 
     // Almacena el capítulo
+    $conn = mysqli_connect($hostname,$username,$password,$db);
+    if ($conn->connect_error) {
+        die("Database connection failed: " . $conn->connect_error);
+    }
     $query = mysqli_prepare($conn, "INSERT INTO capitulo(Chapter_ID, `Book ID`, `Chapter Num`, Texto) VALUES (?, ?, ?, ?)") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "ssis", $c_id, $b_id, $c_num, $txt);
     $c_id = $titulo;

@@ -18,13 +18,12 @@
 
     mysqli_stmt_bind_result($query, $titulo_, $imagen, $descripcion);
     mysqli_stmt_fetch($query);
-
     if (isset($_COOKIE["username"])) {
-        $username = $_COOKIE["username"];
+        $user = $_COOKIE["username"];
     } else {
-        $username = "Iniciar Sesión";
+        $user = "Iniciar Sesión";
     }
-    $header = str_replace('%usuario%', $username, file_get_contents('/var/www/html/HTML/header_small.html'));
+    $header = str_replace('%usuario%', $user, file_get_contents('/var/www/html/HTML/header_small.html'));
     $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/pagina_libro.html'));
 
     // inserta la imagen en la página
@@ -41,20 +40,22 @@
 </form>";
     // inserta el botón de leer en la página
     $pagina = str_replace('%boton leer%', $boton, $pagina);
-
     $boton = "
     <input type=\"hidden\" name=\"titulo\" value=\"$titulo\" />";
     // Para que publicar_comentario.php sepa de que libro es el comentario
     $pagina = str_replace('%datos comentario%', $boton, $pagina);
 
     // Los comentarios
+    $conn = mysqli_connect($hostname,$username,$password,$db);
+    if ($conn->connect_error) {
+        die("Database connection failed: " . $conn->connect_error);
+    }
     $query = mysqli_prepare($conn, "SELECT `User ID`, Texto FROM `comentario libro` WHERE `Book ID`=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "s", $tit2);
     $tit2 = $titulo;
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     mysqli_stmt_bind_result($query, $uid, $texto);
-
     $comentarios = "";
     while (mysqli_stmt_fetch($query)) {
         $comentarios .= "<div class=\"comentario\">

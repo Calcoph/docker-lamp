@@ -15,11 +15,11 @@
         or die (mysqli_error($conn));
 
     if (isset($_COOKIE["username"])) {
-        $username = $_COOKIE["username"];
+        $user = $_COOKIE["username"];
     } else {
-        $username = "Iniciar Sesión";
+        $user = "Iniciar Sesión";
     }
-    $header = str_replace('%usuario%', $username, file_get_contents('/var/www/html/HTML/header_small.html'));
+    $header = str_replace('%usuario%', $user, file_get_contents('/var/www/html/HTML/header_small.html'));
     $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/mod_libros/modificar_libro.html'));
 
     $imagen = 1;
@@ -36,6 +36,10 @@
     $pagina  = str_replace('%resumen%', $datos[$resumen], $pagina);
     $pagina  = str_replace('%texto%', $datos[$prologo], $pagina);
 
+    $conn = mysqli_connect($hostname,$username,$password,$db);
+    if ($conn->connect_error) {
+        die("Database connection failed: " . $conn->connect_error);
+    }
     $query = mysqli_prepare($conn, "SELECT `Chapter Num` FROM capitulo WHERE `Book ID`=? ORDER BY `Chapter Num` ASC") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "s", $tit);
     $tit = $titulo;

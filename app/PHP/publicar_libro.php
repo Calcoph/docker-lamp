@@ -47,8 +47,14 @@
     $txt = $texto;
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
-    $username = $_COOKIE["username"];
     // Almacena quien lo ha publicado
+    $conn = mysqli_connect($hostname,$username,$password,$db);
+    if ($conn->connect_error) {
+        die("Database connection failed: " . $conn->connect_error);
+    }
+
+    $username = $_COOKIE["username"];
+
     $query = mysqli_prepare($conn, "INSERT INTO escritos(`Book ID`, `Used ID`) VALUES (?, ?)") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "ss", $tit, $us);
     $tit = $titulo;
