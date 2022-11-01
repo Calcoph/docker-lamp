@@ -55,14 +55,20 @@
     $pagina = str_replace('%boton siguiente%', $siguiente, $pagina);
 
     // Los comentarios
-    $query = mysqli_query($conn, "SELECT * FROM `comentario capitulo` WHERE `Book ID`='$titulo' AND Chapter_ID='$chap_id'")
-        or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT `User ID`, Texto FROM `comentario capitulo` WHERE `Book ID`=? AND Chapter_ID=?") or die (mysqli_error($conn));
+    mysqli_stmt_bind_param($query, "ss", $tit, $c_id);
+    $tit = $titulo;
+    $c_id = $chap_id;
+    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+    
+    mysqli_stmt_bind_result($query, $uid, $texto);
+
     $comentarios = "";
-    while ($row = mysqli_fetch_assoc($query)) {
+    while (mysqli_stmt_fetch($query)) {
         $comentarios .= "<div class=\"comentario\">
             <div class=\"infocoment\">
-                <h4>{$row['User ID']}</h4>
-                <p>{$row['Texto']}</p>
+                <h4>$uid</h4>
+                <p>$texto</p>
             </div>
         </div>";
     }

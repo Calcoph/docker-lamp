@@ -36,10 +36,15 @@
     $pagina  = str_replace('%resumen%', $datos[$resumen], $pagina);
     $pagina  = str_replace('%texto%', $datos[$prologo], $pagina);
 
-    $query = mysqli_query($conn, "SELECT * FROM capitulo WHERE `Book ID`='$titulo' ORDER BY `Chapter Num` ASC")
-        or die (mysqli_error($conn));
-    while ($row = mysqli_fetch_assoc($query)) {
-        $caps .= "<a href=\"/PHP/mod_libros/modificar_capitulo.php/?titulo=$titulo&capitulo={$row["Chapter Num"]}\">{$row["Chapter Num"]}</a> ";
+    $query = mysqli_prepare($conn, "SELECT `Chapter Num` FROM capitulo WHERE `Book ID`=? ORDER BY `Chapter Num` ASC") or die (mysqli_error($conn));
+    mysqli_stmt_bind_param($query, "s", $tit);
+    $tit = $titulo;
+    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+
+    mysqli_stmt_bind_result($query, $c_num);
+
+    while (mysqli_stmt_fetch($query)) {
+        $caps .= "<a href=\"/PHP/mod_libros/modificar_capitulo.php/?titulo=$titulo&capitulo=$c_num\">$c_num</a> ";
     };
     $pagina  = str_replace('%capitulos%', $caps, $pagina);
 

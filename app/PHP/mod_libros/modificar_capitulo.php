@@ -26,15 +26,21 @@
     $titulo_ = 0;
     $datos = mysqli_fetch_row($query);
 
-    $query = mysqli_query($conn, "SELECT * FROM capitulo WHERE `Book ID`='$titulo' AND `Chapter Num`=$capitulo")
-        or die (mysqli_error($conn));
-    $row = mysqli_fetch_assoc($query);
-    $pagina  = str_replace('%texto%', $row["Texto"], $pagina);
+    $query = mysqli_prepare($conn, "SELECT Texto, Chapter_ID FROM capitulo WHERE `Book ID`=? AND `Chapter Num`=?") or die (mysqli_error($conn));
+    mysqli_stmt_bind_param($query, "si", $tit, $c_num);
+    $tit = $titulo;
+    $c_num = $capitulo;
+    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+
+    mysqli_stmt_bind_result($query, $texto, $c_id);
+    mysqli_stmt_fetch($query);
+
+    $pagina  = str_replace('%texto%', $texto, $pagina);
 
     // inserta el título del libro en la página
-    $titulo .= ": {$row["Chapter_ID"]}";
+    $titulo .= ": $c_id";
     $pagina  = str_replace('%titulo%', $titulo, $pagina);
-    $pagina  = str_replace('%titulo_capitulo%', $row["Chapter_ID"], $pagina);
+    $pagina  = str_replace('%titulo_capitulo%', $c_id, $pagina);
 
     echo $pagina
 ?>

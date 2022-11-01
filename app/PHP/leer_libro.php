@@ -24,12 +24,16 @@
     $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/leer_libro.html'));
 
     // Obtiene el capítulo que se ha pedido
-    $query = mysqli_query($conn, "SELECT * FROM capitulo WHERE `Book ID`='$titulo' AND `Chapter Num`=$capitulo")
-        or die (mysqli_error($conn));
-
-    $row = mysqli_fetch_assoc($query);
+    $query = mysqli_prepare($conn, "SELECT Chapter_ID FROM capitulo WHERE `Book ID`=? AND `Chapter Num`=?") or die (mysqli_error($conn));
+    mysqli_stmt_bind_param($query, "si", $tit, $c_num);
+    $tit = $titulo;
+    $c_num = $capitulo;
+    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+    
     // Guarda el nombre del capítulo para luego
-    $chap_id = $row["Chapter_ID"];
+    mysqli_stmt_bind_result($query, $chap_id);
+    mysqli_stmt_fetch($query);
+
     // inserta el texto en la página
     $pagina = str_replace('%texto%', $row["Texto"], $pagina);
     $pagina = str_replace('%TitCapitulo%', $row["Chapter_ID"], $pagina);
@@ -56,10 +60,15 @@
 
     // El botón de capítulo siguiente no está en el último capítulo
     $cap_siguiente = strval(intval($capitulo)+1);
-    $query = mysqli_query($conn, "SELECT * FROM capitulo WHERE `Book ID`='$titulo' AND `Chapter Num`=$cap_siguiente")
-        or die (mysqli_error($conn));
+
+    $query = mysqli_prepare($conn, "SELECT * FROM capitulo WHERE `Book ID`=? AND `Chapter Num`=?") or die (mysqli_error($conn));
+    mysqli_stmt_bind_param($query, "si", $tit2, $c_num2);
+    $tit2 = $titulo;
+    $c_num2 = $cap_siguiente;
+    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+
     $siguiente = "";
-    if ($row = mysqli_fetch_assoc($query)) { // Este while solo se va a ejecutar 1 vez (o ninguna, si es el último)
+    if (mysqli_stmt_fetch($query)) { // Este while solo se va a ejecutar 1 vez (o ninguna, si es el último)
         $siguiente = "
     <form metod=\"get\" action=\"/PHP/leer_libro.php\">
         <Button>Capítulo siguiente</Button>
@@ -74,14 +83,20 @@
     $pagina = str_replace('%boton siguiente%', $siguiente, $pagina);
 
     // Los comentarios
-    $query = mysqli_query($conn, "SELECT * FROM `comentario capitulo` WHERE `Book ID`='$titulo' AND Chapter_ID='$chap_id'")
-        or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT `User ID`, Texto FROM `comentario capitulo` WHERE `Book ID`=? AND Chapter_ID=?") or die (mysqli_error($conn));
+    mysqli_stmt_bind_param($query, "ss", $tit3, $c_num3);
+    $tit3 = $titulo;
+    $c_num3 = $chap_id;
+    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+
+    mysqli_stmt_bind_result($query, $uid, $texto);
+
     $comentarios = "";
-    while ($row = mysqli_fetch_assoc($query)) {
+    while (mysqli_stmt_fetch($query)) {
         $comentarios .= "<div class=\"comentario\">
             <div class=\"infocoment\">
-                <h4>{$row['User ID']}</h4>
-                <p>{$row['Texto']}</p>
+                <h4>$uid</h4>
+                <p>$texto</p>
             </div>
         </div>";
     }

@@ -17,10 +17,15 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $query = mysqli_query($conn, "SELECT `Chapter Num` FROM capitulo WHERE `Book ID`='$titulo_libro' ORDER BY `Chapter Num` DESC")
-        or die (mysqli_error($conn));
-    $row = mysqli_fetch_assoc($query);
-    $cap = $row["Chapter Num"]+1;
+    $query = mysqli_prepare($conn, "SELECT `Chapter Num` FROM capitulo WHERE `Book ID`=? ORDER BY `Chapter Num` DESC") or die (mysqli_error($conn));
+    mysqli_stmt_bind_param($query, "s", $tit);
+    $tit = $titulo_libro;
+    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+
+    mysqli_stmt_bind_result($query, $cap);
+    mysqli_stmt_fetch($query);
+    $cap = $cap + 1;
+
     // Almacena el capítulo
     $query = mysqli_prepare($conn, "INSERT INTO capitulo(Chapter_ID, `Book ID`, `Chapter Num`, Texto) VALUES (?, ?, ?, ?)") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "ssis", $c_id, $b_id, $c_num, $txt);

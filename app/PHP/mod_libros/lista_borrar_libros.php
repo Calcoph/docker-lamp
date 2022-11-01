@@ -16,17 +16,20 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $query = mysqli_query($conn, "SELECT * FROM libro JOIN escritos ON libro.`Book ID`=escritos.`Book ID` WHERE `Used ID`='$usuario'")
-        or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT libro.`Book ID`, Text_corto FROM libro JOIN escritos ON libro.`Book ID`=escritos.`Book ID` WHERE `Used ID`=?") or die (mysqli_error($conn));
+    mysqli_stmt_bind_param($query, "s", $us);
+    $us = $usuario;
+    mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     $libros = "";
-    while ($row = mysqli_fetch_assoc($query)) {
+    mysqli_stmt_bind_result($query, $book_id, $texto_corto);
+    while (mysqli_stmt_fetch($query)) {
         $libros .= "<tr>
         <th>
-            <input name=\"libros_borrados[]\" type=\"checkbox\" value=\"{$row["Book ID"]}\"><a href=\"/PHP/libro.php/?titulo={$row["Book ID"]}\">{$row["Book ID"]}</a>
+            <input name=\"libros_borrados[]\" type=\"checkbox\" value=\"$book_id\"><a href=\"/PHP/libro.php/?titulo=$book_id\">$book_id</a>
         </th>
         <th>
-            {$row["Text_corto"]}
+            $texto_corto
         </th>
 </tr>";
     }

@@ -16,27 +16,30 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $query = mysqli_query($conn, "SELECT * FROM libro JOIN escritos ON libro.`Book ID`=escritos.`Book ID` WHERE `Used ID`='$usuario'")
-        or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT libro.`Book ID`, Text_corto FROM libro JOIN escritos ON libro.`Book ID`=escritos.`Book ID` WHERE `Used ID`=?") or die (mysqli_error($conn));
+    mysqli_stmt_bind_param($query, "s", $us);
+    $us = $usuario;
+    mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     $libros = "";
-    while ($row = mysqli_fetch_assoc($query)) {
+    mysqli_stmt_bind_result($query, $book_id, $texto_corto);
+    while (mysqli_stmt_fetch($query)) {
         $libros .= "<tr>
         <th>
-            <a href=\"/PHP/libro.php/?titulo={$row["Book ID"]}\">{$row["Book ID"]}</a>
+            <a href=\"/PHP/libro.php/?titulo=$book_id\">$book_id</a>
         </th>
         <th>
-           <p>{$row["Text_corto"]}</p>
+           <p>$texto_corto</p>
             
         </th>
         <th id=\"col_botones\">
             <form name=\"form_modificar_libro\" action=\"/PHP/mod_libros/modificar_libro.php\" method=\"get\" class=\"form\">
                 <input id=\"btn\" type=\"submit\" value=\"Modificar\">
-                <input type=\"hidden\" name=\"titulo\" value=\"{$row["Book ID"]}\">
+                <input type=\"hidden\" name=\"titulo\" value=\"$book_id\">
             </form>
             <form name=\"form_anadir_capitulo\" action=\"/PHP/mod_libros/nuevo_capitulo.php\" method=\"get\" class=\"form\">
                 <input id=\"btn\" type=\"submit\" value=\"Añadir capitulo\">
-                <input type=\"hidden\" name=\"titulo\" value=\"{$row["Book ID"]}\">
+                <input type=\"hidden\" name=\"titulo\" value=\"$book_id\">
             </form>
         </th>
 </tr>";

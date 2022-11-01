@@ -10,7 +10,14 @@
   }
   $titulo = $_GET["titulo"];
 
-  $query = mysqli_query($conn, "SELECT * FROM libro WHERE `Book ID`='$titulo'") or die (mysqli_error($conn));
+  $query = mysqli_prepare($conn, "SELECT `Book ID` FROM libro WHERE `Book ID`=?") or die (mysqli_error($conn));
+  mysqli_stmt_bind_param($query, "s", $tit);
+  $tit = $titulo;
+  mysqli_stmt_execute($query) or die (mysqli_error($conn));
+
+  mysqli_stmt_bind_result($query, $titulo_libro);
+  mysqli_stmt_fetch($query);
+
   // Devuelve el título, si el libro está en la base de datos. Si no devuelve un ""
-  echo mysqli_fetch_array($query)["Book ID"];
+  echo $titulo_libro
 ?>

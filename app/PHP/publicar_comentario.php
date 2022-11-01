@@ -15,10 +15,14 @@
     $titulo = $_POST["titulo"];
     $comentario = $_POST["comentario_nuevo"];
 
-    $query = mysqli_query($conn, "SELECT `Comentario ID` FROM `comentario libro`") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT `Comentario ID` FROM `comentario libro`") or die (mysqli_error($conn));
+    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+
+    mysqli_stmt_bind_result($query, $c_id);
+
     $max_id = 0;
-    while ($row = mysqli_fetch_row($query)) {
-        $id = intval($row[0]);
+    while (mysqli_stmt_fetch($query)) {
+        $id = intval($c_id);
         if ($id > $max_id) {
             $max_id = $id;
         }
