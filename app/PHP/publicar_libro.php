@@ -4,9 +4,6 @@
     // La dirección que se ve desde el html (para insertar las imágenes luego)
     $save_path = "/uploads/";
     $titulo = $_POST["titulo"];
-    $descripcion = $_POST["descripcion"];
-    $resumen = $_POST["resumen"];
-    $texto = $_POST["texto"];
     if (file_exists($_FILES["portada_personalizada"]["tmp_name"])) {
         // Si ha elegido una portada personalizada, la descargamos
         $target_file = $target_dir . basename($_FILES["portada_personalizada"]["name"]);
@@ -39,12 +36,12 @@
 
     // Almacena el libro
     $query = mysqli_prepare($conn, "INSERT INTO libro(`Book ID`, imglink, Text_corto, Text_largo, Prologue) VALUES (?, ?, ?, ?, ?)") or die (mysqli_error($conn));
-    mysqli_stmt_bind_param($query, "sssss", $tit, $s_p, $desc, $res, $txt);
+    mysqli_stmt_bind_param($query, "sssss", $tit, $s_p, $descripcion, $resumen, $texto);
     $tit = $titulo;
     $s_p = $save_path;
-    $desc = $descripcion;
-    $res = $resumen;
-    $txt = $texto;
+    $descripcion = $_POST["descripcion"];
+    $resumen = $_POST["resumen"];
+    $texto = $_POST["texto"];
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     // Almacena quien lo ha publicado
@@ -53,12 +50,10 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $username = $_COOKIE["username"];
-
     $query = mysqli_prepare($conn, "INSERT INTO escritos(`Book ID`, `Used ID`) VALUES (?, ?)") or die (mysqli_error($conn));
-    mysqli_stmt_bind_param($query, "ss", $tit, $us);
+    mysqli_stmt_bind_param($query, "ss", $tit, $user);
     $tit = $titulo;
-    $us = $username;
+    $user = $_COOKIE["username"];
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     if ($_POST['boton'] == "solo_publicar") {
