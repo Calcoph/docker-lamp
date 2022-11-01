@@ -4,8 +4,6 @@
     // La dirección que se ve desde el html (para insertar las imágenes luego)
     $save_path = "/uploads/";
     $titulo_libro = $_POST["titulo_libro"];
-    $titulo = $_POST["titulo"];
-    $texto = $_POST["texto"];
 
     $hostname = "db";
     $username = "admin";
@@ -32,11 +30,11 @@
         die("Database connection failed: " . $conn->connect_error);
     }
     $query = mysqli_prepare($conn, "INSERT INTO capitulo(Chapter_ID, `Book ID`, `Chapter Num`, Texto) VALUES (?, ?, ?, ?)") or die (mysqli_error($conn));
-    mysqli_stmt_bind_param($query, "ssis", $c_id, $b_id, $c_num, $txt);
-    $c_id = $titulo;
+    mysqli_stmt_bind_param($query, "ssis", $titulo, $b_id, $c_num, $texto);
+    $titulo = $_POST["titulo"];
     $b_id = $titulo_libro;
     $c_num = $cap;
-    $txt = $texto;
+    $texto = $_POST["texto"];
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     if ($_POST['boton'] == "solo_publicar") {

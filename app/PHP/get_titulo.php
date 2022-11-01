@@ -8,11 +8,10 @@
   if ($conn->connect_error) {
     die("Database connection failed: " . $conn->connect_error);
   }
-  $titulo = $_GET["titulo"];
 
   $query = mysqli_prepare($conn, "SELECT `Book ID` FROM libro WHERE `Book ID`=?") or die (mysqli_error($conn));
-  mysqli_stmt_bind_param($query, "s", $tit);
-  $tit = $titulo;
+  mysqli_stmt_bind_param($query, "s", $titulo);
+  $titulo = $_GET["titulo"];
   mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
   mysqli_stmt_bind_result($query, $titulo_libro);

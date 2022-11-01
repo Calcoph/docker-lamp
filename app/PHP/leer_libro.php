@@ -61,6 +61,11 @@
     // El botón de capítulo siguiente no está en el último capítulo
     $cap_siguiente = strval(intval($capitulo)+1);
 
+    $conn = mysqli_connect($hostname,$username,$password,$db);
+    if ($conn->connect_error) {
+        die("Database connection failed: " . $conn->connect_error);
+    }
+
     $query = mysqli_prepare($conn, "SELECT * FROM capitulo WHERE `Book ID`=? AND `Chapter Num`=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "si", $tit2, $c_num2);
     $tit2 = $titulo;

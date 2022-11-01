@@ -13,16 +13,21 @@
 
     // Si está logueado, tiene la cookie "username"
     if (isset($_COOKIE["username"])) {
-        $username = $_COOKIE["username"];
+        $user = $_COOKIE["username"];
     } else {
-        $username = "Iniciar Sesión";
+        $user = "Iniciar Sesión";
     }
     // pone el nombre de usuario en el header
-    $header = str_replace('%usuario%', $username, file_get_contents('/var/www/html/HTML/header_small.html')); 
+    $header = str_replace('%usuario%', $user, file_get_contents('/var/www/html/HTML/header_small.html')); 
     // inserta el header en la página
     $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/leer_libro.html'));
 
     // Obtiene el capítulo que se ha pedido
+    $conn = mysqli_connect($hostname,$username,$password,$db);
+    if ($conn->connect_error) {
+        die("Database connection failed: " . $conn->connect_error);
+    }
+
     $query = mysqli_query($conn, "SELECT * FROM libro WHERE `Book ID`='$titulo'")
         or die (mysqli_error($conn));
 
@@ -36,6 +41,11 @@
     $anterior = "";
 
     // El botón de capítulo siguiente no está en el último capítulo
+    $conn = mysqli_connect($hostname,$username,$password,$db);
+    if ($conn->connect_error) {
+        die("Database connection failed: " . $conn->connect_error);
+    }
+
     $cap_siguiente = "1";
     $query = mysqli_query($conn, "SELECT * FROM capitulo WHERE `Book ID`='$titulo' AND `Chapter Num`=$cap_siguiente")
         or die (mysqli_error($conn));
@@ -55,6 +65,11 @@
     $pagina = str_replace('%boton siguiente%', $siguiente, $pagina);
 
     // Los comentarios
+    $conn = mysqli_connect($hostname,$username,$password,$db);
+    if ($conn->connect_error) {
+        die("Database connection failed: " . $conn->connect_error);
+    }
+
     $query = mysqli_prepare($conn, "SELECT `User ID`, Texto FROM `comentario capitulo` WHERE `Book ID`=? AND Chapter_ID=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "ss", $tit, $c_id);
     $tit = $titulo;

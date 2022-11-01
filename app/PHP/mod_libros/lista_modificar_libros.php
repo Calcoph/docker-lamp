@@ -1,6 +1,4 @@
 <?php
-    $usuario = $_COOKIE["username"];
-
     // pone el nombre de usuario en el header
     $header = str_replace('%usuario%', $usuario, file_get_contents('/var/www/html/HTML/header_small.html'));
     // inserta el header en la página
@@ -17,8 +15,8 @@
     }
 
     $query = mysqli_prepare($conn, "SELECT libro.`Book ID`, Text_corto FROM libro JOIN escritos ON libro.`Book ID`=escritos.`Book ID` WHERE `Used ID`=?") or die (mysqli_error($conn));
-    mysqli_stmt_bind_param($query, "s", $us);
-    $us = $usuario;
+    mysqli_stmt_bind_param($query, "s", $usuario);
+    $usuario = $_COOKIE["username"];
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     $libros = "";
