@@ -14,7 +14,7 @@
                                             VALUES (?, ?, ?, ?, ?, ?, ?, ?)") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "ssssssss", $usuario, $contraseña, $dni, $email, $nombre, $apellido, $tlf, $fnacimiento);
     $usuario = $_POST["usuario"];
-    $contraseña = $_POST["pswd"];
+    $contraseña = password_hash($_POST["pswd"], PASSWORD_BCRYPT);
     $dni = $_POST["dni"];
     $email = $_POST["email"];
     $nombre = $_POST["nombre"];
