@@ -26,7 +26,7 @@ function registrar_usuario() {
             if (contraseña2 === "") {
                 // Si el usuario no tiene contraseña, significa que no está en la base de datos
                 document.form_inicio_sesion.submit()
-                document.cookie = "username=" + usuario + "; path=/"
+                document.cookie = "uname=" + usuario + "; path=/"
             } else {
                 window.alert("Ese usuario ya existe")
             }
@@ -132,7 +132,7 @@ function iniciar_sesion() {
             } else {
                 if (contraseña == contraseña2) {
                     console.log("Login successful!")
-                    document.cookie = "username=" + usuario + "; path=/"
+                    document.cookie = "uname=" + usuario + "; path=/"
                     document.form_inicio_sesion.submit()
                 } else {
                     console.log("Login fail")
@@ -172,7 +172,7 @@ function cambiar_datos() {
             var contraseña2 = get_contraseña.responseText;
             if (contraseña2 === "") {
                 // Si el usuario no tiene contraseña, significa que no está en la base de datos
-                document.cookie = "username=" + usuario + "; path=/"
+                document.cookie = "uname=" + usuario + "; path=/"
                 document.form_cambio_datos.submit()
             } else if (usuario == usuario_anterior) {
                 document.form_cambio_datos.submit()
@@ -259,13 +259,7 @@ function datos_validos(
         window.alert("Las contraseñas no coinciden")
         return false
     }
-    if (contraseña.length > 20) {
-        // Porque guardamos las contraseñas en texto plano y en la base de datos se guarda como un Varchar(20)
-        window.alert("La contraseña es demasiado larga. Usa como mucho 20 caracteres")
-        return false
-    }
-    if (contraseña.length < 3) {
-        window.alert("La contraseña es demasiado corta. Usa como mínimo 3 caracteres")
+    if(checkStrength(contraseña)==false){
         return false
     }
     if (usuario.length > 20) {
@@ -285,4 +279,34 @@ function cerrar_sesion() {
     // Simplemente borramos la cookie, y decimos que expira en el pasado. De: https://www.w3schools.com/js/js_cookies.asp
     document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     window.location = "/index.php"
+}
+function checkStrength(password) {
+    
+    var strength = true
+    if (password.length < 6) {
+        window.alert("Contraseña corta, la longitud debe ser >=6")
+        return false
+    }
+    else{
+        // If password contains both lower and uppercase characters, increase strength value.
+        if (!password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)){
+            window.alert("Error, la contraseña debe de tener al menos una mayúscula y una minúscula")
+            return false
+        }
+        else{
+             // If it has numbers and characters, increase strength value.
+            if (!password.match(/([a-zA-Z])/) && password.match(/([0-9])/)){
+                window.alert("Error, la contraseña debe contener al menos un número")
+                return false
+            }
+            else{
+                // If it has one special character, increase strength value.
+                if (!password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)){
+                    window.alert("Error, la contraseña debe de tener algún caracter especial (!,%,&,@,#,$,^,*,?,_,~)")
+                    return false
+                }
+            }
+        }
+    }
+    return true
 }
