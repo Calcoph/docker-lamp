@@ -105,6 +105,7 @@ En esta pestaña el usuario puede modificar todos sus datos. Como se ve en la il
 * Función Inicio de sesión: https://stackoverflow.com/questions/247483/http-get-request-in-javascript
 * Función para portada personalizada: https://www.w3schools.com/php/php_file_upload.asp
 * Pedir datos desde JS a PHP sin modificar el HTML: https://stackoverflow.com/questions/247483/http-get-request-in-javascript
+* Validar seguridad mínima de contraseña: https://estradawebgroup.com/Post/Como-validar-que-las-contrasena-que-capturan-tus-usuarios-son-seguras-con-jQuery/4228
 
 [cambiar_datos]: imagenes/cambiar_datos.png
 [diagrama de páginas]: imagenes/diagrama_paginas.png
