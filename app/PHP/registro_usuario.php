@@ -29,8 +29,17 @@
         die("Email no válido");
     }
 
-    if (strlen($_POST["pswd"]) < 3) {
+    if (strlen($_POST["pswd"]) < 6) {
         die("Contraseña demasiado corta");
+    }
+    if (!(preg_match("/([a-z].*[A-Z])|([A-Z].*[a-z])/", $_POST["pswd"]))){
+        die("Error, la contraseña debe de tener al menos una mayúscula y una minúscula");
+    }
+    if (!(preg_match("/([a-zA-Z])/", $_POST["pswd"])) || !(preg_match("/([0-9])/", $_POST["pswd"]))){
+        die("Error, la contraseña debe contener al menos un número");
+    }
+    if (!preg_match("/([!,%,&,@,#,$,^,*,?,_,~])/", $_POST["pswd"])){
+        die("Error, No hay un caracter especial");
     }
 
     if (strlen($_POST["usuario"]) < 3) {
