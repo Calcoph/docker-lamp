@@ -26,7 +26,7 @@ function registrar_usuario() {
             if (contraseña2 === "") {
                 // Si el usuario no tiene contraseña, significa que no está en la base de datos
                 document.form_inicio_sesion.submit()
-                document.cookie = "uname=" + usuario + "; path=/"
+                document.cookie = "username=" + usuario + "; path=/"
             } else {
                 window.alert("Ese usuario ya existe")
             }
@@ -132,7 +132,7 @@ function iniciar_sesion() {
             } else {
                 if (contraseña == contraseña2) {
                     console.log("Login successful!")
-                    document.cookie = "uname=" + usuario + "; path=/"
+                    document.cookie = "username=" + usuario + "; path=/"
                     document.form_inicio_sesion.submit()
                 } else {
                     console.log("Login fail")
@@ -172,7 +172,7 @@ function cambiar_datos() {
             var contraseña2 = get_contraseña.responseText;
             if (contraseña2 === "") {
                 // Si el usuario no tiene contraseña, significa que no está en la base de datos
-                document.cookie = "uname=" + usuario + "; path=/"
+                document.cookie = "username=" + usuario + "; path=/"
                 document.form_cambio_datos.submit()
             } else if (usuario == usuario_anterior) {
                 document.form_cambio_datos.submit()
