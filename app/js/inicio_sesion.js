@@ -19,12 +19,12 @@ function registrar_usuario() {
 
     // Código obtenido de https://stackoverflow.com/questions/247483/http-get-request-in-javascript
     // Modificaciones: la URL, y la función de callback
-    var get_contraseña = new XMLHttpRequest();
-    get_contraseña.onreadystatechange = function () {
-        if (get_contraseña.readyState == 4 && get_contraseña.status == 200) {
-            var contraseña2 = get_contraseña.responseText;
-            if (contraseña2 === "") {
-                // Si el usuario no tiene contraseña, significa que no está en la base de datos
+    var existe_usuario = new XMLHttpRequest();
+    existe_usuario.onreadystatechange = function () {
+        if (existe_usuario.readyState == 4 && existe_usuario.status == 200) {
+            var usuario2 = existe_usuario.responseText;
+            if (usuario2 === "") {
+                // Si el usuario no existe, devuelve string vacío
                 document.form_inicio_sesion.submit()
                 document.cookie = "username=" + usuario + "; path=/"
             } else {
@@ -33,7 +33,7 @@ function registrar_usuario() {
         }
     }
 
-    llamar_get_contraseña(get_contraseña, usuario)
+    llamar_existe_usuario(existe_usuario, usuario)
 }
 
 function fecha_valida(fecha) {
@@ -123,11 +123,13 @@ function iniciar_sesion() {
 
     // Código obtenido de https://stackoverflow.com/questions/247483/http-get-request-in-javascript
     // Modificaciones: la URL, y la función de callback
-    var get_contraseña = new XMLHttpRequest();
-    get_contraseña.onreadystatechange = function () {
-        if (get_contraseña.readyState == 4 && get_contraseña.status == 200) {
-            var contraseña2 = get_contraseña.responseText;
-            if (contraseña2 === "") {
+    var existe_usuario = new XMLHttpRequest();
+    // TODO: hacer el login de otra manera
+    existe_usuario.onreadystatechange = function () {
+        if (existe_usuario.readyState == 4 && existe_usuario.status == 200) {
+            var usuario2 = existe_usuario.responseText;
+            if (usuario2 === "") {
+                // Si el usuario no existe, devuelve string vacío
                 window.alert("El ususuario " + usuario + " no existe")
             } else {
                 if (contraseña == contraseña2) {
@@ -141,7 +143,7 @@ function iniciar_sesion() {
             }
         }
     }
-    llamar_get_contraseña(get_contraseña, usuario)
+    llamar_existe_usuario(existe_usuario, usuario)
 }
 
 function cambiar_datos() {
@@ -166,12 +168,12 @@ function cambiar_datos() {
 
     // Código obtenido de https://stackoverflow.com/questions/247483/http-get-request-in-javascript
     // Modificaciones: la URL, y la función de callback
-    var get_contraseña = new XMLHttpRequest();
-    get_contraseña.onreadystatechange = function () {
-        if (get_contraseña.readyState == 4 && get_contraseña.status == 200) {
-            var contraseña2 = get_contraseña.responseText;
-            if (contraseña2 === "") {
-                // Si el usuario no tiene contraseña, significa que no está en la base de datos
+    var existe_usuario = new XMLHttpRequest();
+    existe_usuario.onreadystatechange = function () {
+        if (existe_usuario.readyState == 4 && existe_usuario.status == 200) {
+            var usuario2 = existe_usuario.responseText;
+            if (usuario2 === "") {
+                // Si el usuario no existe, devuelve string vacío
                 document.cookie = "username=" + usuario + "; path=/"
                 document.form_cambio_datos.submit()
             } else if (usuario == usuario_anterior) {
@@ -182,10 +184,10 @@ function cambiar_datos() {
         }
     }
 
-    llamar_get_contraseña(get_contraseña, usuario)
+    llamar_existe_usuario(existe_usuario, usuario)
 }
 
-function llamar_get_contraseña(get_contraseña, usuario) {
+function llamar_existe_usuario(existe_usuario, usuario) {
     // Código obtenido de https://stackoverflow.com/questions/247483/http-get-request-in-javascript
     // Modificaciones: la URL, y la función de callback
     var pre = ""
@@ -202,8 +204,8 @@ function llamar_get_contraseña(get_contraseña, usuario) {
         pre = "https://"
     }
     url = url1.split("/")[0]; // Asumo que la url será lo que haya antes del primer / (habiendo eliminado https:// y http://)
-    get_contraseña.open("GET", pre + url + "/PHP/get_contrasena.php/?username=" + usuario, true);
-    get_contraseña.send(null);
+    existe_usuario.open("GET", pre + url + "/PHP/existe_usuario.php/?username=" + usuario, true);
+    existe_usuario.send(null);
 }
 
 function datos_validos(
