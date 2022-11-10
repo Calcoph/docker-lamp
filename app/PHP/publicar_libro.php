@@ -1,4 +1,9 @@
 <?php
+    require "/PHP/login.php";
+
+    // Nos aseguramos de que los datos del login son correctos antes de continuar.
+    login();
+
     // La carpeta donde se van a guardar los archivos
     $target_dir = "/var/www/html/uploads/";
     // La dirección que se ve desde el html (para insertar las imágenes luego)

@@ -1,6 +1,11 @@
 <?php
     // Si está logueado, tiene la cookie "username"
   if (isset($_COOKIE["username"])) {
+    require "/PHP/login.php";
+
+    // Nos aseguramos de que los datos del login son correctos antes de continuar.
+    login();
+
     $hostname = "db";
     $username = "admin";
     $password = "test";

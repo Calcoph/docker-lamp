@@ -1,4 +1,9 @@
 <?php
+    require "/PHP/login.php";
+
+    // Nos aseguramos de que los datos del login son correctos antes de continuar.
+    login();
+
     $hostname = "db";
     $username = "admin";
     $password = "test";
@@ -22,7 +27,7 @@
     $apellido = $_POST["apellido"];
     $tlf = $_POST["tlf"];
     $fnacimiento = $_POST["fnacimiento"];
-    $usuario_anterior = $_POST["usuario_anterior"];
+    $usuario_anterior = $_POST["usuario_anterior"]; // TODO: En vez de un post con el usuario anterior, coger el usuario de la cookie, igual que el login
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     // Vuelve a la página principal
