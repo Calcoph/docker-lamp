@@ -1,5 +1,5 @@
 <?php
-    require "/PHP/login.php";
+    require "login.php";
 
     // Nos aseguramos de que los datos del login son correctos antes de continuar.
     login();

@@ -12,7 +12,7 @@ function login() {
     if ($conn->connect_error) {
         die("Database connection failed: " . $conn->connect_error);
     }
-    $query = mysqli_prepare($conn, "SELECT Password FROM usuarios WHERE `Used ID`=?") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT Password FROM usuario WHERE `Used ID`=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "s", $us);
     $us = $user;
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
