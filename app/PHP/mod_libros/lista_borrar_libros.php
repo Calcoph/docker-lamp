@@ -1,4 +1,9 @@
 <?php
+    require "../login.php";
+
+    // Nos aseguramos de que los datos del login son correctos antes de continuar.
+    login();
+
     // pone el nombre de usuario en el header
     $header = str_replace('%usuario%', $usuario, file_get_contents('/var/www/html/HTML/header_small.html'));
     // inserta el header en la página
