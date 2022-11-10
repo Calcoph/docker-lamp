@@ -124,7 +124,6 @@ function iniciar_sesion() {
     // Código obtenido de https://stackoverflow.com/questions/247483/http-get-request-in-javascript
     // Modificaciones: la URL, y la función de callback
     var existe_usuario = new XMLHttpRequest();
-    // TODO: hacer el login de otra manera
     existe_usuario.onreadystatechange = function () {
         if (existe_usuario.readyState == 4 && existe_usuario.status == 200) {
             var usuario2 = existe_usuario.responseText;
@@ -132,14 +131,7 @@ function iniciar_sesion() {
                 // Si el usuario no existe, devuelve string vacío
                 window.alert("El ususuario " + usuario + " no existe")
             } else {
-                if (contraseña == contraseña2) {
-                    console.log("Login successful!")
-                    document.cookie = "username=" + usuario + "; path=/"
-                    document.form_inicio_sesion.submit()
-                } else {
-                    console.log("Login fail")
-                    window.alert("Contraseña incorrecta")
-                }
+                document.form_inicio_sesion.submit()
             }
         }
     }
@@ -286,5 +278,6 @@ function datos_validos(
 function cerrar_sesion() {
     // Simplemente borramos la cookie, y decimos que expira en el pasado. De: https://www.w3schools.com/js/js_cookies.asp
     document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "pass=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     window.location = "/index.php"
 }
