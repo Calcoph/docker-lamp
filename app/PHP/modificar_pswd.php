@@ -25,7 +25,7 @@
     mysqli_stmt_fetch($query);
 
     // Inserta los datos actuales del usuario en la página
-    $pagina  = str_replace('%usuario%', $uid, $pagina);
+    $pagina  = str_replace('%usuario%', $user, $pagina);
 
     echo $pagina
 ?>
