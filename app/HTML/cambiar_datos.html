@@ -62,27 +62,13 @@
           document.getElementById('usuario').value = '%usuario%';
         </script>
       </div>
-      <input type="hidden" name="usuario_anterior" value="%usuario%">
-      <div class="inputContainer">
-        <input name="pswd" id="pswd" type="password" class="input" placeholder="a">
-        <label for="" class="label">Password</label>
-        <script>
-          document.getElementById('pswd').value = '%pswd%';
-        </script>
-      </div>
-
-      <div class="inputContainer">
-        <input name="conf_pswd" id="conf_pswd" type="password" class="input" placeholder="a">
-        <label for="" class="label">Confirm Password</label>
-        <script>
-          document.getElementById('conf_pswd').value = '%pswd%';
-        </script>
-      </div>
       <div class="botones">
+        <a href="/PHP/cambiar_contraseña.php" id="btnCC">Cambiar Contraseña</a>
         <a href="/HTML/opciones_usuario.html" id="btnatras">Atrás</a>
         <div class="btn_container">
           <input type="button" class="submitBtn" value="Cambiar datos" onclick="cambiar_datos()">
         </div>
+
         
       </div>
 
