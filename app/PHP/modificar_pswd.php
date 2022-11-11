@@ -16,7 +16,7 @@
 
     $pagina = file_get_contents('/var/www/html/HTML/cambiar_pswd.html');
 
-    $query = mysqli_prepare($conn, "SELECT Nombre, Apellidos, DNI, fecha_nacimiento, Telefono, email, `Used ID`, Password FROM usuario WHERE `Used ID`=?") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT `Used ID`FROM usuario WHERE `Used ID`=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "s", $user);
     $user = $_COOKIE["username"];
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
@@ -25,7 +25,7 @@
     mysqli_stmt_fetch($query);
 
     // Inserta los datos actuales del usuario en la página
-
+    $pagina  = str_replace('%usuario%', $uid, $pagina);
 
     echo $pagina
 ?>

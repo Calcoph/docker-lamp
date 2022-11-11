@@ -24,10 +24,11 @@
     }
     // Inserta el usuario y contraseña en la base de datos
     $query = mysqli_prepare($conn, "UPDATE usuario
-                                    SET `Password=?
+                                    SET Password=?
                                     WHERE `Used ID`=?") or die (mysqli_error($conn));
-    mysqli_stmt_bind_param($query, "sssssssss", $contraseña);
+    mysqli_stmt_bind_param($query, "ss", $contraseña, $usuario_anterior);
     $contraseña = password_hash($_POST["pswd"], PASSWORD_BCRYPT);
+    $usuario_anterior = $_POST["usuario_anterior"]; 
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
     // Vuelve a la página principal
     header('Location: '."/index.php");

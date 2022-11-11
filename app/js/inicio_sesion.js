@@ -16,7 +16,6 @@ function registrar_usuario() {
     )) {
         return
     }
-
     // Código obtenido de https://stackoverflow.com/questions/247483/http-get-request-in-javascript
     // Modificaciones: la URL, y la función de callback
     var existe_usuario = new XMLHttpRequest();
@@ -269,7 +268,16 @@ function datos_validos(
     return true
 }
 function comprobar_pswd(){
-    window.alert("Funciona")
+    let pswd = document.form_cambiar_contraseña.pswd.value;
+    let confirmpswd = document.form_cambiar_contraseña.conf_pswd.value;
+    if (pswd==confirmpswd){
+        if(checkStrength(pswd)){
+            document.form_cambiar_contraseña.submit();
+        }
+    }
+    else{
+        window.alert("Contraseñas distintas")
+    }
 }
 function cerrar_sesion() {
     // Simplemente borramos la cookie, y decimos que expira en el pasado. De: https://www.w3schools.com/js/js_cookies.asp
