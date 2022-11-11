@@ -16,11 +16,10 @@
 
     // Inserta el usuario y contraseña en la base de datos
     $query = mysqli_prepare($conn, "UPDATE usuario
-                                    SET `Used ID`=?, Password=?, DNI=?, email=?, Nombre=?, Apellidos=?, Telefono=?, fecha_nacimiento=?
+                                    SET `Used ID`=?, DNI=?, email=?, Nombre=?, Apellidos=?, Telefono=?, fecha_nacimiento=?
                                     WHERE `Used ID`=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "sssssssss", $usuario, $contraseña, $dni, $email, $nombre, $apellido, $tlf, $fnacimiento, $usuario_anterior);
     $usuario = $_POST["usuario"];
-    $contraseña = $_POST["pswd"];
     $dni = $_POST["dni"];
     $email = $_POST["email"];
     $nombre = $_POST["nombre"];

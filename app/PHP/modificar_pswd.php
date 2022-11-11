@@ -14,7 +14,7 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $pagina = file_get_contents('/var/www/html/HTML/cambiar_contraseña.html');
+    $pagina = file_get_contents('/var/www/html/HTML/cambiar_pswd.html');
 
     $query = mysqli_prepare($conn, "SELECT Nombre, Apellidos, DNI, fecha_nacimiento, Telefono, email, `Used ID`, Password FROM usuario WHERE `Used ID`=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "s", $user);
@@ -25,7 +25,7 @@
     mysqli_stmt_fetch($query);
 
     // Inserta los datos actuales del usuario en la página
-    $pagina  = str_replace('%pswd%', "$pswd", $pagina);
+
 
     echo $pagina
 ?>

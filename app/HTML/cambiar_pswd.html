@@ -9,31 +9,24 @@
   <link rel="stylesheet" href="/CSS/inicio_sesion.css">
   <script src="/js/inicio_sesion.js"></script>
 </head>
+
 <body>
   <div class="signupFrm">
-    <form name="form_cambiar_contraseña" action="/PHP/cambiar_contraseña.php class="form" method="post">
+    <form name="form_cambiar_contraseña" action="app/PHP/cambiar_pswd.php" class="form" method="post">
       <h1 class="title">Librerium</h1>
       <input type="hidden" name="usuario_anterior" value="%usuario%">
       <div class="inputContainer">
         <input name="pswd" id="pswd" type="password" class="input" placeholder="a">
         <label for="" class="label">Password</label>
-        <script>
-          document.getElementById('pswd').value = '%pswd%';
-        </script>
       </div>
-
       <div class="inputContainer">
         <input name="conf_pswd" id="conf_pswd" type="password" class="input" placeholder="a">
         <label for="" class="label">Confirm Password</label>
-        <script>
-          document.getElementById('conf_pswd').value = '%pswd%';
-        </script>
       </div>
       <div class="botones">
         <a href="/HTML/opciones_usuario.html" id="btnatras">Atrás</a>
-        <div class="btn_container">
-          <input type="button" class="submitBtn" value="Cambiar Contraseña" onclick="cambiar_contraseña()">
-        </div>
+        
+          <input type="button" class="submitBtn" value="Cambiar Contraseña" onclick="comprobar_pswd()">
         
       </div>
     </form>
