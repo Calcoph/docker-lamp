@@ -131,7 +131,7 @@ Cinnamon bun capitulo 2 da un error
 
 * Usamos las credenciales por defecto
     * La contraseña del usuario admin para acceder a la base de datos es *test*
-    * La contraseña del usuario admin, dentro de la página en sí, tamibén es *test*
+    * La contraseña del usuario admin, dentro de la página en sí, también es *test*
 
 # Componentes vulnerables y obsoletos
 
