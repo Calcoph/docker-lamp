@@ -15,7 +15,7 @@
     $query = mysqli_prepare($conn, "INSERT INTO usuario(`Used ID`, Password, DNI, email, Nombre, Apellidos, Telefono, fecha_nacimiento)
                                             VALUES (?, ?, ?, ?, ?, ?, ?, ?)") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "ssssssss", $usuario, $contraseña, $dni, $email, $nombre, $apellido, $tlf, $fnacimiento);
-    $usuario = $_POST["usuario"];
+    $usuario = htmlspecialchars($_POST["usuario"]);
     $contraseña = password_hash($pass, PASSWORD_BCRYPT);
     $dni = $_POST["dni"];
     $email = $_POST["email"];
@@ -25,7 +25,7 @@
     $fnacimiento = $_POST["fnacimiento"];
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
-    setcookie("username", $_POST["usuario"], time()+24*3600); // El inicio de sesión dura 24h
+    setcookie("username", htmlspecialchars($_POST["usuario"]), time()+24*3600); // El inicio de sesión dura 24h
     setcookie("pass", $pass, time()+24*3600); // El inicio de sesión dura 24h
 
     // Vuelve a la página principal

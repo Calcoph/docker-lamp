@@ -19,7 +19,7 @@
                                     SET `Used ID`=?, DNI=?, email=?, Nombre=?, Apellidos=?, Telefono=?, fecha_nacimiento=?
                                     WHERE `Used ID`=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "ssssssss", $usuario, $dni, $email, $nombre, $apellido, $tlf, $fnacimiento, $usuario_anterior);
-    $usuario = $_POST["usuario"];
+    $usuario = htmlspecialchars($_POST["usuario"]);
     $dni = $_POST["dni"];
     $email = $_POST["email"];
     $nombre = $_POST["nombre"];
