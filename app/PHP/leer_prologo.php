@@ -9,7 +9,7 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $titulo = $_GET["titulo"];
+    $titulo = htmlspecialchars($_GET["titulo"]);
 
     // Si está logueado, tiene la cookie "username"
     if (isset($_COOKIE["username"])) {

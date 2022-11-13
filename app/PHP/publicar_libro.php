@@ -8,7 +8,7 @@
     $target_dir = "/var/www/html/uploads/";
     // La dirección que se ve desde el html (para insertar las imágenes luego)
     $save_path = "/uploads/";
-    $titulo = $_POST["titulo"];
+    $titulo = htmlspecialchars($_POST["titulo"]);
     if (file_exists($_FILES["portada_personalizada"]["tmp_name"])) {
         // Si ha elegido una portada personalizada, la descargamos
         $target_file = $target_dir . basename($_FILES["portada_personalizada"]["name"]);
@@ -25,8 +25,8 @@
         }
     } else {
         // Si ha elegido una portada predefinida, solo guardamos la elección en la base de datos
-        $target_file = $target_dir . $_POST["portada"] . ".png";
-        $save_path = $save_path . $_POST["portada"] . ".png";
+        $target_file = $target_dir . htmlspecialchars($_POST["portada"]) . ".png";
+        $save_path = $save_path . htmlspecialchars($_POST["portada"]) . ".png";
     }
 
     $hostname = "db";
@@ -44,9 +44,9 @@
     mysqli_stmt_bind_param($query, "sssss", $tit, $s_p, $descripcion, $resumen, $texto);
     $tit = $titulo;
     $s_p = $save_path;
-    $descripcion = $_POST["descripcion"];
-    $resumen = $_POST["resumen"];
-    $texto = $_POST["texto"];
+    $descripcion = htmlspecialchars($_POST["descripcion"]);
+    $resumen = htmlspecialchars($_POST["resumen"]);
+    $texto = htmlspecialchars($_POST["texto"]);
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     // Almacena quien lo ha publicado

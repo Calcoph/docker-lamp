@@ -14,7 +14,7 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $titulo = $_GET["titulo"];
+    $titulo = htmlspecialchars($_GET["titulo"]);
 
     $query = mysqli_prepare($conn, "SELECT imglink, `Book ID`, Text_corto, Text_largo, Prologue FROM libro WHERE `Book ID`=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "s", $tit);

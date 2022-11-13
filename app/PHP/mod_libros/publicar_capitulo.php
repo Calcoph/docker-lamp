@@ -8,7 +8,7 @@
     $target_dir = "/var/www/html/uploads/";
     // La dirección que se ve desde el html (para insertar las imágenes luego)
     $save_path = "/uploads/";
-    $titulo_libro = $_POST["titulo_libro"];
+    $titulo_libro = htmlspecialchars($_POST["titulo_libro"]);
 
     $hostname = "db";
     $username = "admin";
@@ -36,10 +36,10 @@
     }
     $query = mysqli_prepare($conn, "INSERT INTO capitulo(Chapter_ID, `Book ID`, `Chapter Num`, Texto) VALUES (?, ?, ?, ?)") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "ssis", $titulo, $b_id, $c_num, $texto);
-    $titulo = $_POST["titulo"];
+    $titulo = htmlspecialchars($_POST["titulo"]);
     $b_id = $titulo_libro;
     $c_num = $cap;
-    $texto = $_POST["texto"];
+    $texto = htmlspecialchars($_POST["texto"]);
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     if ($_POST['boton'] == "solo_publicar") {

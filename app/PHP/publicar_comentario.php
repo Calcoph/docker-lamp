@@ -16,7 +16,7 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $titulo = $_POST["titulo"];
+    $titulo = htmlspecialchars($_POST["titulo"]);
 
     $query = mysqli_prepare($conn, "SELECT `Comentario ID` FROM `comentario libro`") or die (mysqli_error($conn));
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
@@ -41,7 +41,7 @@
     $m_id = $max_id + 1;
     $user = htmlspecialchars($_COOKIE["username"]);
     $tit = $titulo;
-    $comentario = $_POST["comentario_nuevo"];
+    $comentario = htmlspecialchars($_POST["comentario_nuevo"]);
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     header('Location: '."/PHP/libro.php/?titulo=$titulo");

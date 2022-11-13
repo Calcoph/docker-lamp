@@ -20,7 +20,7 @@
       // TODO: Mirar que el libro es del usuario que ha iniciado sesión
       $query = mysqli_prepare($conn, "DELETE FROM libro WHERE `Book ID`=?") or die (mysqli_error($conn));
       mysqli_stmt_bind_param($query, "s", $lib_id);
-      $lib_id = $libros[$x];
+      $lib_id = htmlspecialchars($libros[$x]);
       mysqli_stmt_execute($query) or die (mysqli_error($conn));
     }
 

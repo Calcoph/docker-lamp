@@ -1,5 +1,5 @@
 <?php
-    $titulo = $_GET["titulo"];
+    $titulo = htmlspecialchars($_GET["titulo"]);
 
     if (isset($_COOKIE["username"])) {
         $username = htmlspecialchars($_COOKIE["username"]);
