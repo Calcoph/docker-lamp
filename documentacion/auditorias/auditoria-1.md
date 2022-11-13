@@ -117,6 +117,7 @@ Cinnamon bun capitulo 2 da un error
 * No parametrizamos los comandos SQL.
 * No validamos los datos desde el servidor, sólo desde el cliente.
 * No escapamos caracteres especiales. Al publicar un libro cualquiera puede meter elementos HTML, incluyendo \<script\>\</script\>.
+ * Esto incluye los nombres de usuario. Al publicar un comentario, inserta su nombre de usuario en él, lo cual puede ser cualquier string.
 
 # Diseño inseguro
 
