@@ -11,7 +11,7 @@
 
     $hostname = "db";
     $username = "admin";
-    $password = "test";
+    $password = file_get_contents('/var/db_pass.txt');
     $db = "database";
 
     $conn = mysqli_connect($hostname,$username,$password,$db);
