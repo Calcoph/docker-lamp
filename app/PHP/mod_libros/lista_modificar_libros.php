@@ -21,7 +21,7 @@
 
     $query = mysqli_prepare($conn, "SELECT libro.`Book ID`, Text_corto FROM libro JOIN escritos ON libro.`Book ID`=escritos.`Book ID` WHERE `Used ID`=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "s", $usuario);
-    $usuario = $_COOKIE["username"];
+    $usuario = htmlspecialchars($_COOKIE["username"]);
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     $libros = "";

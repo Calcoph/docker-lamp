@@ -39,7 +39,7 @@
     $query = mysqli_prepare($conn, "INSERT INTO `comentario libro`(`Comentario ID`, `User ID`, `Book ID`, `Texto`) VALUES (?, ?, ?, ?)") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "isss", $m_id, $user, $tit, $comentario);
     $m_id = $max_id + 1;
-    $user = $_COOKIE["username"];
+    $user = htmlspecialchars($_COOKIE["username"]);
     $tit = $titulo;
     $comentario = $_POST["comentario_nuevo"];
     mysqli_stmt_execute($query) or die (mysqli_error($conn));

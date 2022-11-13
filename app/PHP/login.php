@@ -1,6 +1,6 @@
 <?php
 function login() {
-    $user = $_COOKIE["username"];
+    $user = htmlspecialchars($_COOKIE["username"]);
     $pass = $_COOKIE["pass"];
 
     $hostname = "db";

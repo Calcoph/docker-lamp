@@ -18,7 +18,7 @@
 
     $query = mysqli_prepare($conn, "SELECT Nombre, Apellidos, DNI, fecha_nacimiento, Telefono, email, `Used ID`, Password FROM usuario WHERE `Used ID`=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "s", $user);
-    $user = $_COOKIE["username"];
+    $user = htmlspecialchars($_COOKIE["username"]);
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     mysqli_stmt_bind_result($query, $nombre, $apellidos, $dni, $f_nacimiento, $tlf, $email, $uid, $pswd);

@@ -19,7 +19,7 @@
     mysqli_stmt_bind_result($query, $titulo_, $imagen, $descripcion);
     mysqli_stmt_fetch($query);
     if (isset($_COOKIE["username"])) {
-        $user = $_COOKIE["username"];
+        $user = htmlspecialchars($_COOKIE["username"]);
     } else {
         $user = "Iniciar Sesión";
     }

@@ -2,7 +2,7 @@
     $titulo = $_GET["titulo"];
 
     if (isset($_COOKIE["username"])) {
-        $username = $_COOKIE["username"];
+        $username = htmlspecialchars($_COOKIE["username"]);
     } else {
         $username = "Iniciar Sesión";
     }

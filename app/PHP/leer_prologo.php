@@ -13,7 +13,7 @@
 
     // Si está logueado, tiene la cookie "username"
     if (isset($_COOKIE["username"])) {
-        $user = $_COOKIE["username"];
+        $user = htmlspecialchars($_COOKIE["username"]);
     } else {
         $user = "Iniciar Sesión";
     }
