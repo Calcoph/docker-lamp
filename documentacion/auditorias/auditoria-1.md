@@ -25,6 +25,9 @@ Archivos afectados:
 Esto se debe a que no tratamos los datos que los usuarios nos otorgan (por ejemplo al publicar un libro).
 Simplemente los guardamos en la base de datos y los enviamos tal y como son.
 
+Además, para navegar entre páginas, utilizamos links que no se tratan, y parte de esos links los insertamos la página.
+Por este motivo, alguien puede crear un link malicioso que le redireccione a nuestra página web, pero ejecutando el código que aparece en el link.
+
 ### SQL Injection
 La vulnerabilidad es parecida a la anterior, en este caso el usuario malicioso puede manipular la forma en la que accedemos a la base de datos,
 para que ejecute el comando que desee, o cambiar los parámetros del comando que debería ejecutarse.
