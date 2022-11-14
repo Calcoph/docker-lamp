@@ -25,8 +25,8 @@
     $fnacimiento = $_POST["fnacimiento"];
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
-    setcookie("username", $_POST["usuario"], time()+24*3600); // El inicio de sesión dura 24h
-    setcookie("pass", $pass, time()+24*3600); // El inicio de sesión dura 24h
+    setcookie("username", $_POST["usuario"], time()+24*3600, "/"); // El inicio de sesión dura 24h
+    setcookie("pass", $pass, time()+24*3600, "/"); // El inicio de sesión dura 24h
 
     // Vuelve a la página principal
     header('Location: '."/index.php");
