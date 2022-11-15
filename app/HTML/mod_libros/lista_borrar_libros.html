@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/catalogo.css">
+    <title>Lista borrar libros</title>
+    <script src="/js/borrar_libros.js"></script>
+</head>
+<body>
+    %header%
+    <form id="form_borrar_libros" name="form_borrar_libros" action="/PHP/mod_libros/borrar_libros.php" method="post" class="form">
+        <div class="catalogo_container">
+            <table class="default">
+                <tr>
+                    <th>Titulo</th>
+                    <th>Descripción</th>
+                </tr>
+                %titulos%
+            </table>
+            <button id="btn_borrar" type="button" onclick="borrar_libros()">Borrar libros</button>
+            <a href="/HTML/opciones_usuario.html" id="btnatras">Atrás</a>
+        </div>
+    </form>
+    <footer>
+        <div class="container">
+            <p>&copy; Ibai&Diego&Francisco</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cambiar datos</title>
+  <link rel="stylesheet" href="/CSS/inicio_sesion.css">
+  <script src="/js/inicio_sesion.js"></script>
+</head>
+<body>
+  <div class="signupFrm">
+    <form name="form_cambio_datos" action="/PHP/cambiar_datos.php" class="form" method="post">
+      <h1 class="title">Librerium</h1>
+      <div class="inputContainer">
+        <input name="nombre" id="nombre" type="text" class="input" placeholder="a">
+        <label for="" class="label">Nombre</label>
+        <script>
+          document.getElementById('nombre').value = '%nombre%';
+        </script>
+      </div>
+      <div class="inputContainer">
+        <input name="apellido" id="apellido" type="text" class="input" placeholder="a">
+        <label for="" class="label">Apellido</label>
+        <script>
+          document.getElementById('apellido').value = '%apellido%';
+        </script>
+      </div>
+      <div class="inputContainer">
+        <input name="dni" id="dni" type="text" class="input" placeholder="a">
+        <label for="" class="label">DNI</label>
+        <script>
+          document.getElementById('dni').value = '%dni%';
+        </script>
+      </div>
+      <div class="inputContainer">
+        <input name="fnacimiento" id="fnacimiento" type="text" class="input" placeholder="a">
+        <label for="" class="label">Fecha de nacimiento</label>
+        <script>
+          document.getElementById('fnacimiento').value = '%fnacimiento%';
+        </script>
+      </div>
+      <div class="inputContainer">
+        <input name="tlf" id="tlf" type="text" class="input" placeholder="a">
+        <label for="" class="label">Teléfono</label>
+        <script>
+          document.getElementById('tlf').value = '%tlf%';
+        </script>
+      </div>
+      <div class="inputContainer">
+        <input name="email" id="email" type="text" class="input" placeholder="a">
+        <label for="" class="label">Email</label>
+        <script>
+          document.getElementById('email').value = '%email%';
+        </script>
+      </div>
+      <div class="inputContainer">
+        <input name="usuario" id="usuario" type="text" class="input" placeholder="a">
+        <label for="" class="label">Username</label>
+        <script>
+          document.getElementById('usuario').value = '%usuario%';
+        </script>
+      </div>
+      <div class="botones">
+        <a href="/PHP/modificar_pswd.php" id="btnCC">Cambiar Contraseña</a>
+        <a href="/HTML/opciones_usuario.html" id="btnatras">Atrás</a>
+        <div class="btn_container">
+          <input type="button" class="submitBtn" value="Cambiar datos" onclick="cambiar_datos()">
+        </div>
+
+        
+      </div>
+
+    </form>
+  </div>
+</body>
+
+</html>

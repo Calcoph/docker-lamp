@@ -1,0 +1,149 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Roboro', sans-serif;
+    margin: 0;
+}
+header{
+    background-color: rgb(245,245,245);
+}
+header .logo{
+    margin: 0;
+    padding: 25px 30px;
+    font-weight: bold;
+    color: burlywood;
+    font-size: 2em;
+}
+
+
+header .container{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+header nav{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 25px;
+}
+header a{
+    padding: 5px 12px;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+header a:hover{
+    color:rgb(224, 176, 113);
+}
+button{
+    font-size: 1em;
+    font-weight: bold;
+    padding: 10px 50px;
+    border-radius: 15px;
+    border: 1px solid rgba(0,0,0,1);
+    box-shadow:  2px 2px 2px rgba(0,0,0,1);
+    background-color: burlywood;
+}
+button:hover{
+    background-color: rgb(175, 102, 6);
+}
+#Descripcion_libro{
+    background-image: linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(/img/leaf-106568.jpg);
+    color: white;
+    display: flex;
+    height: 93vh;
+    background-color:rgba(228, 146, 70, 0.952);
+    align-items: center;
+}
+#Descripcion_libro .container{
+    padding-left: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+}
+img{
+    border-radius: 15px;
+}
+#Descripcion_libro p{
+    text-align: left;
+    padding-left: 50px;
+}
+
+
+
+#Descripcion_libro a{
+    font-size: 1em;
+    font-weight: bold;
+    padding: 10px 50px;
+    border-radius: 15px;
+    border: 1px solid rgba(0,0,0,1);
+    box-shadow:  2px 2px 2px rgba(0,0,0,1);
+    background-color: burlywood;
+    text-decoration: none;
+    color: black;
+}
+#Descripcion_libro a:hover{
+    background-color: rgb(175, 102, 6);
+}
+
+#comentario_nuevo{
+    box-shadow: 1px 2px 4px rgba(0,0,0,.5);
+    
+}
+.btncontainer{
+    padding-top: 10px;
+}
+#cajon_comentarios button{
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 15px;
+    border: 1px solid rgba(0,0,0,1);
+    box-shadow:  2px 2px 2px rgba(0,0,0,1);
+    background-color: burlywood;
+   
+   
+}
+.comentario{
+    padding: 0px 200px;
+    text-align: center;
+
+}
+.infocoment{
+    text-align: left;
+}
+
+
+footer{
+    margin: 0;
+    padding: 12px;
+    background-color:gray;
+    text-align: center;
+    display: flex;
+
+}
+footer .containerf{
+    text-align: center;
+}
+
+@media (min-width:720px){
+    header{
+        position: fixed;
+        width: 100%;
+    }
+    header .logo{width:350px;}
+        
+    header .container{
+        flex-direction: row;
+        justify-content: space-between;
+        
+    }
+    header nav{
+        flex-direction: row;
+        padding-bottom: 0;
+        padding-right: 0px;
+       
+    }}
