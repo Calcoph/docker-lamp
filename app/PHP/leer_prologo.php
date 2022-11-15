@@ -28,12 +28,12 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $query = mysqli_prepare($conn, "SELECT Chapter_ID FROM libro WHERE `Book ID`=?") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT Prologue FROM libro WHERE `Book ID`=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "s", $tit);
     $tit = $titulo;
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
     
-    mysqli_stmt_bind_result($query, $chap_id, $prologo);
+    mysqli_stmt_bind_result($query, $prologo);
 
     mysqli_stmt_fetch($query);
 
@@ -61,7 +61,7 @@
     <form metod=\"get\" action=\"/PHP/leer_libro.php\">
         <Button>Capítulo siguiente</Button>
         <input type=\"hidden\" name=\"titulo\" value=\"$titulo\" />
-        <input type=\"hidden\" name=\"capitulo\" value=\"$cap_siguiente\" />
+        <input type=\"hidden\" name=\"capitulo\" value=\"1\" />
     </form>";
     }
 
@@ -76,25 +76,7 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $query = mysqli_prepare($conn, "SELECT `User ID`, Texto FROM `comentario capitulo` WHERE `Book ID`=? AND Chapter_ID=?") or die (mysqli_error($conn));
-    mysqli_stmt_bind_param($query, "ss", $tit, $c_id);
-    $tit = $titulo;
-    $c_id = $chap_id;
-    mysqli_stmt_execute($query) or die (mysqli_error($conn));
-    
-    mysqli_stmt_bind_result($query, $uid, $texto);
-
-    $comentarios = "";
-    while (mysqli_stmt_fetch($query)) {
-        $comentarios .= "<div class=\"comentario\">
-            <div class=\"infocoment\">
-                <h4>$uid</h4>
-                <p>$texto</p>
-            </div>
-        </div>";
-    }
-
-    $pagina = str_replace('%comentario%', $comentarios, $pagina);
+    $pagina = str_replace('%comentario%', "", $pagina);
 
     echo $pagina;
 ?>

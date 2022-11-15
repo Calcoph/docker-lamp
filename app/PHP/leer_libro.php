@@ -24,19 +24,19 @@
     $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/leer_libro.html'));
 
     // Obtiene el capítulo que se ha pedido
-    $query = mysqli_prepare($conn, "SELECT Chapter_ID FROM capitulo WHERE `Book ID`=? AND `Chapter Num`=?") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT Chapter_ID, Texto FROM capitulo WHERE `Book ID`=? AND `Chapter Num`=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "si", $tit, $c_num);
     $tit = $titulo;
     $c_num = $capitulo;
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
     
     // Guarda el nombre del capítulo para luego
-    mysqli_stmt_bind_result($query, $chap_id);
+    mysqli_stmt_bind_result($query, $chap_id, $texto);
     mysqli_stmt_fetch($query);
 
     // inserta el texto en la página
-    $pagina = str_replace('%texto%', $row["Texto"], $pagina);
-    $pagina = str_replace('%TitCapitulo%', $row["Chapter_ID"], $pagina);
+    $pagina = str_replace('%texto%', $texto, $pagina);
+    $pagina = str_replace('%TitCapitulo%', $chap_id, $pagina);
 
     $cap_anterior = intval($capitulo)-1;
     $anterior = "";
