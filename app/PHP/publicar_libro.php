@@ -9,6 +9,7 @@
     // La dirección que se ve desde el html (para insertar las imágenes luego)
     $save_path = "/uploads/";
     $titulo = $_POST["titulo"];
+    $fileType = array('jpg','png');
     if (file_exists($_FILES["portada_personalizada"]["tmp_name"])) {
         // Si ha elegido una portada personalizada, la descargamos
         $target_file = $target_dir . basename($_FILES["portada_personalizada"]["name"]);
@@ -17,9 +18,9 @@
         $files = $_FILES["portada_personalizada"]["tmp_name"];
         // código sacado de https://www.w3schools.com/php/php_file_upload.asp
         // modificaciones: Hemos eliminado todos los checks
-        if (move_uploaded_file($_FILES["portada_personalizada"]["tmp_name"], $target_file)) {
-
-        } else {
+        if (move_uploaded_file($_FILES["portada_personalizada"]["tmp_name"], $target_file) && in_array($imageFileType,$fileType)) {
+        } 
+        else {
             echo "Ha habido un error al subir la portada.";
             return;
         }
