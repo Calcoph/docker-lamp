@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
-    <link rel="stylesheet" href="/CSS/inicio_sesion.css">
+    <link rel="stylesheet" href="/CSS/registro.css">
     <script src="/js/inicio_sesion.js"></script>
 </head>
 <body>
@@ -42,7 +42,12 @@
           </div>
           <div class="inputContainer">
             <input name="pswd" type="password" class="input" placeholder="a">
-            <label for="" class="label">Password (Min:length>=6,una mayúcula,una minúscula,un número y un caracter especial)</label>
+            <label for="" class="label"><a href="javascript:funcion()">Password info</a>
+              <script>
+                      function funcion(){
+                        alert('Password (Min:length>=6,una mayúcula,una minúscula,un número y un caracter especial)');
+                      }
+                    </script></label>
           </div>
     
           <div class="inputContainer">
