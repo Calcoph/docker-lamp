@@ -302,56 +302,6 @@ CREATE TABLE `usuario` (
   `Intento_Tiempo` datetime NOT NULL DEFAULT '2000-08-21 23:59:59'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Intento almacena un numero x de intentos de inicio de sesion, Intento_Tiempo para comparar cuando fue el ultimo intento, para que si pasa una cantidad x desde el ultimo intento se resetee a 1 intento';
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ses_tokens`
---
-
-CREATE TABLE `ses_tokens` (
-  `token` varchar(32) NOT NULL,
-  `User` varchar(60) NOT NULL DEFAULT 'Sin_Cuenta',
-  `fecha_validez` datetime NOT NULL DEFAULT '2000-08-21 23:59:59'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Indices de la tabla `ses_tokens`
---
-ALTER TABLE `ses_tokens`
-  ADD PRIMARY KEY (`token`),
-  ADD KEY `Used ID` (`User`);
-
---
--- Filtros para la tabla `ses_tokens`
---
-ALTER TABLE `ses_tokens`
-  ADD CONSTRAINT `User M` FOREIGN KEY (`User`) REFERENCES `usuario` (`Used ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `csrf_tokens`
---
-
-CREATE TABLE `csrf_tokens` (
-  `token` varchar(32) NOT NULL,
-  `User` varchar(60) NOT NULL DEFAULT 'Sin_Cuenta',
-  `fecha_validez` datetime NOT NULL DEFAULT '2000-08-21 23:59:59'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Indices de la tabla `csrf_tokens`
---
-ALTER TABLE `csrf_tokens`
-  ADD PRIMARY KEY (`token`),
-  ADD KEY `Used ID` (`User`);
-
---
--- Filtros para la tabla `csrf_tokens`
---
-ALTER TABLE `csrf_tokens`
-  ADD CONSTRAINT `User M` FOREIGN KEY (`User`) REFERENCES `usuario` (`Used ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
 --
 -- Volcado de datos para la tabla `usuario`
 --
@@ -492,3 +442,55 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ses_tokens`
+--
+
+CREATE TABLE `ses_tokens` (
+  `token` varchar(32) NOT NULL,
+  `user_id` varchar(60) NOT NULL DEFAULT 'Sin_Cuenta',
+  `fecha_validez` datetime NOT NULL DEFAULT '2000-08-21 23:59:59'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Indices de la tabla `ses_tokens`
+--
+ALTER TABLE `ses_tokens`
+  ADD PRIMARY KEY (`token`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Filtros para la tabla `ses_tokens`
+--
+ALTER TABLE `ses_tokens`
+  ADD CONSTRAINT `user_id M` FOREIGN KEY (`user_id`) REFERENCES `usuario` (`Used ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `csrf_tokens`
+--
+
+CREATE TABLE `csrf_tokens` (
+  `token` varchar(32) NOT NULL,
+  `User` varchar(60) NOT NULL DEFAULT 'Sin_Cuenta',
+  `fecha_validez` datetime NOT NULL DEFAULT '2000-08-21 23:59:59'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+--
+-- Indices de la tabla `csrf_tokens`
+--
+ALTER TABLE `csrf_tokens`
+  ADD PRIMARY KEY (`token`),
+  ADD KEY `User` (`User`);
+
+--
+-- Filtros para la tabla `csrf_tokens`
+--
+ALTER TABLE `csrf_tokens`
+  ADD CONSTRAINT `User M` FOREIGN KEY (`User`) REFERENCES `usuario` (`Used ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
