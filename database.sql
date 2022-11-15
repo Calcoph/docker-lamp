@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-10-2022 a las 19:58:45
+-- Tiempo de generación: 15-11-2022 a las 13:45:12
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `conceptual update 1`
+-- Base de datos: `database ver 2`
 --
 
 -- --------------------------------------------------------
@@ -229,6 +229,17 @@ INSERT INTO `escritos` (`Book ID`, `Used ID`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `ips`
+--
+
+CREATE TABLE `ips` (
+  `IP` int(11) UNSIGNED NOT NULL,
+  `IDusuario` varchar(60) NOT NULL DEFAULT 'Sin_Cuenta'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `libro`
 --
 
@@ -237,7 +248,7 @@ CREATE TABLE `libro` (
   `imglink` varchar(50) NOT NULL DEFAULT '/uploads/portada 1.png',
   `Text_corto` mediumtext NOT NULL DEFAULT 'x',
   `Text_largo` mediumtext NOT NULL DEFAULT 'xx',
-  `Prologue` mediumtext NOT NULL
+  `Prologue` mediumtext NOT NULL DEFAULT 'xxx'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -262,30 +273,46 @@ INSERT INTO `libro` (`Book ID`, `imglink`, `Text_corto`, `Text_largo`, `Prologue
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `log`
+--
+
+CREATE TABLE `log` (
+  `Id` int(11) NOT NULL,
+  `Used ID` varchar(50) NOT NULL DEFAULT 'Sin_Cuenta',
+  `Text` longtext NOT NULL DEFAULT '',
+  `Fecha_creacion` datetime NOT NULL DEFAULT '2000-08-21 23:59:59'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
 CREATE TABLE `usuario` (
-  `Used ID` varchar(50) NOT NULL DEFAULT '',
-  `Password` varchar(50) NOT NULL DEFAULT '',
-  `DNI` varchar(50) NOT NULL DEFAULT 'DNI',
-  `email` varchar(50) NOT NULL DEFAULT 'y@gmail.com',
-  `Nombre` varchar(50) NOT NULL DEFAULT 'z',
-  `Apellidos` varchar(50) NOT NULL DEFAULT 'x',
-  `Telefono` varchar(50) NOT NULL DEFAULT '1',
-  `fecha_nacimiento` date NOT NULL DEFAULT '2000-08-21'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Se trata del usuario de la pagina, ya sea admin oh persona normal, esta es la informacion que se guardara de el';
+  `Used ID` varchar(60) NOT NULL DEFAULT '',
+  `Password` varchar(60) NOT NULL DEFAULT '',
+  `DNI` varchar(60) NOT NULL DEFAULT 'DNI',
+  `email` varchar(60) NOT NULL DEFAULT 'y@gmail.com',
+  `Nombre` varchar(60) NOT NULL DEFAULT 'z',
+  `Apellidos` varchar(60) NOT NULL DEFAULT 'x',
+  `Telefono` varchar(60) NOT NULL DEFAULT '1',
+  `fecha_nacimiento` date NOT NULL DEFAULT '2000-08-21',
+  `Intentos` int(1) NOT NULL DEFAULT 0,
+  `Intento_Tiempo` datetime NOT NULL DEFAULT '2000-08-21 23:59:59'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Intento almacena un numero x de intentos de inicio de sesion, Intento_Tiempo para comparar cuando fue el ultimo intento, para que si pasa una cantidad x desde el ultimo intento se resetee a 1 intento';
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`Used ID`, `Password`, `DNI`, `email`, `Nombre`, `Apellidos`, `Telefono`, `fecha_nacimiento`) VALUES
-('Admin', 'test', '00000000X', 'Admind@admindistrator.com', 'Admin', 'Yes', '659847718', '1800-08-21'),
-('Aitor', 'VIVA CHILE', '99036644R', 'BestAtor@hotmail.com', 'Aitor', 'Urrutia', '663087822', '1999-12-31'),
-('Aligator 250', '214134351131253412771315171846123 41424251421 caba', '82045408S', 'TheRealRealRealBestAtor@gmail.com', 'Ane', 'Brown', '91234567', '2003-01-23'),
-('Mikel', 'legenda1234', '22651705V', 'Mikel2000@gmail.com', 'Mikel', 'Silva', '677523021', '1996-08-21'),
-('简单的', 'Simple', '84435835Y', 'Sun@gmail.com', 'Liang', 'Zhuge', '139678342', '2004-10-08');
+INSERT INTO `usuario` (`Used ID`, `Password`, `DNI`, `email`, `Nombre`, `Apellidos`, `Telefono`, `fecha_nacimiento`, `Intentos`, `Intento_Tiempo`) VALUES
+('Admin', 'test', '00000000X', 'Admind@admindistrator.com', 'Admin', 'Yes', '659847718', '1800-08-21', 0, '0000-00-00 00:00:00'),
+('Aitor', 'VIVA CHILE', '99036644R', 'BestAtor@hotmail.com', 'Aitor', 'Urrutia', '663087822', '1999-12-31', 0, '0000-00-00 00:00:00'),
+('Aligator 250', '214134351131253412771315171846123 41424251421 caba', '82045408S', 'TheRealRealRealBestAtor@gmail.com', 'Ane', 'Brown', '91234567', '2003-01-23', 0, '0000-00-00 00:00:00'),
+('Mikel', 'legenda1234', '22651705V', 'Mikel2000@gmail.com', 'Mikel', 'Silva', '677523021', '1996-08-21', 0, '0000-00-00 00:00:00'),
+('Sin_Cuenta', 'qdcnaefrtgADSWQRPOIL02ÑLKO..123412452', '.', '.', '.', '.', '.', '2000-08-21', 0, '2000-08-21 23:59:59'),
+('简单的', 'Simple', '84435835Y', 'Sun@gmail.com', 'Liang', 'Zhuge', '139678342', '2004-10-08', 0, '0000-00-00 00:00:00');
 
 --
 -- Índices para tablas volcadas
@@ -332,16 +359,39 @@ ALTER TABLE `escritos`
   ADD KEY `Book ID` (`Book ID`);
 
 --
+-- Indices de la tabla `ips`
+--
+ALTER TABLE `ips`
+  ADD PRIMARY KEY (`IP`,`IDusuario`);
+
+--
 -- Indices de la tabla `libro`
 --
 ALTER TABLE `libro`
   ADD PRIMARY KEY (`Book ID`);
 
 --
+-- Indices de la tabla `log`
+--
+ALTER TABLE `log`
+  ADD PRIMARY KEY (`Id`,`Used ID`) USING BTREE,
+  ADD KEY `Used ID` (`Used ID`);
+
+--
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`Used ID`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `log`
+--
+ALTER TABLE `log`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
@@ -381,6 +431,12 @@ ALTER TABLE `comentario libro`
 ALTER TABLE `escritos`
   ADD CONSTRAINT `Book_ID E` FOREIGN KEY (`Book ID`) REFERENCES `libro` (`Book ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Used_ID E` FOREIGN KEY (`Used ID`) REFERENCES `usuario` (`Used ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `log`
+--
+ALTER TABLE `log`
+  ADD CONSTRAINT `Used ID` FOREIGN KEY (`Used ID`) REFERENCES `usuario` (`Used ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
