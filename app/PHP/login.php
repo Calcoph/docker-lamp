@@ -21,7 +21,7 @@ function login() {
         mysqli_stmt_fetch($query);
 
         if ($user != NULL) {
-            return true;
+            return $user;
         } else {
             header('Location: '."/HTML/inicio_sesion.html");
             die();
