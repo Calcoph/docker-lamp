@@ -290,7 +290,6 @@ CREATE TABLE `log` (
 --
 
 CREATE TABLE `usuario` (
-<<<<<<< HEAD
   `Used ID` varchar(60) NOT NULL DEFAULT '',
   `Password` varchar(60) NOT NULL DEFAULT '',
   `DNI` varchar(60) NOT NULL DEFAULT 'DNI',
@@ -302,17 +301,6 @@ CREATE TABLE `usuario` (
   `Intentos` int(1) NOT NULL DEFAULT 0,
   `Intento_Tiempo` datetime NOT NULL DEFAULT '2000-08-21 23:59:59'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Intento almacena un numero x de intentos de inicio de sesion, Intento_Tiempo para comparar cuando fue el ultimo intento, para que si pasa una cantidad x desde el ultimo intento se resetee a 1 intento';
-=======
-  `Used ID` varchar(50) NOT NULL DEFAULT '',
-  `Password` varchar(50) NOT NULL DEFAULT '',
-  `DNI` varchar(50) NOT NULL DEFAULT 'DNI',
-  `email` varchar(50) NOT NULL DEFAULT 'y@gmail.com',
-  `Nombre` varchar(50) NOT NULL DEFAULT 'z',
-  `Apellidos` varchar(50) NOT NULL DEFAULT 'x',
-  `Telefono` varchar(9) NOT NULL DEFAULT '1',
-  `fecha_nacimiento` date NOT NULL DEFAULT '2000-08-21'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Se trata del usuario de la pagina, ya sea admin oh persona normal, esta es la informacion que se guardara de el';
->>>>>>> develop
 
 --
 -- Volcado de datos para la tabla `usuario`
