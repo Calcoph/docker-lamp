@@ -1,13 +1,16 @@
 <?php
     require "../login.php";
+    require "../tokens.php";
 
     // Nos aseguramos de que los datos del login son correctos antes de continuar.
-    login();
+    $us = login();
 
     // pone el nombre de usuario en el header
     $header = str_replace('%usuario%', $usuario, file_get_contents('/var/www/html/HTML/header_small.html'));
     // inserta el header en la página
     $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/mod_libros/lista_borrar_libros.html'));
+    $csrf = obtener_token_csrf();
+    $pagina  = str_replace('%nonce%', $csrf, $pagina);
 
     $hostname = "db";
     $username = "admin";
@@ -21,7 +24,7 @@
 
     $query = mysqli_prepare($conn, "SELECT libro.`Book ID`, Text_corto FROM libro JOIN escritos ON libro.`Book ID`=escritos.`Book ID` WHERE `Used ID`=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "s", $usuario);
-    $usuario = $_COOKIE["username"];
+    $usuario = $us;
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     $libros = "";

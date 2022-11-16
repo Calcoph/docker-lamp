@@ -1,4 +1,11 @@
 <?php
+    require "tokens.php";
+
+    if (!comprobar_token_csrf($_POST["nonce"])) {
+        echo "Ha habido un error interno (E9013), pruebe más tarde";
+        die();
+    }
+
     $hostname = "db";
     $username = "admin";
     $password = file_get_contents('/var/db_pass.txt');
@@ -88,8 +95,7 @@
             $fnacimiento = $_POST["fnacimiento"];
             mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
-            setcookie("username", $_POST["usuario"], time()+24*3600, "/"); // El inicio de sesión dura 24h
-            setcookie("pass", $pass, time()+24*3600, "/"); // El inicio de sesión dura 24h
+            iniciar_sesion($_POST["usuario"]);
 
             // Vuelve a la página principal
             header('Location: '."/index.php");
@@ -99,5 +105,4 @@
         header('Location: '."/HTML/register.html");
         die();
     }
-
 ?>

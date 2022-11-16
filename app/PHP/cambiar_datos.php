@@ -4,6 +4,11 @@
     // Nos aseguramos de que los datos del login son correctos antes de continuar.
     login();
 
+    if (!comprobar_token_csrf($_POST["nonce"])) {
+        echo "Ha habido un error interno (E9013), pruebe más tarde";
+        die();
+    }
+
     $hostname = "db";
     $username = "admin";
     $password = file_get_contents('/var/db_pass.txt');
@@ -58,6 +63,8 @@
     $fnacimiento = $_POST["fnacimiento"];
     $usuario_anterior = $_POST["usuario_anterior"]; // TODO: En vez de un post con el usuario anterior, coger el usuario de la cookie, igual que el login
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
+
+    iniciar_sesion($_POST["usuario"]);
 
     // Vuelve a la página principal
     header('Location: '."/index.php");

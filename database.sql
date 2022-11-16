@@ -446,26 +446,26 @@ COMMIT;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ses_tokens`
+-- Estructura de tabla para la tabla `session_tokens`
 --
 
-CREATE TABLE `ses_tokens` (
-  `token` varchar(32) NOT NULL,
-  `user_id` varchar(60) NOT NULL DEFAULT 'Sin_Cuenta',
+CREATE TABLE `session_tokens` (
+  `token` varchar(64) NOT NULL,
+  `user_id` varchar(60),
   `fecha_validez` datetime NOT NULL DEFAULT '2000-08-21 23:59:59'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Indices de la tabla `ses_tokens`
+-- Indices de la tabla `session_tokens`
 --
-ALTER TABLE `ses_tokens`
+ALTER TABLE `session_tokens`
   ADD PRIMARY KEY (`token`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Filtros para la tabla `ses_tokens`
+-- Filtros para la tabla `session_tokens`
 --
-ALTER TABLE `ses_tokens`
+ALTER TABLE `session_tokens`
   ADD CONSTRAINT `user_id M` FOREIGN KEY (`user_id`) REFERENCES `usuario` (`Used ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- --------------------------------------------------------
@@ -475,8 +475,8 @@ ALTER TABLE `ses_tokens`
 --
 
 CREATE TABLE `csrf_tokens` (
-  `token` varchar(32) NOT NULL,
-  `User` varchar(60) NOT NULL DEFAULT 'Sin_Cuenta',
+  `token` varchar(64) NOT NULL,
+  `session` varchar(64) NOT NULL,
   `fecha_validez` datetime NOT NULL DEFAULT '2000-08-21 23:59:59'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -486,11 +486,11 @@ CREATE TABLE `csrf_tokens` (
 --
 ALTER TABLE `csrf_tokens`
   ADD PRIMARY KEY (`token`),
-  ADD KEY `User` (`User`);
+  ADD KEY `session` (`session`);
 
 --
 -- Filtros para la tabla `csrf_tokens`
 --
 ALTER TABLE `csrf_tokens`
-  ADD CONSTRAINT `User M` FOREIGN KEY (`User`) REFERENCES `usuario` (`Used ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `session M` FOREIGN KEY (`session`) REFERENCES `session_tokens` (`token`) ON DELETE CASCADE ON UPDATE CASCADE;
 

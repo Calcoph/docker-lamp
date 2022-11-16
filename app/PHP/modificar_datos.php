@@ -2,7 +2,7 @@
     require "login.php";
 
     // Nos aseguramos de que los datos del login son correctos antes de continuar.
-    login();
+    $us = login();
 
     $hostname = "db";
     $username = "admin";
@@ -15,10 +15,12 @@
     }
 
     $pagina = file_get_contents('/var/www/html/HTML/cambiar_datos.html');
+    $csrf = obtener_token_csrf();
+    $pagina  = str_replace('%nonce%', $csrf, $pagina);
 
     $query = mysqli_prepare($conn, "SELECT Nombre, Apellidos, DNI, fecha_nacimiento, Telefono, email, `Used ID`, Password FROM usuario WHERE `Used ID`=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "s", $user);
-    $user = $_COOKIE["username"];
+    $user = $us;
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     mysqli_stmt_bind_result($query, $nombre, $apellidos, $dni, $f_nacimiento, $tlf, $email, $uid, $pswd);

@@ -1,4 +1,6 @@
 <?php
+    require "login.php";
+
     $hostname = "db";
     $username = "admin";
     $password = file_get_contents('/var/db_pass.txt');
@@ -18,13 +20,16 @@
 
     mysqli_stmt_bind_result($query, $titulo_, $imagen, $descripcion);
     mysqli_stmt_fetch($query);
-    if (isset($_COOKIE["username"])) {
-        $user = $_COOKIE["username"];
-    } else {
+
+    $user = get_usuario();
+    if ($user == NULL) {
         $user = "Iniciar Sesión";
     }
+
     $header = str_replace('%usuario%', $user, file_get_contents('/var/www/html/HTML/header_small.html'));
     $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/pagina_libro.html'));
+    $csrf = obtener_token_csrf();
+    $pagina  = str_replace('%nonce%', $csrf, $pagina);
 
     // inserta la imagen en la página
     $pagina  = str_replace('%ruta imagen%', $imagen, $pagina);

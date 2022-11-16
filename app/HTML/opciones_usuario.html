@@ -10,9 +10,11 @@
 </head>
 <body>
     <div class="signupFrm">
-        <div class="btn_container">
-            <input type="button" class="submitBtn" value="Cerrar sesión" onclick="cerrar_sesion()">
-        </div>
+        <form action="/PHP/cerrar_sesion.php">
+            <div class="btn_container">
+                <input type="submit" class="submitBtn" value="Cerrar sesión">
+            </div>
+        </form>
         <form action="/PHP/modificar_datos.php">
             <div class="btn_container">
                 <input type="submit" class="submitBtn" value="Cambiar datos">

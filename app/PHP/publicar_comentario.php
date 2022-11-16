@@ -1,10 +1,8 @@
 <?php
-    // Si está logueado, tiene la cookie "username"
-  if (isset($_COOKIE["username"])) {
     require "login.php";
 
     // Nos aseguramos de que los datos del login son correctos antes de continuar.
-    login();
+    $us = login();
 
     $hostname = "db";
     $username = "admin";
@@ -39,16 +37,11 @@
     $query = mysqli_prepare($conn, "INSERT INTO `comentario libro`(`Comentario ID`, `User ID`, `Book ID`, `Texto`) VALUES (?, ?, ?, ?)") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "isss", $m_id, $user, $tit, $comentario);
     $m_id = $max_id + 1;
-    $user = $_COOKIE["username"];
+    $user = $us;
     $tit = $titulo;
     $comentario = $_POST["comentario_nuevo"];
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     header('Location: '."/PHP/libro.php/?titulo=$titulo");
     die();
-  } else {
-    // Si no está logueado no puede publicar un comentario
-    header('Location: '."/PHP/inicio_sesion.php");
-    die();
-  }
 ?>

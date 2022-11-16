@@ -1,8 +1,7 @@
 <?php
-  // Si está logueado, tiene la cookie "username"
-  if (isset($_COOKIE["username"])) {
-    $username = $_COOKIE["username"];
-  } else {
+  require "PHP/login.php";
+  $username = get_usuario();
+  if ($username == NULL) {
     $username = "Iniciar Sesión";
   }
 
