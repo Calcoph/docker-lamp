@@ -20,6 +20,7 @@ function otorgar_token_sesion() {
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     setcookie("session", $token, $expira, "/");
+    $_COOKIE["session"] = $token;
 }
 
 function iniciar_sesion($usuario) {
@@ -41,7 +42,7 @@ function iniciar_sesion($usuario) {
                                     WHERE token=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "ss", $us, $tok);
     $us = $usuario;
-    $tok = $token;
+    $tok = $_COOKIE["session"];
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 }
 

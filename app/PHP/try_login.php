@@ -26,8 +26,8 @@
     mysqli_stmt_bind_result($query, $pass_correcta);
     mysqli_stmt_fetch($query);
     if (password_verify($pass, $pass_correcta)) {
-        header('Location: '."/index.php");
         iniciar_sesion($user);
+        header('Location: '."/index.php");
         die();
     } else {
         $pagina = str_replace('%usuario%', $user, file_get_contents('/var/www/html/HTML/inicio_sesion_fallido.html'));
