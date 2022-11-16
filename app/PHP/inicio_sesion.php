@@ -1,5 +1,6 @@
 <?php
   require "login.php";
+  require "tokens.php";
   // Si está logueado, un usuario
   if (get_usuario() != NULL) {
     // le mandamos a las opciones de usuario
@@ -8,6 +9,9 @@
     echo file_get_contents('/var/www/html/HTML/opciones_usuario.html');
   } else {
     // le mandamos a inicio_sesion
-    echo file_get_contents('/var/www/html/HTML/inicio_sesion.html');
+    $pagina = file_get_contents('/var/www/html/HTML/inicio_sesion.html');
+    $csrf = obtener_token_csrf();
+    $pagina  = str_replace('%nonce%', $csrf, $pagina);
+    echo $pagina;
   }
 ?>

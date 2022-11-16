@@ -1,4 +1,6 @@
 <?php
+    require "tokens.php";
+
     $user = $_POST["usuario"];
     $pass = $_POST["pswd"];
 
@@ -25,6 +27,8 @@
         die();
     } else {
         $pagina = str_replace('%usuario%', $user, file_get_contents('/var/www/html/HTML/inicio_sesion_fallido.html'));
+        $csrf = obtener_token_csrf();
+        $pagina  = str_replace('%nonce%', $csrf, $pagina);
         echo $pagina;
     }
 ?>

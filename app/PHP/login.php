@@ -23,11 +23,11 @@ function login() {
         if ($user != NULL) {
             return $user;
         } else {
-            header('Location: '."/HTML/inicio_sesion.html");
+            header('Location: '."/PHP/inicio_sesion.php");
             die();
         }
     } else {
-        header('Location: '."/HTML/inicio_sesion.html");
+        header('Location: '."/PHP/inicio_sesion.php");
         die();
     }
 }
