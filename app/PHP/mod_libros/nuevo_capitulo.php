@@ -1,9 +1,9 @@
 <?php
+    require "../login.php";
     $titulo = $_GET["titulo"];
 
-    if (isset($_COOKIE["username"])) {
-        $username = $_COOKIE["username"];
-    } else {
+    $username = get_usuario();
+    if ($username == NULL) {
         $username = "Iniciar Sesión";
     }
 

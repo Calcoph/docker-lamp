@@ -1,4 +1,6 @@
 <?php
+    require "login.php";
+
     $hostname = "db";
     $username = "admin";
     $password = file_get_contents('/var/db_pass.txt');
@@ -12,12 +14,11 @@
     $titulo = $_GET["titulo"];
     $capitulo = $_GET["capitulo"];
 
-    // Si está logueado, tiene la cookie "username"
-    if (isset($_COOKIE["username"])) {
-        $user = $_COOKIE["username"];
-    } else {
-        $user = "Iniciar Sesión";
+    $username = get_usuario();
+    if ($username == NULL) {
+      $username = "Iniciar Sesión";
     }
+
     // pone el nombre de usuario en el header
     $header = str_replace('%usuario%', $user, file_get_contents('/var/www/html/HTML/header_small.html')); 
     // inserta el header en la página

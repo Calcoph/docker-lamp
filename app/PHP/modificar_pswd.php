@@ -2,7 +2,7 @@
     require "login.php";
 
     // Nos aseguramos de que los datos del login son correctos antes de continuar.
-    login();
+    $us = login();
 
     $hostname = "db";
     $username = "admin";
@@ -18,7 +18,7 @@
 
     $query = mysqli_prepare($conn, "SELECT `Used ID`FROM usuario WHERE `Used ID`=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "s", $user);
-    $user = $_COOKIE["username"];
+    $user = $us;
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     mysqli_stmt_bind_result($query, $nombre, $apellidos, $dni, $f_nacimiento, $tlf, $email, $uid, $pswd);

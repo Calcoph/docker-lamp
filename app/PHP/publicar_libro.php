@@ -2,7 +2,7 @@
     require "login.php";
 
     // Nos aseguramos de que los datos del login son correctos antes de continuar.
-    login();
+    $us = login();
 
     // La carpeta donde se van a guardar los archivos
     $target_dir = "/var/www/html/uploads/";
@@ -58,7 +58,7 @@
     $query = mysqli_prepare($conn, "INSERT INTO escritos(`Book ID`, `Used ID`) VALUES (?, ?)") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "ss", $tit, $user);
     $tit = $titulo;
-    $user = $_COOKIE["username"];
+    $user = $us;
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     if ($_POST['boton'] == "solo_publicar") {

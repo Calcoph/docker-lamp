@@ -1,6 +1,7 @@
 <?php
-    // Si está logueado, tiene la cookie "username"
-  if (isset($_COOKIE["username"])) {
+  require "login.php";
+  // Si está logueado, un usuario
+  if (get_usuario() != NULL) {
     // le mandamos a las opciones de usuario
     // No hace falta que verifiquemos el login en este paso.
     // Sólo miramos si está logueado por comodidad del usuario.
