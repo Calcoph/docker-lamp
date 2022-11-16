@@ -1,6 +1,5 @@
 <?php
   require "login.php";
-  require "tokens.php";
 
   $username = login();
   // pone el nombre de usuario en el header

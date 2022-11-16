@@ -1,5 +1,6 @@
 <?php
     require "login.php";
+
     $hostname = "db";
     $username = "admin";
     $password = file_get_contents('/var/db_pass.txt');

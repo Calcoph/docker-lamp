@@ -450,7 +450,7 @@ COMMIT;
 --
 
 CREATE TABLE `session_tokens` (
-  `token` binary(32) NOT NULL,
+  `token` varchar(64) NOT NULL,
   `user_id` varchar(60),
   `fecha_validez` datetime NOT NULL DEFAULT '2000-08-21 23:59:59'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -475,8 +475,8 @@ ALTER TABLE `session_tokens`
 --
 
 CREATE TABLE `csrf_tokens` (
-  `token` binary(32) NOT NULL,
-  `session` binary(32) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `session` varchar(64) NOT NULL,
   `fecha_validez` datetime NOT NULL DEFAULT '2000-08-21 23:59:59'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

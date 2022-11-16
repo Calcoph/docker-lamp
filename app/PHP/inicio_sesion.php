@@ -1,6 +1,5 @@
 <?php
   require "login.php";
-  require "tokens.php";
   // Si está logueado, un usuario
   if (get_usuario() != NULL) {
     // le mandamos a las opciones de usuario

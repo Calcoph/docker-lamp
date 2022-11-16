@@ -25,7 +25,6 @@ function registrar_usuario() {
             if (usuario2 === "") {
                 // Si el usuario no existe, devuelve string vacío
                 document.form_inicio_sesion.submit()
-                document.cookie = "username=" + usuario + "; path=/"
             } else {
                 window.alert("Ese usuario ya existe")
             }
@@ -164,8 +163,6 @@ function cambiar_datos() {
         if (existe_usuario.readyState == 4 && existe_usuario.status == 200) {
             var usuario2 = existe_usuario.responseText;
             if (usuario2 === "") {
-                // Si el usuario no existe, devuelve string vacío
-                document.cookie = "username=" + usuario + "; path=/"
                 document.form_cambio_datos.submit()
             } else if (usuario == usuario_anterior) {
                 document.form_cambio_datos.submit()
@@ -279,12 +276,7 @@ function comprobar_pswd(){
         window.alert("Contraseñas distintas")
     }
 }
-function cerrar_sesion() {
-    // Simplemente borramos la cookie, y decimos que expira en el pasado. De: https://www.w3schools.com/js/js_cookies.asp
-    document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    document.cookie = "pass=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    window.location = "/index.php"
-}
+
 function checkStrength(password) {
     
     var strength = true

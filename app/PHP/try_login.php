@@ -27,8 +27,7 @@
     mysqli_stmt_fetch($query);
     if (password_verify($pass, $pass_correcta)) {
         header('Location: '."/index.php");
-        setcookie("username", $user, time()+30*24*60*60, "/");
-        setcookie("pass", $pass, time()+30*24*60*60, "/");
+        iniciar_sesion($user);
         die();
     } else {
         $pagina = str_replace('%usuario%', $user, file_get_contents('/var/www/html/HTML/inicio_sesion_fallido.html'));

@@ -1,6 +1,5 @@
 <?php
     require "login.php";
-    require "tokens.php";
 
     $hostname = "db";
     $username = "admin";
