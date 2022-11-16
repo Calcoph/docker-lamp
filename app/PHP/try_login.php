@@ -22,7 +22,7 @@
     if ($conn->connect_error) {
         die("Database connection failed: " . $conn->connect_error);
     }
-    if($intentos<3){
+    if($intentos<300){
         if (password_verify($pass, $pass_correcta)) {
             $query2 = mysqli_prepare($conn,"UPDATE usuario SET Intentos=? WHERE `Used ID`=?") or die (mysqli_error($conn));
             mysqli_stmt_bind_param($query2, "is", $intentos2, $us);

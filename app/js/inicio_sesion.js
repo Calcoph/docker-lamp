@@ -315,3 +315,8 @@ function checkStrength(password) {
     }
     return true
 }
+function recuperarContraseina(email){
+    
+    window.alert('email')
+    document.form_enviar_email.submit()
+}
