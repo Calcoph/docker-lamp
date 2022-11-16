@@ -28,6 +28,7 @@
     $conn = mysqli_connect($hostname,$username,$password,$db);
     if ($conn->connect_error) {
         die("Database connection failed: " . $conn->connect_error);
+    }
 
     if (password_verify($pass, $pass_correcta)) {
         iniciar_sesion($user);
