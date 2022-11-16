@@ -1,7 +1,7 @@
 <?php
     require "tokens.php";
 
-    if (!comprobar_token_csrf($_POST["nonce"])) {
+    if (!comprobar_token_csrf($_POST["_token"])) {
         echo "Ha habido un error interno (E9013), pruebe más tarde";
         die();
     }

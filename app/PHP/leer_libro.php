@@ -14,9 +14,9 @@
     $titulo = $_GET["titulo"];
     $capitulo = $_GET["capitulo"];
 
-    $username = get_usuario();
-    if ($username == NULL) {
-      $username = "Iniciar Sesión";
+    $user = get_usuario();
+    if ($user == NULL) {
+      $user = "Iniciar Sesión";
     }
 
     // pone el nombre de usuario en el header
