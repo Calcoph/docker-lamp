@@ -1,8 +1,14 @@
 <?php
     require "login.php";
+    require "tokens.php";
 
     // Nos aseguramos de que los datos del login son correctos antes de continuar.
     $us = login();
+
+    if (!comprobar_token_csrf($_POST["nonce"])) {
+        echo "Ha habido un error interno (E9013), pruebe más tarde";
+        die();
+    }
 
     // La carpeta donde se van a guardar los archivos
     $target_dir = "/var/www/html/uploads/";

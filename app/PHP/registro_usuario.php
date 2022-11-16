@@ -1,4 +1,11 @@
 <?php
+    require "tokens.php";
+
+    if (!comprobar_token_csrf($_POST["nonce"])) {
+        echo "Ha habido un error interno (E9013), pruebe más tarde";
+        die();
+    }
+
     $hostname = "db";
     $username = "admin";
     $password = file_get_contents('/var/db_pass.txt');

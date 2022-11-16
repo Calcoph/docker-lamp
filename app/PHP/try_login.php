@@ -1,6 +1,11 @@
 <?php
     require "tokens.php";
 
+    if (!comprobar_token_csrf($_POST["nonce"])) {
+        echo "Ha habido un error interno (E9013), pruebe más tarde";
+        die();
+    }
+
     $user = $_POST["usuario"];
     $pass = $_POST["pswd"];
 
