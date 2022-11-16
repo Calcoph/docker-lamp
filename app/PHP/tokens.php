@@ -19,7 +19,7 @@ function otorgar_token_sesion() {
     $expira_date = date("Y-m-d G:i:s", $expira);
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
-    setcookie("session", $token, $expira, "/");
+    header("Set-Cookie: session=$token; expires=$expires; path=/; domain=localhost; HttpOnly; SameSite=Strict"); // no se puede poner SameSite=Strict con setcookie en php 7.2.2
     $_COOKIE["session"] = $token;
 }
 
