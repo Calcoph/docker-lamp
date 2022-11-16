@@ -51,11 +51,7 @@ function get_usuario() {
         mysqli_stmt_bind_result($query, $user);
         mysqli_stmt_fetch($query);
 
-        if ($user != NULL) {
-            return $user;
-        } else {
-            return NULL;
-        }
+        return $user; // Puede ser null
     } else {
         return NULL;
     }
