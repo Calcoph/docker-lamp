@@ -8,12 +8,12 @@ function registrar_usuario() {
     let tel = document.form_inicio_sesion.tlf.value
     let fecha = document.form_inicio_sesion.fnacimiento.value
     let dni = document.form_inicio_sesion.dni.value
-
+    
     if (!datos_validos(
         email, usuario, contraseña,
         contraseña2, nombre, apellido,
         tel, fecha, dni
-    )) {
+    ) ||!verificar_captcha() ) {
         return
     }
     // Código obtenido de https://stackoverflow.com/questions/247483/http-get-request-in-javascript
@@ -34,6 +34,14 @@ function registrar_usuario() {
 
     llamar_existe_usuario(existe_usuario, usuario)
 }
+function verificar_captcha(){
+    var response = grecaptcha.getResponse();
+    if(response.length == 0) {
+        alert("Complete el captcha.")
+        return false;
+        }
+        return true;
+    }
 
 function fecha_valida(fecha) {
     if (fecha == "") {
