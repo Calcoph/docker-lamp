@@ -58,12 +58,7 @@
 
     $siguiente = "";
     if (mysqli_stmt_fetch($query)) {
-        $siguiente = "
-    <form metod=\"get\" action=\"/PHP/leer_libro.php\">
-        <Button>Capítulo siguiente</Button>
-        <input type=\"hidden\" name=\"titulo\" value=\"$titulo\" />
-        <input type=\"hidden\" name=\"capitulo\" value=\"1\" />
-    </form>";
+        $siguiente = "<a href='/PHP/leer_libro.php/?titulo=$titulo&capitulo=1'>Siguiente</a>";
     }
 
     // inserta los botones de "capítulo anterior", tanto arriba como abajo
