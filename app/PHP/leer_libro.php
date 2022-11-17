@@ -66,8 +66,7 @@
 
     $siguiente = "";
     if (mysqli_stmt_fetch($query)) { // Este while solo se va a ejecutar 1 vez (o ninguna, si es el último)
-        $siguiente = 
-        "<a href='/PHP/leer_libro.php/?titulo=$titulo&capitulo=$cap_siguiente'>Siguiente</a>";
+        $siguiente = "<a href='/PHP/leer_libro.php/?titulo=$titulo&capitulo=$cap_siguiente'>Siguiente</a>";
     }
 
     // inserta los botones de "capítulo anterior", tanto arriba como abajo
