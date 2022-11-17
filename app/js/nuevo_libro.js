@@ -34,6 +34,7 @@ function modificar() {
     let texto = document.form_modificar_libro.texto.value
     let portada = document.form_modificar_libro.portada.value
     let portada_personalizada = document.form_modificar_libro.portada_personalizada.value
+    let titulo_anterior = document.form_modificar_libro.titulo_anterior.value
 
     if (!valido(titulo, descripcion, resumen, texto, portada, portada_personalizada)) {
         return
@@ -47,8 +48,10 @@ function modificar() {
             var titulo2 = get_titulo.responseText;
             if (titulo2 === "") {
                 document.form_modificar_libro.submit()
-            } else {
+            } else if (titulo != titulo_anterior) {
                 window.alert("Ya existe un libro con ese título")
+            } else {
+                document.form_modificar_libro.submit()
             }
         }
     }
