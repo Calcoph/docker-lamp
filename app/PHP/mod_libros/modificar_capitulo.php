@@ -15,7 +15,7 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $titulo = $_GET["titulo"];
+    $titulo = htmlspecialchars($_GET["titulo"]);
 
     $header = str_replace('%usuario%', $user, file_get_contents('/var/www/html/HTML/header_small.html'));
     $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/mod_libros/modificar_capitulo.html'));
@@ -26,7 +26,7 @@
     $query = mysqli_prepare($conn, "SELECT Texto, Chapter_ID FROM capitulo WHERE `Book ID`=? AND `Chapter Num`=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "si", $tit, $capitulo);
     $tit = $titulo;
-    $capitulo = $_GET["capitulo"];
+    $capitulo = htmlspecialchars($_GET["capitulo"]);
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     mysqli_stmt_bind_result($query, $texto, $c_id);

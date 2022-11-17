@@ -11,8 +11,8 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $titulo = $_GET["titulo"];
-    $capitulo = $_GET["capitulo"];
+    $titulo = htmlspecialchars($_GET["titulo"]);
+    $capitulo = htmlspecialchars($_GET["capitulo"]);
 
     $user = get_usuario();
     if ($user == NULL) {

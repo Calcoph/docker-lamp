@@ -11,7 +11,7 @@
 
   $query = mysqli_prepare($conn, "SELECT `Used ID` FROM usuario WHERE `Used ID`=?") or die (mysqli_error($conn));
   mysqli_stmt_bind_param($query, "s", $usuario);
-  $usuario = $_GET["username"];
+  $usuario = htmlspecialchars($_GET["username"]);
   mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
   mysqli_stmt_bind_result($query, $uid);

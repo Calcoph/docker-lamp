@@ -2,7 +2,7 @@
     require "../login.php";
     require "../tokens.php";
 
-    $titulo = $_GET["titulo"];
+    $titulo = htmlspecialchars($_GET["titulo"]);
 
     $username = get_usuario();
     if ($username == NULL) {

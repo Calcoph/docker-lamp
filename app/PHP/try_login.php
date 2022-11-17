@@ -6,7 +6,7 @@
         die();
     }
 
-    $user = $_POST["usuario"];
+    $user = htmlspecialchars($_POST["usuario"]);
     $pass = $_POST["pswd"];
 
     $hostname = "db";

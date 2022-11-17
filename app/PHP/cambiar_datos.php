@@ -50,14 +50,14 @@
                                     SET `Used ID`=?, DNI=?, email=?, Nombre=?, Apellidos=?, Telefono=?, fecha_nacimiento=?
                                     WHERE `Used ID`=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "ssssssss", $usuario, $dni, $email, $nombre, $apellido, $tlf, $fnacimiento, $usuario_anterior);
-    $usuario = $_POST["usuario"];
-    $dni = $_POST["dni"];
-    $email = $_POST["email"];
-    $nombre = $_POST["nombre"];
-    $apellido = $_POST["apellido"];
-    $tlf = $_POST["tlf"];
-    $fnacimiento = $_POST["fnacimiento"];
-    $usuario_anterior = $_POST["usuario_anterior"]; // TODO: En vez de un post con el usuario anterior, coger el usuario de la cookie, igual que el login
+    $usuario = htmlspecialchars($_POST["usuario"]);
+    $dni = htmlspecialchars($_POST["dni"]);
+    $email = htmlspecialchars($_POST["email"]);
+    $nombre = htmlspecialchars($_POST["nombre"]);
+    $apellido = htmlspecialchars($_POST["apellido"]);
+    $tlf = htmlspecialchars($_POST["tlf"]);
+    $fnacimiento = htmlspecialchars($_POST["fnacimiento"]);
+    $usuario_anterior = htmlspecialchars($_POST["usuario_anterior"]); // TODO: En vez de un post con el usuario anterior, coger el usuario de la cookie, igual que el login
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     iniciar_sesion($_POST["usuario"]);

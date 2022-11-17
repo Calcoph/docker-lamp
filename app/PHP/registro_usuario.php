@@ -85,14 +85,14 @@
             $query = mysqli_prepare($conn, "INSERT INTO usuario(`Used ID`, Password, DNI, email, Nombre, Apellidos, Telefono, fecha_nacimiento)
                                                     VALUES (?, ?, ?, ?, ?, ?, ?, ?)") or die (mysqli_error($conn));
             mysqli_stmt_bind_param($query, "ssssssss", $usuario, $contraseña, $dni, $email, $nombre, $apellido, $tlf, $fnacimiento);
-            $usuario = $_POST["usuario"];
+            $usuario = htmlspecialchars($_POST["usuario"]);
             $contraseña = password_hash($pass, PASSWORD_BCRYPT);
-            $dni = $_POST["dni"];
-            $email = $_POST["email"];
-            $nombre = $_POST["nombre"];
-            $apellido = $_POST["apellido"];
-            $tlf = $_POST["tlf"];
-            $fnacimiento = $_POST["fnacimiento"];
+            $dni = htmlspecialchars($_POST["dni"]);
+            $email = htmlspecialchars($_POST["email"]);
+            $nombre = htmlspecialchars($_POST["nombre"]);
+            $apellido = htmlspecialchars($_POST["apellido"]);
+            $tlf = htmlspecialchars($_POST["tlf"]);
+            $fnacimiento = htmlspecialchars($_POST["fnacimiento"]);
             mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
             iniciar_sesion($_POST["usuario"]);

@@ -1,5 +1,6 @@
 <?php
   require "PHP/login.php";
+
   $username = get_usuario();
   if ($username == NULL) {
     $username = "Iniciar Sesión";
