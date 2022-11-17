@@ -78,16 +78,16 @@
             if (strlen($_POST["usuario"]) < 3) {
                 die("Nombre de usuario demasiado corto");
             }
-
+            $key = 'qkwjdiw239&&j jdafweihbrhnan&~$ggdnawhd4njshjwuuo';
             $pass = $_POST["pswd"];
-
             // Inserta el usuario y contraseña en la base de datos
             $query = mysqli_prepare($conn, "INSERT INTO usuario(`Used ID`, Password, DNI, email, Nombre, Apellidos, Telefono, fecha_nacimiento)
                                                     VALUES (?, ?, ?, ?, ?, ?, ?, ?)") or die (mysqli_error($conn));
             mysqli_stmt_bind_param($query, "ssssssss", $usuario, $contraseña, $dni, $email, $nombre, $apellido, $tlf, $fnacimiento);
             $usuario = htmlspecialchars($_POST["usuario"]);
             $contraseña = password_hash($pass, PASSWORD_BCRYPT);
-            $dni = htmlspecialchars($_POST["dni"]);
+            $dni = encryptthis ($_POST["dni"], $key);
+            $dni = htmlspecialchars($dni);
             $email = htmlspecialchars($_POST["email"]);
             $nombre = htmlspecialchars($_POST["nombre"]);
             $apellido = htmlspecialchars($_POST["apellido"]);
@@ -105,4 +105,13 @@
         header('Location: '."/HTML/register.html");
         die();
     }
+    //Codigo obtenido de https://www.youtube.com/watch?v=I3GFDG_cCTY
+        function encryptthis ($data, $key){
+            $encryption_key = base64_decode(skey);
+            $iv = openssl_random_pseudo_bytes;
+            $encrypted = openssl_encrypt(sdata, 'aes-256-cbc', $encryption_key, 0, $iv);
+            return base64_encode($encrypted. '::' . $iv);
+ }
+
+
 ?>
