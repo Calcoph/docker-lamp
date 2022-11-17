@@ -1,6 +1,5 @@
 <?php
     require "../login.php";
-    require "../tokens.php";
 
     // Nos aseguramos de que los datos del login son correctos antes de continuar.
     $user = login();

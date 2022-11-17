@@ -1,6 +1,5 @@
 <?php
     require "../login.php";
-    require "../tokens.php";
 
     $titulo = htmlspecialchars($_GET["titulo"]);
 
