@@ -1,0 +1,4 @@
+ $stit= strval($titulo); 
+        $anterior = '<a href="/PHP/leer_libro.php/?titulo=\"'. $stit.'\"&capitulo=\"'.$cap_anterior.'\"> anterior12 </a>' ;
+
+        /PHP/leer_libro.php?titulo=Beneath+the+Dragoneye+Moons&capitulo=1

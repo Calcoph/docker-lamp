@@ -44,18 +44,9 @@
     // El botón de capítulo anterior no está en el primer capítulo
     if ($cap_anterior >= 1) {
         $cap_anterior = strval($cap_anterior);
-        $anterior = "
-    <form metod=\"get\" action=\"/PHP/leer_libro.php\">
-        <Button>Capítulo anterior</Button>
-        <input type=\"hidden\" name=\"titulo\" value=\"$titulo\" />
-        <input type=\"hidden\" name=\"capitulo\" value=\"$cap_anterior\" />
-    </form>";
+        $anterior = "<a href='/PHP/leer_libro.php/?titulo=$titulo&capitulo=$cap_anterior'>anterior</a>";
     } else {
-        $anterior = "
-        <form metod=\"get\" action=\"/PHP/leer_prologo.php\">
-            <Button>Capítulo anterior</Button>
-            <input type=\"hidden\" name=\"titulo\" value=\"$titulo\" />
-        </form>";
+        $anterior = "<a href='/PHP/leer_prologo.php/?titulo=$titulo'>anterior</a>";
     }
 
 
@@ -75,12 +66,8 @@
 
     $siguiente = "";
     if (mysqli_stmt_fetch($query)) { // Este while solo se va a ejecutar 1 vez (o ninguna, si es el último)
-        $siguiente = "
-    <form metod=\"get\" action=\"/PHP/leer_libro.php\">
-        <Button>Capítulo siguiente</Button>
-        <input type=\"hidden\" name=\"titulo\" value=\"$titulo\" />
-        <input type=\"hidden\" name=\"capitulo\" value=\"$cap_siguiente\" />
-    </form>";
+        $siguiente = 
+        "<a href='/PHP/leer_libro.php/?titulo=$titulo&capitulo=$cap_siguiente'>Siguiente</a>";
     }
 
     // inserta los botones de "capítulo anterior", tanto arriba como abajo
