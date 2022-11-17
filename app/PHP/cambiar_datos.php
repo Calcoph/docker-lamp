@@ -41,10 +41,6 @@
         die("Email no válido");
     }
 
-    if (strlen($_POST["pswd"]) < 3) {
-        die("Contraseña demasiado corta");
-    }
-
     if (strlen($_POST["usuario"]) < 3) {
         die("Nombre de usuario demasiado corto");
     }
