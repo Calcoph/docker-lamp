@@ -2,7 +2,7 @@
     require "../login.php";
 
     // Nos aseguramos de que los datos del login son correctos antes de continuar.
-    login();
+    $user = login();
 
     if (!comprobar_token_csrf($_POST["_token"])) {
       echo "Ha habido un error interno (E9013), pruebe más tarde";
@@ -19,11 +19,6 @@
       die("Database connection failed: " . $conn->connect_error);
     }
 
-    if (isset($_COOKIE["username"])) { // TODO: Verificar la sesión
-      $user = $_COOKIE["username"];
-    } else {
-      die("No puedes borrar libros sin haber iniciado sesión");
-    }
     // Obtener la lista de libros escritos por este usuario, para asegurarse que solo se borran los escritos por él
     $query = mysqli_prepare($conn, "SELECT `Book ID` FROM escritos WHERE `Used ID`=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "s", $us_id);
