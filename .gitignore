@@ -4,3 +4,9 @@ uploads/*
 !uploads/portada 1.png
 !uploads/portada 2.png
 !uploads/portada 3.png
+
+mantenimiento-bdd/target/CACHEDIR.TAG
+mantenimiento-bdd/target/.rustc_info.json
+mantenimiento-bdd/target/release/*
+mantenimiento-bdd/target/debug/*
+!mantenimiento-bdd/target/debug/mantenimiento-bdd

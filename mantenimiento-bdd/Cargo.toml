@@ -1,0 +1,10 @@
+[package]
+name = "mantenimiento-bdd"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+mysql_async = { version = "0.31.0", features=["default-rustls"], default-features = false }
+tokio = { version = "1.21.2", features = ["rt-multi-thread", "macros"] }
