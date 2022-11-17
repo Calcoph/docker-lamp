@@ -117,8 +117,6 @@
             return base64_encode($r);
  }
     
-http://gdata.youtube.com/feeds/api/videos/videoID
-
 
 
 

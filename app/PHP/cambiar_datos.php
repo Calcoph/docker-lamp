@@ -50,12 +50,16 @@
                                     SET `Used ID`=?, DNI=?, email=?, Nombre=?, Apellidos=?, Telefono=?, fecha_nacimiento=?
                                     WHERE `Used ID`=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "ssssssss", $usuario, $dni, $email, $nombre, $apellido, $tlf, $fnacimiento, $usuario_anterior);
+    $dni = encryptthis ($_POST["dni"], $key);
+    $email = encryptthis ($_POST["email"], $key);
+    $nombre = encryptthis ($_POST["nombre"], $key);
+    $apellido = encryptthis ($_POST["apellido"], $key);
+    $tlf = encryptthis ($_POST["tlf"], $key);
     $usuario = htmlspecialchars($_POST["usuario"]);
-    $dni = htmlspecialchars($_POST["dni"]);
-    $email = htmlspecialchars($_POST["email"]);
-    $nombre = htmlspecialchars($_POST["nombre"]);
-    $apellido = htmlspecialchars($_POST["apellido"]);
-    $tlf = htmlspecialchars($_POST["tlf"]);
+    $dni = htmlspecialchars($dni);
+    $nombre = htmlspecialchars($nombre);
+    $apellido = htmlspecialchars($apellido);
+    $tlf = htmlspecialchars( $tlf);
     $fnacimiento = htmlspecialchars($_POST["fnacimiento"]);
     $usuario_anterior = htmlspecialchars($_POST["usuario_anterior"]); // TODO: En vez de un post con el usuario anterior, coger el usuario de la cookie, igual que el login
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
@@ -65,4 +69,11 @@
     // Vuelve a la página principal
     header('Location: '."/index.php");
     die();
+    function encryptthis ($data, $key){
+        $encryption_key = base64_decode(openssl_cipher_iv_length('aes-256-cbc'));
+        $iv = openssl_random_pseudo_bytes(16);
+        $encrypted = openssl_encrypt($data, 'aes-256-cbc', $encryption_key, 0, $iv);
+        $r = $encrypted. '::' . $iv;
+        return base64_encode($r);
+}
 ?>

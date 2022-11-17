@@ -25,9 +25,9 @@
 
     mysqli_stmt_bind_result($query, $nombre, $apellidos, $dni, $f_nacimiento, $tlf, $email, $uid, $pswd);
     mysqli_stmt_fetch($query);
-    $nombre = decryptthis ($nombre, $key);
+    
     // Inserta los datos actuales del usuario en la página
-    $pagina  = str_replace('%nombre%', $nombre, $pagina);
+    $pagina  = str_replace('%nombre%', decryptthis ($nombre, $key), $pagina);
     $pagina  = str_replace('%apellido%',decryptthis ($apellidos, $key) , $pagina);
     $pagina  = str_replace('%dni%', decryptthis ($dni, $key), $pagina);
     $pagina  = str_replace('%fnacimiento%',$f_nacimiento, $pagina);
@@ -45,4 +45,6 @@
         $resultado = openssl_decrypt($encrypted_data, 'aes-256-cbc', $encryption_key, 0, $iv);
         return $resultado;
     }   
+    //Codigo obtenido de https://www.youtube.com/watch?v=I3GFDG_cCTY
+
 ?>
