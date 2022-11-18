@@ -10,7 +10,7 @@ RUN apt-get update
 RUN apt-get -y install cron
 
 # Add the cron job
-RUN crontab -l | { cat; echo "0,30 * * * * bash /home/web/bin/target/release/mantenimiento-bdd"; } | crontab -
+RUN crontab -l | { cat; echo "0,30 * * * * /home/web/bin/target/release/mantenimiento-bdd"; } | crontab -
 
 # Run the command on container startup
 CMD cron
