@@ -10,3 +10,4 @@ mantenimiento-bdd/target/.rustc_info.json
 mantenimiento-bdd/target/release/*
 mantenimiento-bdd/target/debug/*
 !mantenimiento-bdd/target/debug/mantenimiento-bdd
+!mantenimiento-bdd/target/release/mantenimiento-bdd

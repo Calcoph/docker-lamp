@@ -6,5 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-mysql_async = { version = "0.31.0", features=["default-rustls"], default-features = false }
+mysql = { version = "23.0.0", features = ["default-rustls"], default-features = false }
 tokio = { version = "1.21.2", features = ["rt-multi-thread", "macros"] }
+urlencoding = "2.1.2"
+chrono = "0.4.23"
