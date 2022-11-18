@@ -78,20 +78,23 @@
             if (strlen($_POST["usuario"]) < 3) {
                 die("Nombre de usuario demasiado corto");
             }
-
+            $key = file_get_contents('/var/encr_pswd.txt');
             $pass = $_POST["pswd"];
-
             // Inserta el usuario y contraseña en la base de datos
             $query = mysqli_prepare($conn, "INSERT INTO usuario(`Used ID`, Password, DNI, email, Nombre, Apellidos, Telefono, fecha_nacimiento)
                                                     VALUES (?, ?, ?, ?, ?, ?, ?, ?)") or die (mysqli_error($conn));
             mysqli_stmt_bind_param($query, "ssssssss", $usuario, $contraseña, $dni, $email, $nombre, $apellido, $tlf, $fnacimiento);
-            $usuario = htmlspecialchars($_POST["usuario"]);
+            $dni = encryptthis ($_POST["dni"], $key);
+            $email = encryptthis ($_POST["email"], $key);
+            $nombre = encryptthis ($_POST["nombre"], $key);
+            $apellido = encryptthis ($_POST["apellido"], $key);
+            $tlf = encryptthis ($_POST["tlf"], $key);
             $contraseña = password_hash($pass, PASSWORD_BCRYPT);
-            $dni = htmlspecialchars($_POST["dni"]);
-            $email = htmlspecialchars($_POST["email"]);
-            $nombre = htmlspecialchars($_POST["nombre"]);
-            $apellido = htmlspecialchars($_POST["apellido"]);
-            $tlf = htmlspecialchars($_POST["tlf"]);
+            $usuario = htmlspecialchars($_POST["usuario"]);
+            $dni = htmlspecialchars($dni);
+            $nombre = htmlspecialchars($nombre);
+            $apellido = htmlspecialchars($apellido);
+            $tlf = htmlspecialchars( $tlf);
             $fnacimiento = htmlspecialchars($_POST["fnacimiento"]);
             mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
@@ -102,7 +105,20 @@
             die();
     }
     else{
-        header('Location: '."/HTML/register.html");
+        header('Location: '."/PHP/register.php");
         die();
     }
+    //Codigo obtenido de https://www.youtube.com/watch?v=I3GFDG_cCTY
+        function encryptthis ($data, $key){
+            $encryption_key = base64_decode(openssl_cipher_iv_length('aes-256-cbc'));
+            $iv = openssl_random_pseudo_bytes(16);
+            $encrypted = openssl_encrypt($data, 'aes-256-cbc', $encryption_key, 0, $iv);
+            $r = $encrypted. '::' . $iv;
+            return base64_encode($r);
+ }
+    
+
+
+
+
 ?>
