@@ -1,5 +1,5 @@
 use chrono::{DateTime, NaiveDateTime, Timelike};
-use mysql::{prelude::{WithParams, BatchQuery, Queryable}, params, Pool};
+use mysql::{prelude::{WithParams, BatchQuery, Queryable}, params, Pool, PooledConn};
 use std::time::{SystemTime, UNIX_EPOCH};
 
 #[derive(Debug)]
@@ -27,6 +27,10 @@ fn main() {
     let pool = Pool::new(url.as_str()).unwrap();
     let mut conn = pool.get_conn().unwrap();
 
+    borrar_tokens_caducados(&mut conn);
+}
+
+fn borrar_tokens_caducados(conn: &mut PooledConn) {
     // Obtiene todos los tokens de sesión
     let tokens_sesion_caducados = conn.query_map(
         "SELECT token, fecha_validez FROM session_tokens",
