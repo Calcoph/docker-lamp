@@ -9,6 +9,7 @@ web:
    volumes:
      - ./app:/var/www/html/
      - ./uploads:/var/www/html/uploads
+     - ./mantenimiento-bdd:/home/web/bin
 
 db:
   image: mariadb:10.8.2

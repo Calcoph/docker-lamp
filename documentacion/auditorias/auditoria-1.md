@@ -1,6 +1,6 @@
 # Problemas encontrados
 ## Problemas encontrados por ZAP
-* [Cross site scripting](#Cross-site-scripting-(reflected))
+* [Cross site scripting (XSS)](#Cross-site-scripting-(XSS))
 * [SQL Injection](#SQL-Injection)
 * [Application Error Disclosure](#Application-Error-Disclosure)
 * [Content Security Policy (CSP) Header Not Set](#Content-Security-Policy-(CSP)-Header-Not-Set)
@@ -11,7 +11,7 @@
 * [X-Content-Type-Options Header Missing](#X\-Content\-Type\-Options-Header-Missing)
 * [Information Disclosure](#Information-Disclosure-\--Suspicious-Comments)
 
-### Cross site scripting (reflected)
+### Cross site scripting (XSS)
 Esta vulnerabilidad consiste en que un usuario malicioso puede conseguir ejecutar código aribitrariamente desde nuestra
 página web, como puede ser insertando el elemento `<script></script>` y conseguiendo que el navegador de otro usuario ejecute ese código.
 
@@ -40,13 +40,13 @@ Archivos afectados:
 La causa, al igual que en el caso anterior, es no tratar los datos que nos envía el cliente. Por ejemplo, no parametrizamos los comandos, (símplemente los interpolamos en un string).
 
 ### Content Security Policy (CSP) Header Not Set
-*TODO: Explicación del problema*
+CSP es una manera de decirle al navegador que políticas de seguridad debe tomar. Como por ejemplo, desde qué sitios web se permite la inyección. De esta manera se pueden evitar multitud de problemas, por ejemplo el XSS mencionado anteriormente
 
 Archivos afectados:
 * prácticamente todos
 
 ### Missing Anti-clickjacking Header
-*TODO: Explicación del problema*
+En nuestro sistema, un atacante puede crear una página web fantasma sobre la nuestra, la cual puede engañar al usuario para hacer click en un sitio, cuando en realidad está haciendo click en otro. Esto se podría arreglar añadiendo una cabecera para alertar al navegador de que no permita hacer este tipo de cosas.
 
 Archivos afectados:
 * prácticamente todos
@@ -58,14 +58,11 @@ Archivos afectados:
 * /PHP/leer_libro.php (el capítulo 2 del libro "Cinnamon Bun", este capítulo contiene caracteres especiales sin escapar)
 
 Cuando ocurre un error deberíamos enviar un código de error genérico.
-### X-Frame-Options Header Not Set
-*TODO: Explicación del problema*
-
-Archivos afectado:
-* Prácticamente todos.
 
 ### Absence of Anti-CSRF Tokens
-*TODO: Explicación del problema*
+Una página maliciosa podría hacer referencia a uno de nuestros forms y hacer que el usuario haga click en él, mientras que la página maliciosa puede controlar los campos del form. Por ejemplo, podría redirigir a modificar_datos.php cambiando la contraseña a "1234", pero como el usuario real ha hecho click, se validaría con la cookie del usuario.
+
+Esto se solucionaría usando tokens "anti-csrf".
 
 Archivos afectado:
 * Prácticamente todos.
@@ -77,7 +74,7 @@ Archivos afectado:
 * Prácticamente todos.
 
 ### X-Content-Type-Options Header Missing
-*TODO: Explicación del problema*
+Por defecto, los navegadores intentan deducir el tipo de archivo (html, imágen, text, vídeo, etc.) que se recibe. Esto puede ser un vector de ataque puesto que un atacante puede hacer que el navegador piense que hemos enviado un tipo de archivo en concreto, dando pie a multitud de vulneravilidades. Esto se puede evitar con una cabecera HTTP.
 
 Archivos afectado:
 * Prácticamente todos.
@@ -89,9 +86,6 @@ Por otro lado, el uso de la cookie es trivial de entender, puesto que se ve a si
 
 Archivos afectados:
 * /js/inicio_sesion.js
-
-#### TODO
-Cinnamon bun capitulo 2 da un error
 
 ## Problemas encontrados manualmente
 
@@ -124,6 +118,7 @@ Cinnamon bun capitulo 2 da un error
 * No hay límites de accesos por segundo/minuto.
     * Podrían registrar cientos de libros con imágenes enormes, llenando así el disco duro del servidor.
     * Podrían hacerse ataques de fuerza bruta para conseguir la contraseña de un usuario.
+    * Podrían registrarse miles de cuentas falsas o "bot"s
 * Damos al cliente más información de la que necesita (por ejemplo le enviamos la contraseña del usuario que se intenta registrar para ver si el usuario ya existe)
 * Podría ser un problema que solo miremos que no haya 2 usernames repetidos (tlfs, emails y dnis pueden repetirse).
 
