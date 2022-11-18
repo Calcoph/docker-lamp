@@ -1,5 +1,5 @@
-use chrono::{DateTime, NaiveDateTime, Timelike};
-use mysql::{prelude::{WithParams, BatchQuery, Queryable}, params, Pool, PooledConn};
+use chrono::NaiveDateTime;
+use mysql::{prelude::Queryable, params, Pool, PooledConn};
 use std::time::{SystemTime, UNIX_EPOCH};
 
 #[derive(Debug)]
@@ -28,6 +28,11 @@ fn main() {
     let mut conn = pool.get_conn().unwrap();
 
     borrar_tokens_caducados(&mut conn);
+    reiniciar_intentos_login(&mut conn);
+}
+
+fn reiniciar_intentos_login(conn: &mut PooledConn) {
+    conn.query_drop("UPDATE usuario SET Intentos=0").unwrap();
 }
 
 fn borrar_tokens_caducados(conn: &mut PooledConn) {
