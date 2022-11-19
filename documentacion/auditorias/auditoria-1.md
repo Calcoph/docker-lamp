@@ -97,6 +97,7 @@ Archivos afectados:
 * Para saber si alguien tiene la sesión iniciada solo miramos la cookie de "username", no verificamos que tenga una contraseña.
 * No logueamos los intentos de inicio de sesión.
 * No generamos tokens de sesión
+* A la hora de modificar los datos, se modifican los del usuario que se especifica en un campo (oculto) en el form.
 
 # Fallos criptográficos
 

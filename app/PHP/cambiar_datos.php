@@ -2,7 +2,7 @@
     require "login.php";
 
     // Nos aseguramos de que los datos del login son correctos antes de continuar.
-    login();
+    $us = login();
 
     if (!comprobar_token_csrf($_POST["_token"])) {
         echo "Ha habido un error interno (E9013), pruebe más tarde";
@@ -61,7 +61,7 @@
     $apellido = htmlspecialchars($apellido);
     $tlf = htmlspecialchars( $tlf);
     $fnacimiento = htmlspecialchars($_POST["fnacimiento"]);
-    $usuario_anterior = htmlspecialchars($_POST["usuario_anterior"]); // TODO: En vez de un post con el usuario anterior, coger el usuario de la cookie, igual que el login
+    $usuario_anterior = $us;
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
 
     iniciar_sesion($_POST["usuario"]);

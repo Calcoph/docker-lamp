@@ -91,6 +91,11 @@ Arreglado por diego Esteban
 
 Una vez más, el sistema de tokens de sesión soluciona este problema.
 
+### A la hora de modificar los datos, se modifican los del usuario que se especifica en un campo (oculto) en el form.
+Arreglado por Diego Esteban
+
+Ahora se modifican los datos del usuario obtenido por el token de sesión. No puedes modificar los datos de otro usuario sin haber iniciado sesión en ese usuario.
+
 # Fallos criptográficos
 
 ### Usamos una conexión no cifrada (HTTP)
