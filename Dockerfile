@@ -19,6 +19,3 @@ RUN apt-get -y install cron
 
 # Add the cron job
 RUN echo "0,30 * * * * /home/web/bin/target/release/mantenimiento-bdd" >> /etc/crontab
-
-# Run the command on container startup
-#CMD cron
