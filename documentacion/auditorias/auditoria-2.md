@@ -1,3 +1,7 @@
+Auditoría hecha por Diego Esteban y Francisco gonzalez
+Diego Esteban ha explicado las partes arregladas por él y por ambos, y las no arregladas.
+Francisco Gonzalez ha explicado las partes arregladas por él.
+
 # Problemas arreglados desde la auditoría 1
 ## Problemas encontrados por ZAP
 * [Cross site scripting (XSS)](#Cross-site-scripting-(XSS))

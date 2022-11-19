@@ -1,3 +1,5 @@
+Auditoría hecha por Diego Esteban
+
 # Problemas encontrados
 ## Problemas encontrados por ZAP
 * [Cross site scripting (XSS)](#Cross-site-scripting-(XSS))
