@@ -117,27 +117,67 @@ Usamos el algoritmo CRYPT_BLOWFISH, que está pensado para hashear contraseñas 
 ### No parametrizamos los comandos SQL.
 Arreglado, ver [inyección SQL](#SQL-Injection).
 
-* No validamos los datos desde el servidor, sólo desde el cliente. (Arreglado Diego Esteban y Francisco Gonzalez)
-* No escapamos caracteres especiales. Al publicar un libro cualquiera puede meter elementos HTML, incluyendo \<script\>\</script\>. (Arreglado. Diego Esteban)
-    * Esto incluye los nombres de usuario. Al publicar un comentario, inserta su nombre de usuario en él, lo cual puede ser cualquier string. (Arreglado. Diego Esteban)
+### No validamos los datos desde el servidor, sólo desde el cliente. 
+Arreglado Diego Esteban y Francisco Gonzalez
+
+Mientras que hemos conservado la validación del lado del cliente, tambien lo validamos desde el servidor, ya que es posible saltarse las validaciones de cliente.
+
+Aunque dejarlo en los dos lados supone un coste de mantenimiento mayor, la experiencia de usuario es mucho mejor si javascript alerta de los problemas, sin tener que preguntarle al servidor.
+
+### No escapamos caracteres especiales. Al publicar un libro cualquiera puede meter elementos HTML, incluyendo \<script\>\</script\>. Esto incluye los nombres de usuario. Al publicar un comentario, inserta su nombre de usuario en él, lo cual puede ser cualquier string.
+Arreglado, ver [Cross site scripting](#Cross-site-scripting-(XSS))
 
 # Diseño inseguro
-* No hay límites de intentos de inicio de sesión.(Francisco González)
-* No hay límites de accesos por segundo/minuto.
-    * Podrían registrar cientos de libros con imágenes enormes, llenando así el disco duro del servidor.
-    * Podrían hacerse ataques de fuerza bruta para conseguir la contraseña de un usuario. (Arreglado. Francisco Gonzalez( No estoy Seguro))
-    * Podrían registrarse miles de cuentas falsas o "bots" (Arreglado. Francisco González)
-* Damos al cliente más información de la que necesita (por ejemplo le enviamos la contraseña del usuario que se intenta registrar para ver si el usuario ya existe) (Arreglado)
-* Podría ser un problema que solo miremos que no haya 2 usernames repetidos (tlfs, emails y dnis pueden repetirse). (No arreglado)
-* No se existe una configuración mínima de contraseña (Arreglado, Francisco González).
+### No hay límites de intentos de inicio de sesión.
+Arreglado por Francisco González
+
+### No hay límites de accesos por segundo/minuto.
+
+#### Podrían registrar cientos de libros con imágenes enormes, llenando así el disco duro del servidor.
+No arreglado
+
+#### Podrían hacerse ataques de fuerza bruta para conseguir la contraseña de un usuario.
+Arreglado por Francisco Gonzalez
+
+#### Podrían registrarse miles de cuentas falsas o "bots"
+Arreglado por Francisco Gonzalez
+
+### Damos al cliente más información de la que necesita (por ejemplo le enviamos la contraseña del usuario que se intenta registrar para ver si el usuario ya existe)
+Arreglado por Diego Esteban
+
+Ahora el cliente le envía al servidor el usuario. Si el servidor le responde con el mismo usuario, es que existe. Si el servidor no responde nada es que no existe.
+
+Este sistema se puede explotar para obtener una lista de usuarios que existen, ya que no hay límites de acceso a la API por tiempo. Aun así, es mucho más seguro que el sistema anterior.
+
+### Podría ser un problema que solo miremos que no haya 2 usernames repetidos (tlfs, emails y dnis pueden repetirse).
+No arreglado
+
+Ya que no utilizamos ninguno de estos datos, no es de gran importancia que tengan sentido, por lo que hemos priorizado fallos de seguridad más importantes.
+
+### No se existe una configuración mínima de contraseña (más allá de el mínimo de 3 caracteres)
+Arreglado por Francisco González
+
 # Configuración de seguridad insuficiente
-* Usamos las credenciales por defecto (Arreglado)
-    * La contraseña del usuario admin para acceder a la base de datos es *test* (Arreglado . Diego Esteban)
-    * La contraseña del usuario admin, dentro de la página en sí, también es *test* (Arreglado. Diego Esteban)
+### Usamos las credenciales por defecto (Arreglado)
+#### La contraseña del usuario admin para acceder a la base de datos es *test*
+Arreglado por Diego Esteban.
+
+No sólo hemos utilizado una contraseña mucho más segura, si no que además hemos automatizado el proceso de cambiarla. El procedimiento para cambiar la contraseña se ha documentado en `/documentacion/cambio de contraseña.md`
+
+Consiste en básicamente cambiar la contraseña en `db_pass.txt` y ejecutar el script de python `update_password.py`.
+
+Hay que mencionar lo obvio, db_pass.txt se encuentra en un repositorio público de GitHub, por lo que este sistema es mejorable.
+
+Por ejemplo podríamos establecer un entorno de pruebas y un entorno de producción, y no cualquier persona podría acceder al db_pass.txt de producción.
+
+### La contraseña del usuario admin, dentro de la página en sí, también es *test*
+No arreglado.
+
+Dado que el usuario admin de la página web no tiene privilegios especiales, ni libros escritos por él, no tiene mucha importancia. No es más que un usuario más con un nombre distinto.
 
 # Componentes vulnerables y obsoletos
 
-* Usamos la versión "latest" de phpmyadmin, en vez de una versión concreta (Arreglado. Diego Esteban)
+### Usamos la versión "latest" de phpmyadmin, en vez de una versión concreta
+Arreglado por Diego Esteban
 
-
-
+Ahora usamos la versión 5.2.0, que es la más reciente en este momento. De esta manera la única diferencia es que si llega a haber una actualización maliciosa no nos afectaría. Pero tenemos que estar más atentos si hay nuevas versiones que arreglan fallos de seguridad, para actualizar manualmente.

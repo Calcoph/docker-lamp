@@ -121,6 +121,7 @@ Archivos afectados:
     * Podrían registrarse miles de cuentas falsas o "bot"s
 * Damos al cliente más información de la que necesita (por ejemplo le enviamos la contraseña del usuario que se intenta registrar para ver si el usuario ya existe)
 * Podría ser un problema que solo miremos que no haya 2 usernames repetidos (tlfs, emails y dnis pueden repetirse).
+* No se existe una configuración mínima de contraseña (más allá de el mínimo de 3 caracteres)
 
 # Configuración de seguridad insuficiente
 
