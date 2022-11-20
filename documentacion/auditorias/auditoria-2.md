@@ -67,7 +67,7 @@ Arreglado por Diego Esteban
 Hemos añadido el header en default-ssl.conf, por lo que las conexiones https están protegidas de este ataque. Que debería ser la única forma de conectarse como explicamos [aqui](#Usamos-una-conexión-no-cifrada-(HTTP)).
 
 ### Information Disclosure - Suspicious Comments
-Como mencionamos en la auditoría 1, este problma no es relevante, se trata de un falso positivo.
+Como mencionamos en la auditoría 1, este problema no es relevante, se trata de un falso positivo.
 
 ## Problemas encontrados manualmente
 * [Rotura del control de acceso](#Rotura-del-control-de-acceso)
@@ -80,8 +80,8 @@ Como mencionamos en la auditoría 1, este problma no es relevante, se trata de u
 # Rotura de control de acceso
 
 ### No logueamos los intentos de inicio de sesión.
-Arreglado por Francisco González
-
+Arreglado por Francisco González. Tabla hecha por Ibai Mendivil.
+Cuanndo un usuario intenta iniciar sesión, el servidor guarda ese intento junto con un mensaje de si lo ha conseguido o no y la fecha/hora del intento.
 ### No generamos tokens de sesión
 Arreglado por Diego Esteban
 
@@ -116,7 +116,7 @@ Es posible entrar con http mediante http://localhost:81 ya que nuestro certifica
 ### No utilizamos encryption at rest.
 Arreglado por Francisco González
 
-Parcialmente. Solo se encuentra encriptada la información sensible del usuario.
+Parcialmente. Solo se encuentra encriptada mediante AES la información sensible del usuario.
 
 ### Almacenamos las contraseñas en plaintext.
 Arreglado por Diego Esteban. Ibai ha cambiado el campo contraseña de varchar(50) a varchar(60)
@@ -147,17 +147,23 @@ Arreglado, ver [Cross site scripting](#Cross-site-scripting-(XSS))
 # Diseño inseguro
 ### No hay límites de intentos de inicio de sesión.
 Arreglado por Francisco González
+Ahora el servidor bloquea a a cualquier usuario que falle al iniciar sesión 3 veces seguidas. Si un usuario acierta antes de llegar a esos 3 intentos, su contador se reseteará a 0. Si por el contrario no lo consigue, se le pondrá a 0 automáticamente desde el servidor en un tiempo no superior a 30 minutos.
 
 ### No hay límites de accesos por segundo/minuto.
 
 #### Podrían registrar cientos de libros con imágenes enormes, llenando así el disco duro del servidor.
-No arreglado
+Arreglado por Francisco González.
+Se ha añadido un captcha además de que se ha limitado el tamaño de las imágenes a 500000 bytes
 
+#### Podrían incluir archivos maliciosos en vez de imágenes al subir la portada de un libro.
+Arreglado por Francisco González.
+Ahora el servidor comprueba que el tipo de archivo sea una imagen. Esto no quita que pueda encontrarse código malicioso dentro de ella.
 #### Podrían hacerse ataques de fuerza bruta para conseguir la contraseña de un usuario.
 Arreglado por Francisco Gonzalez
 
 #### Podrían registrarse miles de cuentas falsas o "bots"
 Arreglado por Francisco Gonzalez
+Se ha añadido un captcha 
 
 ### Damos al cliente más información de la que necesita (por ejemplo le enviamos la contraseña del usuario que se intenta registrar para ver si el usuario ya existe)
 Arreglado por Diego Esteban
@@ -173,6 +179,7 @@ Ya que no utilizamos ninguno de estos datos, no es de gran importancia que tenga
 
 ### No se existe una configuración mínima de contraseña (más allá de el mínimo de 3 caracteres)
 Arreglado por Francisco González
+La configuración mínima establecida es la siguiente: longitud>=6, una mayúsculas, una minúsculas, un número y un caracter especial. 
 
 # Configuración de seguridad insuficiente
 ### Usamos las credenciales por defecto (Arreglado)
