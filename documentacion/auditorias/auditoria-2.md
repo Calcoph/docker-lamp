@@ -105,7 +105,7 @@ Como mencionamos en la auditoría 1, este problema no es relevante, se trata de 
 # Rotura de control de acceso
 
 ### No logueamos los intentos de inicio de sesión.
-Arreglado por Francisco González. Tabla hecha por Ibai Mendivil.
+Arreglado por Francisco González. Tabla de la base de datos hecha por Ibai Mendivil.
 Cuanndo un usuario intenta iniciar sesión, el servidor guarda ese intento junto con un mensaje de si lo ha conseguido o no y la fecha/hora del intento.
 ### No generamos tokens de sesión
 Arreglado por Diego Esteban
@@ -144,7 +144,7 @@ Arreglado por Francisco González
 Parcialmente. Solo se encuentra encriptada mediante AES la información sensible del usuario.
 
 ### Almacenamos las contraseñas en plaintext.
-Arreglado por Diego Esteban. Ibai ha cambiado el campo contraseña de varchar(50) a varchar(60)
+Arreglado por Diego Esteban. Ibai Mendivil ha cambiado el campo contraseña de varchar(50) a varchar(60)
 
 Utilizamos las funciones de PHP password_verify() y password_hash(). De este modo almacenamos tanto el hash en sí como la sal en un solo string, que en total ocupa 60 caracteres, por eso hemos tenido que ampliar el tamaño del campo de la base de datos.
 
@@ -152,10 +152,13 @@ Usamos el algoritmo CRYPT_BLOWFISH, que está pensado para hashear contraseñas 
 
 # Inyección
 
-* No hacemos ninguna verificación sobre el archivo que se supone que es la portada del libro. (Arreglado, Francisco González)
-    * Ni siquiera miramos si es una imagen.
-    * No hay límite de lo grande que puede ser la imagen.
-    * Si ya existe una imágen con ese nombre, se sobreescribe.
+### No hacemos ninguna verificación sobre el archivo que se supone que es la portada del libro. (Arreglado, Francisco González)
+
+#### Ni siquiera miramos si es una imagen.
+
+#### No hay límite de lo grande que puede ser la imagen.
+
+#### Si ya existe una imágen con ese nombre, se sobreescribe.
 ### No parametrizamos los comandos SQL.
 Arreglado, ver [inyección SQL](#SQL-Injection).
 
