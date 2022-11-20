@@ -10,6 +10,7 @@ RUN rm /etc/apache2/sites-available/default-ssl.conf
 ADD default-ssl.conf /etc/apache2/sites-available
 RUN a2ensite default-ssl
 RUN a2enmod ssl
+RUN a2enmod headers
 RUN service apache2 restart
 
 # sacado de https://www.baeldung.com/ops/docker-cron-job

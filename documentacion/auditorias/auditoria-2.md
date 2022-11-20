@@ -29,7 +29,9 @@ Las inyecciones SQL se han arreglado utilizando queries paramterizadas. De esta 
 No Arreglado
 
 ### Missing Anti-clickjacking Header
-No Arreglado
+Arreglado por Diego Esteban
+
+Hemos añadido el header en default-ssl.conf, por lo que las conexiones https están protegidas de este ataque. Que debería ser la única forma de conectarse como explicamos [aqui](#Usamos-una-conexión-no-cifrada-(HTTP)).
 
 ### Application Error Disclosure
 Arreglado por Diego Esteban
@@ -60,7 +62,9 @@ Arreglado por Diego Esteban
 Esto tenía fácil solución. Basta con añadir `expose_php = Off` a php.ini
 
 ### X-Content-Type-Options Header Missing
-No arreglado
+Arreglado por Diego Esteban
+
+Hemos añadido el header en default-ssl.conf, por lo que las conexiones https están protegidas de este ataque. Que debería ser la única forma de conectarse como explicamos [aqui](#Usamos-una-conexión-no-cifrada-(HTTP)).
 
 ### Information Disclosure - Suspicious Comments
 Como mencionamos en la auditoría 1, este problma no es relevante, se trata de un falso positivo.
