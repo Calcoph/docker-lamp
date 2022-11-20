@@ -106,7 +106,7 @@ Como mencionamos en la auditoría 1, este problema no es relevante, se trata de 
 
 ### No logueamos los intentos de inicio de sesión.
 Arreglado por Francisco González. Tabla de la base de datos hecha por Ibai Mendivil.
-Cuanndo un usuario intenta iniciar sesión, el servidor guarda ese intento junto con un mensaje de si lo ha conseguido o no y la fecha/hora del intento.
+Cuando un usuario intenta iniciar sesión, el servidor guarda ese intento junto con un mensaje de si lo ha conseguido o no y la fecha/hora del intento.
 ### No generamos tokens de sesión
 Arreglado por Diego Esteban
 
@@ -151,14 +151,16 @@ Utilizamos las funciones de PHP password_verify() y password_hash(). De este mod
 Usamos el algoritmo CRYPT_BLOWFISH, que está pensado para hashear contraseñas y es seguro.
 
 # Inyección
-
+Arreglado por Francisco González
 ### No hacemos ninguna verificación sobre el archivo que se supone que es la portada del libro. (Arreglado, Francisco González)
-
+Se comprueba que las portadas subidas sean imágenes.
 #### Ni siquiera miramos si es una imagen.
-
+Se comprueba que las portadas subidas sean imágenes.
 #### No hay límite de lo grande que puede ser la imagen.
-
-#### Si ya existe una imágen con ese nombre, se sobreescribe.
+El tamaño del archivo no puede ser mayor a 500000 bytes.
+#### Si ya existe una imagen con ese nombre, se sobreescribe.
+No arreglado
+Si ocurre esto se le asignara a la imagen el path de la que ya está subida.
 ### No parametrizamos los comandos SQL.
 Arreglado, ver [inyección SQL](#SQL-Injection).
 
@@ -175,6 +177,7 @@ Arreglado, ver [Cross site scripting](#Cross-site-scripting-(XSS))
 # Diseño inseguro
 ### No hay límites de intentos de inicio de sesión.
 Arreglado por Francisco González
+
 Ahora el servidor bloquea a a cualquier usuario que falle al iniciar sesión 3 veces seguidas. Si un usuario acierta antes de llegar a esos 3 intentos, su contador se reseteará a 0. Si por el contrario no lo consigue, se le pondrá a 0 automáticamente desde el servidor en un tiempo no superior a 30 minutos.
 
 ### No hay límites de accesos por segundo/minuto.
@@ -189,6 +192,7 @@ Ahora el servidor comprueba que el tipo de archivo sea una imagen. Esto no quita
 #### Podrían hacerse ataques de fuerza bruta para conseguir la contraseña de un usuario.
 Arreglado por Francisco Gonzalez
 
+Ahora el servidor bloquea a a cualquier usuario que falle al iniciar sesión 3 veces seguidas. Si un usuario acierta antes de llegar a esos 3 intentos, su contador se reseteará a 0. Si por el contrario no lo consigue, se le pondrá a 0 automáticamente desde el servidor en un tiempo no superior a 30 minutos.Por otro lado, el servidor registra todos los intentos de inicio de sesión reiterados, lo que puede ayudar a detectar este tipo de ataque.
 #### Podrían registrarse miles de cuentas falsas o "bots"
 Arreglado por Francisco Gonzalez
 Se ha añadido un captcha 
@@ -210,7 +214,8 @@ Arreglado por Francisco González
 La configuración mínima establecida es la siguiente: longitud>=6, una mayúsculas, una minúsculas, un número y un caracter especial. 
 
 # Configuración de seguridad insuficiente
-### Usamos las credenciales por defecto (Arreglado)
+### Usamos las credenciales por defecto 
+Arreglado por Diego Esteban.
 #### La contraseña del usuario admin para acceder a la base de datos es *test*
 Arreglado por Diego Esteban.
 
