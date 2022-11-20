@@ -19,8 +19,6 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    // TODO: Verificar la sesión
-
     if (!preg_match("/[a-zA-z]+/", $_POST["nombre"])) {
         die("Nombre no válido");
     }
@@ -28,10 +26,6 @@
     if (!preg_match("/[a-zA-z]+/", $_POST["apellido"])) {
         die("Apellido no válido");
     }
-
-    // TODO: validar DNI
-
-    // TODO: Validar fecha
 
     if (!preg_match("/[0-9]{9}/", $_POST["tlf"])) {
         die("Teléfono no válido");

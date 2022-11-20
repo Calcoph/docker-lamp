@@ -22,7 +22,7 @@
     // Obtener la lista de libros escritos por este usuario, para asegurarse que solo se borran los escritos por él
     $query = mysqli_prepare($conn, "SELECT `Book ID` FROM escritos WHERE `Used ID`=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "s", $us_id);
-    $us_id = $user;
+    $us_id = htmlspecialchars($user);
     mysqli_stmt_execute($query) or die (mysqli_error($conn));
     $libros_usuario = mysqli_stmt_get_result($query)->fetch_array();
 
@@ -40,14 +40,12 @@
       }
 
       if (in_array($libros[$x], $libros_usuario)) {
-        // TODO: Mirar que el libro es del usuario que ha iniciado sesión
-      $query = mysqli_prepare($conn, "DELETE FROM libro WHERE `Book ID`=?") or die (mysqli_error($conn));
-      mysqli_stmt_bind_param($query, "s", $lib_id);
-      $lib_id = htmlspecialchars($libros[$x]);
-      mysqli_stmt_execute($query) or die (mysqli_error($conn));
+        $query = mysqli_prepare($conn, "DELETE FROM libro WHERE `Book ID`=?") or die (mysqli_error($conn));
+        mysqli_stmt_bind_param($query, "s", $lib_id);
+        $lib_id = htmlspecialchars($libros[$x]);
+        mysqli_stmt_execute($query) or die (mysqli_error($conn));
       }
     }
-
 
     // Vuelve a la página principal
     header('Location: '."/PHP/mod_libros/lista_borrar_libros.php");

@@ -50,10 +50,6 @@
                 die("Apellido no válido");
             }
 
-            // TODO: validar DNI
-
-            // TODO: Validar fecha
-
             if (!preg_match("/[0-9]{9}/", $_POST["tlf"])) {
                 die("Teléfono no válido");
             }
