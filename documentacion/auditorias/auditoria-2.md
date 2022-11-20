@@ -78,6 +78,7 @@ Cuando recibimos una respuesta de un form, verificamos que su token anti-csrf es
 Con este sistema, no puede una tercera persona usar un form que se le ha servido para que lo rellene otro. Solo el usuario que ha pedido el form puede rellenarlo.
 
 Al usar tokens de sesión no es necesario que un usuario haya iniciado sesión, si no tiene un token de sesión, se le otorga uno cuando lo necesite.
+Las cookies de sesión tienen los atributos "httponly" y "samesite" para prevenir que otras páginas web accedan a ellas.
 
 Cada 30 minutos se eliminan de la base de datos los tokens inválidos, aun así, se verifica cada vez que el token no haya expirado.
 
