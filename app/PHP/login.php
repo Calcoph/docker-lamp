@@ -12,10 +12,10 @@ function login() {
         if ($conn->connect_error) {
             die("Database connection failed: " . $conn->connect_error);
         }
-        $query = mysqli_prepare($conn, "SELECT user_id FROM session_tokens WHERE token=?") or die (mysqli_error($conn));
+        $query = mysqli_prepare($conn, "SELECT user_id FROM session_tokens WHERE token=?") or die ("Error interno E890");
         mysqli_stmt_bind_param($query, "s", $tok);
         $tok = $_COOKIE["session"];
-        mysqli_stmt_execute($query) or die (mysqli_error($conn));
+        mysqli_stmt_execute($query) or die ("Error interno E890");
 
         mysqli_stmt_bind_result($query, $user);
         mysqli_stmt_fetch($query);
@@ -43,10 +43,10 @@ function get_usuario() {
         if ($conn->connect_error) {
             die("Database connection failed: " . $conn->connect_error);
         }
-        $query = mysqli_prepare($conn, "SELECT user_id FROM session_tokens WHERE token=?") or die (mysqli_error($conn));
+        $query = mysqli_prepare($conn, "SELECT user_id FROM session_tokens WHERE token=?") or die ("Error interno E890");
         mysqli_stmt_bind_param($query, "s", $tok);
         $tok = $_COOKIE["session"];
-        mysqli_stmt_execute($query) or die (mysqli_error($conn));
+        mysqli_stmt_execute($query) or die ("Error interno E890");
 
         mysqli_stmt_bind_result($query, $user);
         mysqli_stmt_fetch($query);

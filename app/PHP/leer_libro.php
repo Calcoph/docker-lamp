@@ -25,11 +25,11 @@
     $pagina = str_replace('%header%', $header, file_get_contents('/var/www/html/HTML/leer_libro.html'));
 
     // Obtiene el capítulo que se ha pedido
-    $query = mysqli_prepare($conn, "SELECT Chapter_ID, Texto FROM capitulo WHERE `Book ID`=? AND `Chapter Num`=?") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT Chapter_ID, Texto FROM capitulo WHERE `Book ID`=? AND `Chapter Num`=?") or die ("Error interno E890");
     mysqli_stmt_bind_param($query, "si", $tit, $c_num);
     $tit = $titulo;
     $c_num = $capitulo;
-    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+    mysqli_stmt_execute($query) or die ("Error interno E890");
     
     // Guarda el nombre del capítulo para luego
     mysqli_stmt_bind_result($query, $chap_id, $texto);
@@ -58,11 +58,11 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $query = mysqli_prepare($conn, "SELECT * FROM capitulo WHERE `Book ID`=? AND `Chapter Num`=?") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT * FROM capitulo WHERE `Book ID`=? AND `Chapter Num`=?") or die ("Error interno E890");
     mysqli_stmt_bind_param($query, "si", $tit2, $c_num2);
     $tit2 = $titulo;
     $c_num2 = $cap_siguiente;
-    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+    mysqli_stmt_execute($query) or die ("Error interno E890");
 
     $siguiente = "";
     if (mysqli_stmt_fetch($query)) { // Este while solo se va a ejecutar 1 vez (o ninguna, si es el último)
@@ -79,11 +79,11 @@
     if ($conn->connect_error) {
         die("Database connection failed: " . $conn->connect_error);
     }
-    $query = mysqli_prepare($conn, "SELECT `User ID`, Texto FROM `comentario capitulo` WHERE `Book ID`=? AND Chapter_ID=?") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT `User ID`, Texto FROM `comentario capitulo` WHERE `Book ID`=? AND Chapter_ID=?") or die ("Error interno E890");
     mysqli_stmt_bind_param($query, "ss", $tit3, $c_num3);
     $tit3 = $titulo;
     $c_num3 = $chap_id;
-    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+    mysqli_stmt_execute($query) or die ("Error interno E890");
 
     mysqli_stmt_bind_result($query, $uid, $texto);
 

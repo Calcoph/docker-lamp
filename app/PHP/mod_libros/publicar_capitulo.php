@@ -25,10 +25,10 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $query = mysqli_prepare($conn, "SELECT `Chapter Num` FROM capitulo WHERE `Book ID`=? ORDER BY `Chapter Num` DESC") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT `Chapter Num` FROM capitulo WHERE `Book ID`=? ORDER BY `Chapter Num` DESC") or die ("Error interno E890");
     mysqli_stmt_bind_param($query, "s", $tit);
     $tit = $titulo_libro;
-    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+    mysqli_stmt_execute($query) or die ("Error interno E890");
 
     mysqli_stmt_bind_result($query, $cap);
     mysqli_stmt_fetch($query);
@@ -39,13 +39,13 @@
     if ($conn->connect_error) {
         die("Database connection failed: " . $conn->connect_error);
     }
-    $query = mysqli_prepare($conn, "INSERT INTO capitulo(Chapter_ID, `Book ID`, `Chapter Num`, Texto) VALUES (?, ?, ?, ?)") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "INSERT INTO capitulo(Chapter_ID, `Book ID`, `Chapter Num`, Texto) VALUES (?, ?, ?, ?)") or die ("Error interno E890");
     mysqli_stmt_bind_param($query, "ssis", $titulo, $b_id, $c_num, $texto);
     $titulo = htmlspecialchars($_POST["titulo"]);
     $b_id = $titulo_libro;
     $c_num = $cap;
     $texto = htmlspecialchars($_POST["texto"]);
-    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+    mysqli_stmt_execute($query) or die ("Error interno E890");
 
     if ($_POST['boton'] == "solo_publicar") {
         // Vuelve a la página principal

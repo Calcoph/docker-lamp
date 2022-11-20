@@ -29,10 +29,10 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $query = mysqli_prepare($conn, "SELECT Prologue FROM libro WHERE `Book ID`=?") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT Prologue FROM libro WHERE `Book ID`=?") or die ("Error interno E890");
     mysqli_stmt_bind_param($query, "s", $tit);
     $tit = $titulo;
-    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+    mysqli_stmt_execute($query) or die ("Error interno E890");
     
     mysqli_stmt_bind_result($query, $prologo);
 
@@ -50,11 +50,11 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $query = mysqli_prepare($conn, "SELECT * FROM capitulo WHERE `Book ID`=? AND `Chapter Num`=?") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT * FROM capitulo WHERE `Book ID`=? AND `Chapter Num`=?") or die ("Error interno E890");
     mysqli_stmt_bind_param($query, "si", $tit, $c_num);
     $tit = $titulo;
     $c_num = "1";
-    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+    mysqli_stmt_execute($query) or die ("Error interno E890");
 
     $siguiente = "";
     if (mysqli_stmt_fetch($query)) {

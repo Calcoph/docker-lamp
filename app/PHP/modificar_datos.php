@@ -18,10 +18,10 @@
     $csrf = obtener_token_csrf();
     $pagina  = str_replace('%nonce%', $csrf, $pagina);
     $key = file_get_contents('/var/encr_pswd.txt');
-    $query = mysqli_prepare($conn, "SELECT Nombre, Apellidos, DNI, fecha_nacimiento, Telefono, email, `Used ID`, Password FROM usuario WHERE `Used ID`=?") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT Nombre, Apellidos, DNI, fecha_nacimiento, Telefono, email, `Used ID`, Password FROM usuario WHERE `Used ID`=?") or die ("Error interno E890");
     mysqli_stmt_bind_param($query, "s", $user);
     $user = $us;
-    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+    mysqli_stmt_execute($query) or die ("Error interno E890");
 
     mysqli_stmt_bind_result($query, $nombre, $apellidos, $dni, $f_nacimiento, $tlf, $email, $uid, $pswd);
     mysqli_stmt_fetch($query);

@@ -20,10 +20,10 @@
     }
 
     // Obtener la lista de libros escritos por este usuario, para asegurarse que solo se borran los escritos por él
-    $query = mysqli_prepare($conn, "SELECT `Book ID` FROM escritos WHERE `Used ID`=?") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT `Book ID` FROM escritos WHERE `Used ID`=?") or die ("Error interno E890");
     mysqli_stmt_bind_param($query, "s", $us_id);
     $us_id = htmlspecialchars($user);
-    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+    mysqli_stmt_execute($query) or die ("Error interno E890");
     $libros_usuario = mysqli_stmt_get_result($query)->fetch_array();
 
     $libros = $_POST["libros_borrados"];
@@ -40,10 +40,10 @@
       }
 
       if (in_array($libros[$x], $libros_usuario)) {
-        $query = mysqli_prepare($conn, "DELETE FROM libro WHERE `Book ID`=?") or die (mysqli_error($conn));
+        $query = mysqli_prepare($conn, "DELETE FROM libro WHERE `Book ID`=?") or die ("Error interno E890");
         mysqli_stmt_bind_param($query, "s", $lib_id);
         $lib_id = htmlspecialchars($libros[$x]);
-        mysqli_stmt_execute($query) or die (mysqli_error($conn));
+        mysqli_stmt_execute($query) or die ("Error interno E890");
       }
     }
 

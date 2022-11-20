@@ -16,8 +16,8 @@
 
     $titulo = htmlspecialchars($_POST["titulo"]);
 
-    $query = mysqli_prepare($conn, "SELECT `Comentario ID` FROM `comentario libro`") or die (mysqli_error($conn));
-    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT `Comentario ID` FROM `comentario libro`") or die ("Error interno E890");
+    mysqli_stmt_execute($query) or die ("Error interno E890");
 
     mysqli_stmt_bind_result($query, $c_id);
 
@@ -34,13 +34,13 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $query = mysqli_prepare($conn, "INSERT INTO `comentario libro`(`Comentario ID`, `User ID`, `Book ID`, `Texto`) VALUES (?, ?, ?, ?)") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "INSERT INTO `comentario libro`(`Comentario ID`, `User ID`, `Book ID`, `Texto`) VALUES (?, ?, ?, ?)") or die ("Error interno E890");
     mysqli_stmt_bind_param($query, "isss", $m_id, $user, $tit, $comentario);
     $m_id = $max_id + 1;
     $user = $us;
     $tit = $titulo;
     $comentario = htmlspecialchars($_POST["comentario_nuevo"]);
-    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+    mysqli_stmt_execute($query) or die ("Error interno E890");
 
     header('Location: '."/PHP/libro.php/?titulo=$titulo");
     die();

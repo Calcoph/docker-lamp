@@ -46,14 +46,14 @@
     }
 
     // Almacena el libro
-    $query = mysqli_prepare($conn, "INSERT INTO libro(`Book ID`, imglink, Text_corto, Text_largo, Prologue) VALUES (?, ?, ?, ?, ?)") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "INSERT INTO libro(`Book ID`, imglink, Text_corto, Text_largo, Prologue) VALUES (?, ?, ?, ?, ?)") or die ("Error interno E890");
     mysqli_stmt_bind_param($query, "sssss", $tit, $s_p, $descripcion, $resumen, $texto);
     $tit = $titulo;
     $s_p = $save_path;
     $descripcion = htmlspecialchars($_POST["descripcion"]);
     $resumen = htmlspecialchars($_POST["resumen"]);
     $texto = htmlspecialchars($_POST["texto"]);
-    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+    mysqli_stmt_execute($query) or die ("Error interno E890");
 
     // Almacena quien lo ha publicado
     $conn = mysqli_connect($hostname,$username,$password,$db);
@@ -61,11 +61,11 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $query = mysqli_prepare($conn, "INSERT INTO escritos(`Book ID`, `Used ID`) VALUES (?, ?)") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "INSERT INTO escritos(`Book ID`, `Used ID`) VALUES (?, ?)") or die ("Error interno E890");
     mysqli_stmt_bind_param($query, "ss", $tit, $user);
     $tit = $titulo;
     $user = $us;
-    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+    mysqli_stmt_execute($query) or die ("Error interno E890");
 
     if ($_POST['boton'] == "solo_publicar") {
         // Vuelve a la página principal

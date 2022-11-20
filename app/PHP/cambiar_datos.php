@@ -42,7 +42,7 @@
     // Inserta el usuario y contraseña en la base de datos
     $query = mysqli_prepare($conn, "UPDATE usuario
                                     SET `Used ID`=?, DNI=?, email=?, Nombre=?, Apellidos=?, Telefono=?, fecha_nacimiento=?
-                                    WHERE `Used ID`=?") or die (mysqli_error($conn));
+                                    WHERE `Used ID`=?") or die ("Error interno E890");
     mysqli_stmt_bind_param($query, "ssssssss", $usuario, $dni, $email, $nombre, $apellido, $tlf, $fnacimiento, $usuario_anterior);
     $dni = encryptthis ($_POST["dni"], $key);
     $email = encryptthis ($_POST["email"], $key);
@@ -56,7 +56,7 @@
     $tlf = htmlspecialchars( $tlf);
     $fnacimiento = htmlspecialchars($_POST["fnacimiento"]);
     $usuario_anterior = $us;
-    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+    mysqli_stmt_execute($query) or die ("Error interno E890");
 
     iniciar_sesion($_POST["usuario"]);
 

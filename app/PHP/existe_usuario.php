@@ -9,10 +9,10 @@
     die("Database connection failed: " . $conn->connect_error);
   }
 
-  $query = mysqli_prepare($conn, "SELECT `Used ID` FROM usuario WHERE `Used ID`=?") or die (mysqli_error($conn));
+  $query = mysqli_prepare($conn, "SELECT `Used ID` FROM usuario WHERE `Used ID`=?") or die ("Error interno E890");
   mysqli_stmt_bind_param($query, "s", $usuario);
   $usuario = htmlspecialchars($_GET["username"]);
-  mysqli_stmt_execute($query) or die (mysqli_error($conn));
+  mysqli_stmt_execute($query) or die ("Error interno E890");
 
   mysqli_stmt_bind_result($query, $uid);
   mysqli_stmt_fetch($query);

@@ -22,11 +22,11 @@
     $pagina  = str_replace('%nonce%', $csrf, $pagina);
     $pagina  = str_replace('%titulo_libro%', $titulo, $pagina);
 
-    $query = mysqli_prepare($conn, "SELECT Texto, Chapter_ID FROM capitulo WHERE `Book ID`=? AND `Chapter Num`=?") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT Texto, Chapter_ID FROM capitulo WHERE `Book ID`=? AND `Chapter Num`=?") or die ("Error interno E890");
     mysqli_stmt_bind_param($query, "si", $tit, $capitulo);
     $tit = $titulo;
     $capitulo = htmlspecialchars($_GET["capitulo"]);
-    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+    mysqli_stmt_execute($query) or die ("Error interno E890");
 
     mysqli_stmt_bind_result($query, $texto, $c_id);
     mysqli_stmt_fetch($query);

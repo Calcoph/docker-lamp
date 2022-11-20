@@ -11,8 +11,8 @@
         die("Database connection failed: " . $conn->connect_error);
     }
 
-    $query = mysqli_prepare($conn, "SELECT `Book ID`, Text_corto FROM libro") or die (mysqli_error($conn));
-    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT `Book ID`, Text_corto FROM libro") or die ("Error interno E890");
+    mysqli_stmt_execute($query) or die ("Error interno E890");
 
     mysqli_stmt_bind_result($query, $b_id, $text_corto);
 

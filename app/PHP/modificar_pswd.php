@@ -18,10 +18,10 @@
     $csrf = obtener_token_csrf();
     $pagina  = str_replace('%nonce%', $csrf, $pagina);
 
-    $query = mysqli_prepare($conn, "SELECT `Used ID`FROM usuario WHERE `Used ID`=?") or die (mysqli_error($conn));
+    $query = mysqli_prepare($conn, "SELECT `Used ID`FROM usuario WHERE `Used ID`=?") or die ("Error interno E890");
     mysqli_stmt_bind_param($query, "s", $user);
     $user = $us;
-    mysqli_stmt_execute($query) or die (mysqli_error($conn));
+    mysqli_stmt_execute($query) or die ("Error interno E890");
 
     mysqli_stmt_bind_result($query, $nombre, $apellidos, $dni, $f_nacimiento, $tlf, $email, $uid, $pswd);
     mysqli_stmt_fetch($query);
