@@ -8,7 +8,29 @@
         echo "Ha habido un error interno (E9013), pruebe más tarde";
         die();
     }
-
+    if ($_POST['g-recaptcha-response'] == '') {
+    } 
+    else {
+    $obj = new stdClass();
+    $obj->secret = "6LezvhAjAAAAADFY-zfZ4cj2v6Rj3JWRe0JBhAXc";
+    $obj->response = $_POST['g-recaptcha-response'];
+    $obj->remoteip = $_SERVER['REMOTE_ADDR'];
+    $url = 'https://www.google.com/recaptcha/api/siteverify';
+    
+    $options = array(
+    'http' => array(
+    'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+    'method' => 'POST',
+    'content' => http_build_query($obj)
+    )
+    );
+    $context = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+    
+    $validar = json_decode($result);}
+    
+    /* FIN DE CAPTCHA */
+    if ($validar->success) { 
     // La carpeta donde se van a guardar los archivos
     $target_dir = "/var/www/html/uploads/";
     // La dirección que se ve desde el html (para insertar las imágenes luego)
@@ -122,4 +144,24 @@
         header('Location: '."/PHP/mod_libros/nuevo_capitulo.php/?titulo=$titulo");
         die();
     }
+  }
+  else{
+    $csrf = obtener_token_csrf();
+          $header = str_replace('%usuario%', $us, file_get_contents('/var/www/html/HTML/header_small.html')); 
+          $descripcion = htmlspecialchars($_POST["descripcion"]);
+          $resumen = htmlspecialchars($_POST["resumen"]);
+          $texto = htmlspecialchars($_POST["texto"]);
+          $titulo = htmlspecialchars($_POST["titulo"]);
+          $pagina = str_replace('%titulo%', $titulo, file_get_contents('/var/www/html/HTML/publicar_libro_fallido.html'));
+          $pagina = str_replace('%header%', $header,$pagina);
+          $pagina = str_replace('%descripcion%',$descripcion,$pagina);
+          $pagina = str_replace('%resumen%',$resumen,$pagina);
+          $pagina = str_replace('%texto%',$texto,$pagina);
+          $pagina = str_replace('%scpt%', "<script>
+            window.alert('Complete el captcha')
+            </script>", $pagina);
+            $pagina  = str_replace('%nonce%', $csrf, $pagina);
+            echo($pagina);
+          die();
+  }
 ?>

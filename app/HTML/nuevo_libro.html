@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuevo libro</title>
     <link rel="stylesheet" href="/CSS/nuevo_libro.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="icon" type="image/png" href="/img/book_read_icon-icons.com_49930.ico" sizes="16x16">
     <script src="/js/nuevo_libro.js"></script>
 </head>
@@ -51,6 +52,7 @@
             <label for="">Formatos permitidos: jpg, png</label>
             <br>
           </div>
+          <div class="g-recaptcha" data-sitekey="6LezvhAjAAAAAHqRwGse1DdDjvRJBzleGAHPltX5"></div>
           <div class="btn_container">
             <input type="button" class="loginBtn" value="Publicar" onclick="solo_publicar()">
             <input type="button" class="loginBtn" value="Siguiente Capitulo" onclick="publicar_y_seguir()">
