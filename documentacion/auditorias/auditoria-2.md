@@ -26,7 +26,28 @@ Arreglado por Diego Esteban y por Francisco González
 Las inyecciones SQL se han arreglado utilizando queries paramterizadas. De esta manera, se separa la estructura de las consultas SQL de sus parámetros. Así se consigue que no se pueda modificar la estructura de la consulta mediante parámteros maliciosos que controla el usuario.
 
 ### Content Security Policy (CSP) Header Not Set
-No Arreglado
+Arreglado por Diego Esteban
+
+Hemos añadido el header en default-ssl.conf, por lo que las conexiones https están protegidas de este ataque. Que debería ser la única forma de conectarse como explicamos [aqui](#Usamos-una-conexión-no-cifrada-(HTTP)).
+
+Estas son las políticas que hemos puesto:
+ * frame-ancestors 'none'
+ * script-src 'self' https://www.google.com/recaptcha
+ * style-src 'self'
+ * img-src 'self'
+ * connect-src 'self'
+ * frame-src 'self'
+ * font-src 'self' https://fonts.googleapis.com
+ * media-src 'self'
+ * object-src 'self'
+ * manifest-src 'self'
+ * worker-src 'self'
+ * prefetch-src 'self'
+ * form-action 'self'
+
+De esta manera nos aseguramos que ese tipo de datos solo vienen de nuestro servidor, el navegador descartaría todo aquello que provenga desde fuera.
+
+Además también permitimos a google insertar sus scripts para el recaptcha y sus fuentes.
 
 ### Missing Anti-clickjacking Header
 Arreglado por Diego Esteban
@@ -41,7 +62,9 @@ Hemos eliminado todas las llamadas a mysqli_error() y las hemos reemplazado por 
 Aunque no nos podemos asegurar de que todos los errores se hayan suprimido, se ha reducido drásticamente la cantidad de información que otorgamos mediante errores.
 
 ### X-Frame-Options Header Not Set
-No arreglado
+Arreglado por Diego Esteban
+
+Hemos añadido el header en default-ssl.conf, por lo que las conexiones https están protegidas de este ataque. Que debería ser la única forma de conectarse como explicamos [aqui](#Usamos-una-conexión-no-cifrada-(HTTP)).
 
 ### Absence of Anti-CSRF Tokens
 Arreglado por Diego Esteban
