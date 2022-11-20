@@ -24,7 +24,12 @@
     mysqli_stmt_bind_param($query, "s", $us_id);
     $us_id = htmlspecialchars($user);
     mysqli_stmt_execute($query) or die ("Error interno E890");
-    $libros_usuario = mysqli_stmt_get_result($query)->fetch_array();
+    $resultadosql = mysqli_stmt_get_result($query)->fetch_all();
+    $arrlength = count($resultadosql);
+    $libros_usuario = array();
+    for($x = 0; $x < $arrlength; $x++) {
+      $libros_usuario[] = $resultadosql[$x][0];
+    }
 
     $libros = $_POST["libros_borrados"];
     $arrlength = count($libros);
