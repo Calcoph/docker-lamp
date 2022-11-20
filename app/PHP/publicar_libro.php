@@ -16,7 +16,7 @@
     $titulo = htmlspecialchars($_POST["titulo"]);
     $target_file = $target_dir . basename($_FILES["portada_personalizada"]["name"]);
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    if(isset($_FILES["portada_personalizada"])) {
+    if(isset($_FILES["portada_personalizada"]) && $target_file!='/var/www/html/uploads/'){
         $save_path = $save_path . basename($_FILES["portada_personalizada"]["name"]);
         $check = getimagesize($_FILES["portada_personalizada"]["tmp_name"]);
         if($check !== false) {
@@ -30,7 +30,7 @@
       // Check if file already exists
       if (file_exists($target_file)) {
         $razon=$razon . 'el fichero ya existe';
-        $uploadOk = 0;
+        $uploadOk = 2;
       }
       
       // Check file size
@@ -48,7 +48,7 @@
       
       // Check if $uploadOk is set to 0 by an error
       if ($uploadOk == 0) {
-            $csrf = obtener_token_csrf();
+          $csrf = obtener_token_csrf();
           $header = str_replace('%usuario%', $us, file_get_contents('/var/www/html/HTML/header_small.html')); 
           $descripcion = htmlspecialchars($_POST["descripcion"]);
           $resumen = htmlspecialchars($_POST["resumen"]);
@@ -66,8 +66,11 @@
           die();
       // if everything is ok, try to upload file
       } else {
-        if (move_uploaded_file($_FILES["portada_personalizada"]["tmp_name"], $target_file)) {
+        if ($uploadOk==2) {
         } 
+        else{
+          move_uploaded_file($_FILES["portada_personalizada"]["tmp_name"], $target_file);
+        }
       }
     }
       else {

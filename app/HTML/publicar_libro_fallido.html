@@ -17,28 +17,28 @@
           <h1 class="title">Nuevo libro</h1>
           <h4>Titulo</h4>
           <div class="inputContainer">
-            <input name="titulo" type="text" class="input" placeholder="a">
+            <input name="titulo" id ="titulo" type="text" class="input" placeholder="a">
           <script>
             document.getElementById('titulo').value = '%titulo%';
         </script>
           </div>
           <h4>Descripción</h4>
           <div class="inputContainer">
-            <input name="descripcion" type="text" class="input" placeholder="a">
+            <input name="descripcion" id="descripcion" type="text" class="input" placeholder="a">
           <script>
             document.getElementById('descripcion').value = '%descripcion%';
         </script>
           </div>
           <h4>Resumen</h4>
           <div class="inputContainer">
-            <textarea name="resumen" class="input" cols="60" rows="2" placeholder="a"></textarea>
+            <textarea name="resumen" id="resumen" class="input" cols="60" rows="2" placeholder="a"></textarea>
           <script>
             document.getElementById('resumen').value = '%resumen%';
         </script>
           </div>
           <h4>Prólogo</h4>
           <div class="inputContainer">
-            <textarea name="texto" class="input" cols="90" rows="5" placeholder="a"></textarea>
+            <textarea name="texto"  id="texto" class="input" cols="90" rows="5" placeholder="a"></textarea>
           <script>
             document.getElementById('texto').value = '%texto%';
         </script>
@@ -60,7 +60,7 @@
             <br>
             <label for="portada_personalizada">Portada personalizada</label>
             <br>
-            <input type="file" name="portada_personalizada">
+            <input type="file" name="portada_personalizada" value="original">
             <label for="">Formatos permitidos: jpg, png</label>
             <br>
           </div>
