@@ -32,7 +32,11 @@ No Arreglado
 No Arreglado
 
 ### Application Error Disclosure
-No arreglado
+Arreglado por Diego Esteban
+
+Hemos eliminado todas las llamadas a mysqli_error() y las hemos reemplazado por un error genérico "Error interno E890".
+
+Aunque no nos podemos asegurar de que todos los errores se hayan suprimido, se ha reducido drásticamente la cantidad de información que otorgamos mediante errores.
 
 ### X-Frame-Options Header Not Set
 No arreglado
