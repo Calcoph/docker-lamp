@@ -10,7 +10,7 @@ function otorgar_token_sesion() {
     }
 
     $token = bin2hex(random_bytes(32));
-    $expira = time()+12*3600;
+    $expira = time()+12*3600; // dura 12 horas
 
     $query = mysqli_prepare($conn, "INSERT INTO session_tokens(token, fecha_validez)
                                             VALUES (?, ?)") or die (mysqli_error($conn));

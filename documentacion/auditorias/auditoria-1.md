@@ -1,3 +1,5 @@
+Auditoría hecha por Diego Esteban
+
 # Problemas encontrados
 ## Problemas encontrados por ZAP
 * [Cross site scripting (XSS)](#Cross-site-scripting-(XSS))
@@ -95,6 +97,7 @@ Archivos afectados:
 * Para saber si alguien tiene la sesión iniciada solo miramos la cookie de "username", no verificamos que tenga una contraseña.
 * No logueamos los intentos de inicio de sesión.
 * No generamos tokens de sesión
+* A la hora de modificar los datos, se modifican los del usuario que se especifica en un campo (oculto) en el form.
 
 # Fallos criptográficos
 
@@ -121,6 +124,7 @@ Archivos afectados:
     * Podrían registrarse miles de cuentas falsas o "bot"s
 * Damos al cliente más información de la que necesita (por ejemplo le enviamos la contraseña del usuario que se intenta registrar para ver si el usuario ya existe)
 * Podría ser un problema que solo miremos que no haya 2 usernames repetidos (tlfs, emails y dnis pueden repetirse).
+* No se existe una configuración mínima de contraseña (más allá de el mínimo de 3 caracteres)
 
 # Configuración de seguridad insuficiente
 
