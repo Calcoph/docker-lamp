@@ -32,12 +32,12 @@ Hemos añadido el header en default-ssl.conf, por lo que las conexiones https es
 
 Estas son las políticas que hemos puesto:
  * frame-ancestors 'none'
- * script-src 'self' https://www.google.com/recaptcha
- * style-src 'self'
+ * script-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ 'unsafe-inline'
+ * style-src 'self' https://fonts.googleapis.com
  * img-src 'self'
  * connect-src 'self'
- * frame-src 'self'
- * font-src 'self' https://fonts.googleapis.com
+ * frame-src 'self' https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/
+ * font-src 'self' https://fonts.gstatic.com
  * media-src 'self'
  * object-src 'self'
  * manifest-src 'self'
@@ -47,7 +47,9 @@ Estas son las políticas que hemos puesto:
 
 De esta manera nos aseguramos que ese tipo de datos solo vienen de nuestro servidor, el navegador descartaría todo aquello que provenga desde fuera.
 
-Además también permitimos a google insertar sus scripts para el recaptcha y sus fuentes.
+Además también permitimos a google varias cosas para poder usar el recaptcha y las fuentes.
+
+por último, permitimos "unsafe-inline" de los scripts porque es algo que utilizamos, hemos mitigado los posibles ataques en la sección de XSS, pero estaría bien cambiar la forma en el que hacemos las cosas para eliminar el "unsafe-inline" y que sea más seguro.
 
 ### Missing Anti-clickjacking Header
 Arreglado por Diego Esteban
