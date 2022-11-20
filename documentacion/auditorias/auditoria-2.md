@@ -152,12 +152,18 @@ Utilizamos las funciones de PHP password_verify() y password_hash(). De este mod
 Usamos el algoritmo CRYPT_BLOWFISH, que está pensado para hashear contraseñas y es seguro.
 
 # Inyección
-Arreglado por Francisco González
+
 ### No hacemos ninguna verificación sobre el archivo que se supone que es la portada del libro. (Arreglado, Francisco González)
+Arreglado por Francisco González
+
 Se comprueba que las portadas subidas sean imágenes.
 #### Ni siquiera miramos si es una imagen.
+Arreglado por Francisco González
+
 Se comprueba que las portadas subidas sean imágenes.
 #### No hay límite de lo grande que puede ser la imagen.
+Arreglado por Francisco González
+
 El tamaño del archivo no puede ser mayor a 500000 bytes.
 #### Si ya existe una imagen con ese nombre, se sobreescribe.
 No arreglado
@@ -216,8 +222,7 @@ Arreglado por Francisco González
 La configuración mínima establecida es la siguiente: longitud>=6, una mayúsculas, una minúsculas, un número y un caracter especial. 
 
 # Configuración de seguridad insuficiente
-### Usamos las credenciales por defecto 
-Arreglado por Diego Esteban.
+
 #### La contraseña del usuario admin para acceder a la base de datos es *test*
 Arreglado por Diego Esteban.
 
@@ -229,7 +234,7 @@ Hay que mencionar lo obvio, db_pass.txt se encuentra en un repositorio público 
 
 Por ejemplo podríamos establecer un entorno de pruebas y un entorno de producción, y no cualquier persona podría acceder al db_pass.txt de producción.
 
-### La contraseña del usuario admin, dentro de la página en sí, también es *test*
+#### La contraseña del usuario admin, dentro de la página en sí, también es *test*
 No arreglado.
 
 Dado que el usuario admin de la página web no tiene privilegios especiales, ni libros escritos por él, no tiene mucha importancia. No es más que un usuario más con un nombre distinto.
