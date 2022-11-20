@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 15-11-2022 a las 13:45:12
--- Versión del servidor: 10.4.22-MariaDB
--- Versión de PHP: 8.1.2
+-- Servidor: db
+-- Tiempo de generación: 20-11-2022 a las 12:10:51
+-- Versión del servidor: 10.8.2-MariaDB-1:10.8.2+maria~focal
+-- Versión de PHP: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `database ver 2`
+-- Base de datos: `database`
 --
 
 -- --------------------------------------------------------
@@ -209,6 +209,18 @@ INSERT INTO `comentario libro` (`Comentario ID`, `User ID`, `Book ID`, `Texto`) 
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `csrf_tokens`
+--
+
+CREATE TABLE `csrf_tokens` (
+  `token` varchar(64) NOT NULL,
+  `session` varchar(64) NOT NULL,
+  `fecha_validez` datetime NOT NULL DEFAULT '2000-08-21 23:59:59'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `escritos`
 --
 
@@ -225,17 +237,6 @@ INSERT INTO `escritos` (`Book ID`, `Used ID`) VALUES
 ('Beware of Chicken', '简单的'),
 ('Cinnamon Bun', 'Aligator 250'),
 ('Mother of Learning', '简单的');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ips`
---
-
-CREATE TABLE `ips` (
-  `IP` int(11) UNSIGNED NOT NULL,
-  `IDusuario` varchar(60) NOT NULL DEFAULT 'Sin_Cuenta'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -286,33 +287,44 @@ CREATE TABLE `log` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `session_tokens`
+--
+
+CREATE TABLE `session_tokens` (
+  `token` varchar(64) NOT NULL,
+  `user_id` varchar(60) DEFAULT NULL,
+  `fecha_validez` datetime NOT NULL DEFAULT '2000-08-21 23:59:59'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
 CREATE TABLE `usuario` (
   `Used ID` varchar(60) NOT NULL DEFAULT '',
   `Password` varchar(60) NOT NULL DEFAULT '',
-  `DNI` varchar(60) NOT NULL DEFAULT 'DNI',
-  `email` varchar(60) NOT NULL DEFAULT 'y@gmail.com',
-  `Nombre` varchar(60) NOT NULL DEFAULT 'z',
-  `Apellidos` varchar(60) NOT NULL DEFAULT 'x',
-  `Telefono` varchar(60) NOT NULL DEFAULT '1',
+  `DNI` varchar(255) NOT NULL DEFAULT 'DNI',
+  `email` varchar(255) NOT NULL DEFAULT 'y@gmail.com',
+  `Nombre` varchar(255) NOT NULL DEFAULT 'z',
+  `Apellidos` varchar(255) NOT NULL DEFAULT 'x',
+  `Telefono` varchar(255) NOT NULL DEFAULT '1',
   `fecha_nacimiento` date NOT NULL DEFAULT '2000-08-21',
-  `Intentos` int(1) NOT NULL DEFAULT 0,
-  `Intento_Tiempo` datetime NOT NULL DEFAULT '2000-08-21 23:59:59'
+  `Intentos` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Intento almacena un numero x de intentos de inicio de sesion, Intento_Tiempo para comparar cuando fue el ultimo intento, para que si pasa una cantidad x desde el ultimo intento se resetee a 1 intento';
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`Used ID`, `Password`, `DNI`, `email`, `Nombre`, `Apellidos`, `Telefono`, `fecha_nacimiento`, `Intentos`, `Intento_Tiempo`) VALUES
-('Admin', 'test', '00000000X', 'Admind@admindistrator.com', 'Admin', 'Yes', '659847718', '1800-08-21', 0, '0000-00-00 00:00:00'),
-('Aitor', 'VIVA CHILE', '99036644R', 'BestAtor@hotmail.com', 'Aitor', 'Urrutia', '663087822', '1999-12-31', 0, '0000-00-00 00:00:00'),
-('Aligator 250', '214134351131253412771315171846123 41424251421 caba', '82045408S', 'TheRealRealRealBestAtor@gmail.com', 'Ane', 'Brown', '91234567', '2003-01-23', 0, '0000-00-00 00:00:00'),
-('Mikel', 'legenda1234', '22651705V', 'Mikel2000@gmail.com', 'Mikel', 'Silva', '677523021', '1996-08-21', 0, '0000-00-00 00:00:00'),
-('Sin_Cuenta', 'qdcnaefrtgADSWQRPOIL02ÑLKO..123412452', '.', '.', '.', '.', '.', '2000-08-21', 0, '2000-08-21 23:59:59'),
-('简单的', 'Simple', '84435835Y', 'Sun@gmail.com', 'Liang', 'Zhuge', '139678342', '2004-10-08', 0, '0000-00-00 00:00:00');
+INSERT INTO `usuario` (`Used ID`, `Password`, `DNI`, `email`, `Nombre`, `Apellidos`, `Telefono`, `fecha_nacimiento`, `Intentos`) VALUES
+('Admin', 'test', '00000000X', 'Admind@admindistrator.com', 'Admin', 'Yes', '659847718', '1800-08-21', 0),
+('Aitor', 'VIVA CHILE', '99036644R', 'BestAtor@hotmail.com', 'Aitor', 'Urrutia', '663087822', '1999-12-31', 0),
+('Aligator 250', '214134351131253412771315171846123 41424251421 caba', '82045408S', 'TheRealRealRealBestAtor@gmail.com', 'Ane', 'Brown', '91234567', '2003-01-23', 0),
+('Mikel', 'legenda1234', '22651705V', 'Mikel2000@gmail.com', 'Mikel', 'Silva', '677523021', '1996-08-21', 0),
+('Sin_Cuenta', 'qdcnaefrtgADSWQRPOIL02ÑLKO..123412452', '.', '.', '.', '.', '.', '2000-08-21', 0),
+('简单的', 'Simple', '84435835Y', 'Sun@gmail.com', 'Liang', 'Zhuge', '139678342', '2004-10-08', 0);
 
 --
 -- Índices para tablas volcadas
@@ -351,18 +363,19 @@ ALTER TABLE `comentario libro`
   ADD KEY `Book ID` (`Book ID`);
 
 --
+-- Indices de la tabla `csrf_tokens`
+--
+ALTER TABLE `csrf_tokens`
+  ADD PRIMARY KEY (`token`),
+  ADD KEY `session` (`session`);
+
+--
 -- Indices de la tabla `escritos`
 --
 ALTER TABLE `escritos`
   ADD PRIMARY KEY (`Book ID`,`Used ID`) USING BTREE,
   ADD KEY `Used ID` (`Used ID`),
   ADD KEY `Book ID` (`Book ID`);
-
---
--- Indices de la tabla `ips`
---
-ALTER TABLE `ips`
-  ADD PRIMARY KEY (`IP`,`IDusuario`);
 
 --
 -- Indices de la tabla `libro`
@@ -376,6 +389,13 @@ ALTER TABLE `libro`
 ALTER TABLE `log`
   ADD PRIMARY KEY (`Id`,`Used ID`) USING BTREE,
   ADD KEY `Used ID` (`Used ID`);
+
+--
+-- Indices de la tabla `session_tokens`
+--
+ALTER TABLE `session_tokens`
+  ADD PRIMARY KEY (`token`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indices de la tabla `usuario`
@@ -426,6 +446,12 @@ ALTER TABLE `comentario libro`
   ADD CONSTRAINT `User ID L` FOREIGN KEY (`User ID`) REFERENCES `usuario` (`Used ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `csrf_tokens`
+--
+ALTER TABLE `csrf_tokens`
+  ADD CONSTRAINT `session M` FOREIGN KEY (`session`) REFERENCES `session_tokens` (`token`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `escritos`
 --
 ALTER TABLE `escritos`
@@ -437,60 +463,14 @@ ALTER TABLE `escritos`
 --
 ALTER TABLE `log`
   ADD CONSTRAINT `Used ID` FOREIGN KEY (`Used ID`) REFERENCES `usuario` (`Used ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `session_tokens`
---
-
-CREATE TABLE `session_tokens` (
-  `token` varchar(64) NOT NULL,
-  `user_id` varchar(60),
-  `fecha_validez` datetime NOT NULL DEFAULT '2000-08-21 23:59:59'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Indices de la tabla `session_tokens`
---
-ALTER TABLE `session_tokens`
-  ADD PRIMARY KEY (`token`),
-  ADD KEY `user_id` (`user_id`);
 
 --
 -- Filtros para la tabla `session_tokens`
 --
 ALTER TABLE `session_tokens`
   ADD CONSTRAINT `user_id M` FOREIGN KEY (`user_id`) REFERENCES `usuario` (`Used ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `csrf_tokens`
---
-
-CREATE TABLE `csrf_tokens` (
-  `token` varchar(64) NOT NULL,
-  `session` varchar(64) NOT NULL,
-  `fecha_validez` datetime NOT NULL DEFAULT '2000-08-21 23:59:59'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
---
--- Indices de la tabla `csrf_tokens`
---
-ALTER TABLE `csrf_tokens`
-  ADD PRIMARY KEY (`token`),
-  ADD KEY `session` (`session`);
-
---
--- Filtros para la tabla `csrf_tokens`
---
-ALTER TABLE `csrf_tokens`
-  ADD CONSTRAINT `session M` FOREIGN KEY (`session`) REFERENCES `session_tokens` (`token`) ON DELETE CASCADE ON UPDATE CASCADE;
-
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
