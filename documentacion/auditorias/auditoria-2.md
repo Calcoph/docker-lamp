@@ -78,6 +78,7 @@ Cuando recibimos una respuesta de un form, verificamos que su token anti-csrf es
 Con este sistema, no puede una tercera persona usar un form que se le ha servido para que lo rellene otro. Solo el usuario que ha pedido el form puede rellenarlo.
 
 Al usar tokens de sesión no es necesario que un usuario haya iniciado sesión, si no tiene un token de sesión, se le otorga uno cuando lo necesite.
+Las cookies de sesión tienen los atributos "httponly" y "samesite" para prevenir que otras páginas web accedan a ellas.
 
 Cada 30 minutos se eliminan de la base de datos los tokens inválidos, aun así, se verifica cada vez que el token no haya expirado.
 
@@ -181,6 +182,7 @@ Arreglado por Francisco González
 Ahora el servidor bloquea a a cualquier usuario que falle al iniciar sesión 3 veces seguidas. Si un usuario acierta antes de llegar a esos 3 intentos, su contador se reseteará a 0. Si por el contrario no lo consigue, se le pondrá a 0 automáticamente desde el servidor en un tiempo no superior a 30 minutos.
 
 ### No hay límites de accesos por segundo/minuto.
+No arreglado
 
 #### Podrían registrar cientos de libros con imágenes enormes, llenando así el disco duro del servidor.
 Arreglado por Francisco González.
