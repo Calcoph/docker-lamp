@@ -11,24 +11,37 @@
 </head>
 <body>
     %header%
+    %scpt%
     <div class="signupFrm">
         <form name="form_publicar_libro" action="/PHP/publicar_libro.php" method="post" class="form" enctype="multipart/form-data">
           <h1 class="title">Nuevo libro</h1>
           <h4>Titulo</h4>
           <div class="inputContainer">
-            <input name="titulo" type="text" class="input" placeholder="Escribe el título del libro">
+            <input name="titulo" id ="titulo" type="text" class="input" placeholder="a">
+          <script>
+            document.getElementById('titulo').value = '%titulo%';
+        </script>
           </div>
           <h4>Descripción</h4>
           <div class="inputContainer">
-            <input name="descripcion" type="text" class="input" placeholder="Descripción del libro">
+            <input name="descripcion" id="descripcion" type="text" class="input" placeholder="a">
+          <script>
+            document.getElementById('descripcion').value = '%descripcion%';
+        </script>
           </div>
           <h4>Resumen</h4>
           <div class="inputContainer">
-            <textarea name="resumen" class="input" cols="60" rows="2" placeholder="Resumen del libro"></textarea>
+            <textarea name="resumen" id="resumen" class="input" cols="60" rows="2" placeholder="a"></textarea>
+          <script>
+            document.getElementById('resumen').value = '%resumen%';
+        </script>
           </div>
           <h4>Prólogo</h4>
           <div class="inputContainer">
-            <textarea name="texto" class="input" cols="90" rows="5" placeholder="Escribe el prólogo!"></textarea>
+            <textarea name="texto"  id="texto" class="input" cols="90" rows="5" placeholder="a"></textarea>
+          <script>
+            document.getElementById('texto').value = '%texto%';
+        </script>
           </div>
           <h4>Portada</h4>
           <div class="portadas">

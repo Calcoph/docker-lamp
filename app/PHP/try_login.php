@@ -83,7 +83,7 @@
         $pagina = str_replace('%usuario%', $user, file_get_contents('/var/www/html/HTML/inicio_sesion_fallido.html'));
         $pagina  = str_replace('%nonce%', $csrf, $pagina);
         $pagina = str_replace('%scpt%', "<script>
-        window.alert('Cuenta Bloqueada')
+        window.alert('Cuenta Bloqueada espere 30 minutos')
         </script>", $pagina);
         echo $pagina;
         die();
