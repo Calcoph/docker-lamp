@@ -178,6 +178,7 @@ Arreglado por Francisco González
 Ahora el servidor bloquea a a cualquier usuario que falle al iniciar sesión 3 veces seguidas. Si un usuario acierta antes de llegar a esos 3 intentos, su contador se reseteará a 0. Si por el contrario no lo consigue, se le pondrá a 0 automáticamente desde el servidor en un tiempo no superior a 30 minutos.
 
 ### No hay límites de accesos por segundo/minuto.
+No arreglado
 
 #### Podrían registrar cientos de libros con imágenes enormes, llenando así el disco duro del servidor.
 Arreglado por Francisco González.
@@ -210,7 +211,7 @@ Arreglado por Francisco González
 La configuración mínima establecida es la siguiente: longitud>=6, una mayúsculas, una minúsculas, un número y un caracter especial. 
 
 # Configuración de seguridad insuficiente
-### Usamos las credenciales por defecto (Arreglado)
+### Usamos las credenciales por defecto
 #### La contraseña del usuario admin para acceder a la base de datos es *test*
 Arreglado por Diego Esteban.
 
