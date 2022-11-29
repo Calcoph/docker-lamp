@@ -3,7 +3,7 @@ web:
    environment:
      - ALLOW_OVERRIDE=true
    ports:
-     - "81:80"
+     - "82:80"
      - "444:443"
    links:
      - db
@@ -30,7 +30,7 @@ phpmyadmin:
   links:
     - db
   ports:
-    - 8890:80
+    - 8891:80
   environment:
     MYSQL_USER: admin
     MYSQL_PASSWORD: 5%56#ALXvsWeDHrxW#H@gGpZEmGBb#jcjYRrLfSHnQ5jUGRCRB&8rU7EHZvX%LEXDFB!QjH#sz43T*J93cCta^Jvx*PLzjSvKo57D#us@69Twd^sCzaw4eeGSmAULefs
