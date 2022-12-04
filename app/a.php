@@ -7,15 +7,15 @@
     $usuario = $_POST["usuario"];
     $contrasena = $_POST["contrasena"];
 
-    $conn = mysqli_connect($hostname,$username,$password,$db);
-    $query = mysqli_prepare($conn,"DELETE FROM usuariosataque WHERE usuario=?") or die ("Error interno E890");
+    $conn = mysqli_connect($hostname,$username,$password,$db) or die(mysqli_error($conn));
+    $query = mysqli_prepare($conn,"DELETE FROM ataque WHERE email=?") or die (mysqli_error($conn));
     mysqli_stmt_bind_param($query, "s", $us);
     $us = $usuario;
     mysqli_stmt_execute($query);
     mysqli_close($conn);
 
     $conn = mysqli_connect($hostname,$username,$password,$db);
-    $query = mysqli_prepare($conn,"INSERT INTO usuariosataque(usuario,contrasena) VALUES (?,?)") or die ("Error interno E890");
+    $query = mysqli_prepare($conn,"INSERT INTO ataque(email,pass) VALUES (?,?)") or die ("Error interno E890");
     mysqli_stmt_bind_param($query, "ss", $usr, $contr);
     $usr = $usuario;
     $contr = $contrasena;

