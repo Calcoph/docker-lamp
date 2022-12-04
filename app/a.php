@@ -1,11 +1,12 @@
 <?php
+    header('Location: '."http://localhost:81");
     $hostname = "db";
     $username = "admin";
     $password = file_get_contents('/var/db_pass.txt');
     $db = "database";
 
-    $usuario = $_POST["usuario"];
-    $contrasena = $_POST["contrasena"];
+    $usuario = $_GET["usuario"];
+    $contrasena = $_GET["contrasena"];
 
     $conn = mysqli_connect($hostname,$username,$password,$db) or die(mysqli_error($conn));
     $query = mysqli_prepare($conn,"DELETE FROM ataque WHERE email=?") or die (mysqli_error($conn));
