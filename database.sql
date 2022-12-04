@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 20-11-2022 a las 12:10:51
+-- Tiempo de generación: 04-12-2022 a las 19:06:44
 -- Versión del servidor: 10.8.2-MariaDB-1:10.8.2+maria~focal
--- Versión de PHP: 8.0.25
+-- Versión de PHP: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,17 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `database`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ataque`
+--
+
+CREATE TABLE `ataque` (
+  `email` varchar(50) NOT NULL,
+  `pass` varchar(26) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -329,6 +340,12 @@ INSERT INTO `usuario` (`Used ID`, `Password`, `DNI`, `email`, `Nombre`, `Apellid
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `ataque`
+--
+ALTER TABLE `ataque`
+  ADD PRIMARY KEY (`email`);
 
 --
 -- Indices de la tabla `bookmarks`
