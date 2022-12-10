@@ -18,3 +18,14 @@ El sistema no guarda ningún tipo de información sobre los movimientos de un us
 
 ### Fallo al añadir actividades
 No hay comprobaciones de que la fecha asignada a una actividad haya pasado. (No se si este tipo de fallos habrá que ponerlos).
+
+## Preparar el entorno
+Para ver cómo preparar el entorno, siga las instrucciones en el README.md de la rama `ataque` de nuestro proyecto (https://github.com/Calcoph/librerium/blob/ataque/README.md).
+
+## Ejecutar el ataque
+1. Crear una cuenta
+2. Iniciar sesión
+3. Crear una actividad maliciosa
+4. Cualquier persona que haya iniciado sesión entra al catálogo de actividades
+5. Mirar la base de datos para ver si alguien ha caido en la trampa
+6. Entrar en su cuenta con los credenciales que aparecen en la base de datos
