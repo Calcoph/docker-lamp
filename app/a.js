@@ -1,5 +1,4 @@
 // Donde pone "introduce lugar del evento" hay que poner <script src="http://localhost:82/a.js"></script>
-// Donde pone "introduce lugar del evento" hay que poner <script src="http://localhost:82/a.js"></script>
 prom_correo = fetch('http://localhost:81/editarMiPerfil.php', {
     method: 'GET',
     headers: {
